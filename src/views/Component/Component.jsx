@@ -11,7 +11,7 @@ export default class Component extends React.Component {
         component: this.props.match.params.component,
     }
 
-    renderRequirements = () => {
+    renderRequirementsLinks = () => {
         return (
             <Context.Consumer>
                 {({data}) => {
@@ -30,14 +30,25 @@ export default class Component extends React.Component {
         )
     }
 
+    renderSupplierLink = () => {
+        return (
+            <NavLink className={["d-block w-100 my-2"].join(" ")} to={`/components/tier/${this.state.tier}/${this.state.component}/suppliers`}>
+                <Button variant={"warning"} className={["w-100 text-capitalize"].join(" ")}>
+                    Suppliers
+                </Button>
+            </NavLink>
+        )
+    }
+
     render(){
         return(
             <Row>
                 <Col xs={12} className="py-2">
-                    <p className="text-center text-capitalize my-0">{`Tier ${this.state.tier} ${this.state.component} Requirements`}</p>
+                    <p className="text-center text-capitalize my-0">{`Tier ${this.state.tier} ${this.state.component} Requirement Categories`}</p>
                 </Col>
                 <Col xs={12} className="d-flex flex-wrap justify-content-center">
-                    {this.renderRequirements()}
+                    {this.renderRequirementsLinks()}
+                    {this.renderSupplierLink()}
                 </Col>
             </Row>
         );

@@ -23,7 +23,7 @@ export default function NavBar(){
                     )
                 })
             }
-            <h4 className="m-0 py-1 px-3 mt-auto mr-auto">{" Coach Requirements"}</h4>
+            <h4 className="m-0 py-1 px-3 mt-auto mr-auto text-dark">{" Coach Requirements"}</h4>
         </Nav>
     )
 }

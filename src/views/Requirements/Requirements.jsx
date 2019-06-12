@@ -15,7 +15,7 @@ export default class  extends Component {
         return(
             <Row>
                 <Col>                
-                    <p className="text-white text-capitalize">{`Tier ${tier} - ${component} - ${requirements.split("-").join(" ")} page`}</p>
+                    <p className="text-white text-capitalize">{`Tier ${tier} - ${component} - ${requirements.split("-").join(" ")} requirements page`}</p>
                     <p>
                         Sed id interdum <a style={{fontSize: 20}} href="https://google.com">A link</a> Vivamus eu pretium ante. Fusce finibus, turpis vitae facilisis vehicula, 
                         eros nisi iaculis ante, aliquet finibus risus nunc quis dui. In erat sapien, dignissim quis 

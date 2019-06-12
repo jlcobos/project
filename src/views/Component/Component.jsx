@@ -16,9 +16,9 @@ export default class Component extends React.Component {
             <Context.Consumer>
                 {({data}) => {
                     const { requirements } = data[`tier${this.state.tier}`].requirements.components.find(c => c.name === this.state.component)
-                        return requirements.map(req => {
+                        return requirements.map((req, i) => {
                             return (
-                                <NavLink key={req.name} className={["d-block w-100 my-2"].join(" ")} to={`/components/tier/${this.state.tier}/${this.state.component}/${req.requirement}`}>
+                                <NavLink key={i} className={["d-block w-100 my-2"].join(" ")} to={`/components/tier/${this.state.tier}/${this.state.component}/${req.requirement}`}>
                                     <Button variant={req.name === "suppliers" ? "warning" : "primary"} className={["w-100 text-capitalize"].join(" ")}>
                                         {req.displayName}
                                     </Button>

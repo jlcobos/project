@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import { Context } from "../../context/context";
+import Linkify from 'linkifyjs/react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -11,27 +13,33 @@ export default class  extends Component {
     }
 
     render(){
-        const { tier, component, requirements } = this.state;
+        const options = {
+            format: (value) => {
+                value = value.split("***")
+                return value[value.length - 1]
+            },
+            formatHref: (value) => {
+                return value.split("***")[0]
+            }
+        }
+        
         return(
             <Row>
-                <Col>                
-                    <p className="text-white text-capitalize">{`Tier ${tier} - ${component} - ${requirements.split("-").join(" ")} requirements page`}</p>
-                    <p>
-                        Sed id interdum <a style={{fontSize: 20}} target="_blank" rel="noopener noreferrer" href="https://google.com">A link</a> Vivamus eu pretium ante. Fusce finibus, turpis vitae facilisis vehicula, 
-                        eros nisi iaculis ante, aliquet finibus risus nunc quis dui. In erat sapien, dignissim quis 
-                        lectus ac, dignissim iaculis felis. Pellentesque fringilla faucibus mi. Mauris semper, dui vel 
-                        venenatis molestie, nisi velit dignissim massa, et finibus elit ligula non orci. Cras maximus 
-                        id lacus at maximus. Mauris tempus nunc eu ligula mattis, a congue tellus iaculis. Proin sit 
-                        amet gravida nisl.
-                    </p>
-                    <p>
-                        Sed id interdum nulla. Vivamus eu pretium ante. Fusce finibus, turpis vitae facilisis vehicula, 
-                        eros nisi iaculis ante, <a style={{fontSize: 20}} target="_blank" rel="noopener noreferrer" href="https://google.com">Another link</a> finibus risus nunc quis dui. In erat sapien, dignissim quis 
-                        lectus ac, dignissim iaculis felis. Pellentesque fringilla faucibus mi. Mauris semper, dui vel 
-                        venenatis molestie, nisi velit dignissim massa, et finibus elit ligula non orci. Cras maximus 
-                        id lacus at maximus. Mauris tempus nunc eu ligula mattis, a congue tellus iaculis. Proin sit 
-                        amet gravida nisl.
-                    </p>
+                <Col>
+                    <Context.Consumer>
+                        { ({data}) => {
+                            const reqs = data[`tier${this.state.tier}`].requirements.components.find(comp => comp.name === this.state.component);
+                            const textList = reqs.requirements.find(req => req.name === this.state.requirements).text;
+                            return (
+                                <div>
+                                    {textList.map((text, index) => {
+                                        return <Linkify key={index} options={options} tagname="p">{text}</Linkify>
+                                        })
+                                    }
+                                </div>
+                            )}
+                        }                
+                    </Context.Consumer>
                 </Col>
             </Row>
         );

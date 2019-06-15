@@ -11,14 +11,14 @@ export default class Component extends React.Component {
         component: this.props.match.params.component,
     }
 
-    renderRequirementsLinks = () => {
+    renderRequirementLinks = () => {
         return (
             <Context.Consumer>
                 {({data}) => {
                     const { requirements } = data[`tier${this.state.tier}`].requirements.components.find(c => c.name === this.state.component)
                         return requirements.map((req, i) => {
                             return (
-                                <NavLink key={i} className={["d-block w-100 my-2"].join(" ")} to={`/components/tier/${this.state.tier}/${this.state.component}/${req.requirement}`}>
+                                <NavLink key={i} className={["d-block w-100 my-2"].join(" ")} to={`/components/tier/${this.state.tier}/${this.state.component}/${req.name}`}>
                                     <Button variant={req.name === "suppliers" ? "warning" : "primary"} className={["w-100 text-capitalize"].join(" ")}>
                                         {req.displayName}
                                     </Button>
@@ -47,7 +47,7 @@ export default class Component extends React.Component {
                     <p className="text-center text-capitalize my-0">{`Tier ${this.state.tier} ${this.state.component} Requirement Categories`}</p>
                 </Col>
                 <Col xs={12} className="d-flex flex-wrap justify-content-center">
-                    {this.renderRequirementsLinks()}
+                    {this.renderRequirementLinks()}
                     {this.renderSupplierLink()}
                 </Col>
             </Row>

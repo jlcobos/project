@@ -12,17 +12,17 @@ const testData = {
                 {
                     name: "ada",
                     displayName: "American Disabilities Act",
-                    requirements: "ADA reqs",
+                    text: ["ADA reqs"],
                 },
                 {
                     name: "fst",
                     displayName: "Flame, Smoke, and Toxicity",
-                    requirements: "Flame, smoke, and toxicity reqs",
+                    text: ["Flame, smoke, and toxicity reqs"],
                 },
                 {
                     name: "gst",
                     displayName: "General Statement for Crashworthiness (interior fittings and attachments)",
-                    requirements: "GST reqs (Apta, PRIIA, California Bulletins, FRA, CFR)",
+                    text: ["GST reqs (Apta, PRIIA, California Bulletins, FRA, CFR)"],
                 },
             ],
             components: [
@@ -31,25 +31,43 @@ const testData = {
                     displayName: "Seats",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 seats",
+                            text: ["Flame smoke and toxicity reqs for tier 1 seats www.google.com/***linkText"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 seats",
+                            text: ["structural reqs for tier 1 seats"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 seats",
+                            text: ["ADA reqs for tier 1 seats"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 seats",
+                            text:["Design guidelines for tier 1 seats"],
                         },
+                    ],
+                    suppliers: [
+                        {
+                            name: "abc",
+                            fstCompliant: "Yes",
+                            buyUSA: "Yes",
+                            portfolio: [],
+                            contacts: [
+                                {
+                                    name: "Mike Smith",
+                                    position: "Director of Sales",
+                                    phone: "800 000 000",
+                                    cell: "000 000 000",
+                                    email: "mike@abc.com",
+                                    timeZone: "est"
+                                }
+                            ]
+                        }
                     ]
                 },
                 {
@@ -57,24 +75,24 @@ const testData = {
                     displayName: "Tables",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 tables",
+                            text: ["Flame smoke and toxicity reqs for tier 1 tables"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 tables",
+                            text: ["structural reqs for tier 1 tables"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 tables",
+                            text: ["ADA reqs for tier 1 tables"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 tables",
+                            text: ["Design guidelines for tier 1 tables"],
                         },
                     ]
                 },
@@ -83,24 +101,24 @@ const testData = {
                     displayName: "Sidewalls",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 sidewalls",
+                            text: ["Flame smoke and toxicity reqs for tier 1 sidewalls"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 sidewalls",
+                            text: ["structural reqs for tier 1 sidewalls"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 sidewalls",
+                            text: ["ADA reqs for tier 1 sidewalls"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 sidewalls",
+                            text: ["Design guidelines for tier 1 sidewalls"],
                         },
                     ]
                 },
@@ -109,24 +127,24 @@ const testData = {
                     displayName: "Windows",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 windows",
+                            text: ["Flame smoke and toxicity reqs for tier 1 windows"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 windows",
+                            text: ["structural reqs for tier 1 windows"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 windows",
+                            text: ["ADA reqs for tier 1 windows"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 windows",
+                            text: ["Design guidelines for tier 1 windows"],
                         },
                     ]
                 },
@@ -135,24 +153,24 @@ const testData = {
                     displayName: "Carpets",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 carpets",
+                            text: ["Flame smoke and toxicity reqs for tier 1 carpets"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 carpets",
+                            text: ["structural reqs for tier 1 carpets"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 carpets",
+                            text: ["ADA reqs for tier 1 carpets"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 carpets",
+                            text: ["Design guidelines for tier 1 carpets"],
                         },
                     ]
                 },
@@ -161,24 +179,24 @@ const testData = {
                     displayName: "Rubber Flooring",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 rubber flooring",
+                            text: ["Flame smoke and toxicity reqs for tier 1 rubber flooring"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 rubber flooring",
+                            text: ["structural reqs for tier 1 rubber flooring"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 rubber flooring",
+                            text: ["ADA reqs for tier 1 rubber flooring"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 rubber flooring",
+                            text: ["Design guidelines for tier 1 rubber flooring"],
                         },
                     ]
                 },
@@ -187,24 +205,24 @@ const testData = {
                     displayName: "Vestibule Doors",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 Vestibule doors",
+                            text: ["Flame smoke and toxicity reqs for tier 1 Vestibule doors"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 Vestibule doors",
+                            text: ["structural reqs for tier 1 Vestibule doors"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 Vestibule doors",
+                            text: ["ADA reqs for tier 1 Vestibule doors"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 Vestibule doors",
+                            text: ["Design guidelines for tier 1 Vestibule doors"],
                         },
                     ]
                 },
@@ -213,24 +231,24 @@ const testData = {
                     displayName: "Floors",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 Floors",
+                            text: ["Flame smoke and toxicity reqs for tier 1 Floors"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 Floors",
+                            text: ["structural reqs for tier 1 Floors"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 Floors",
+                            text: ["ADA reqs for tier 1 Floors"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 Floors",
+                            text: ["Design guidelines for tier 1 Floors"],
                         },
                     ]
                 },
@@ -239,24 +257,24 @@ const testData = {
                     displayName: "Stanchions and Grab Handles",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 stanchions and grab handles",
+                            text: ["Flame smoke and toxicity reqs for tier 1 stanchions and grab handles"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 stanchions and grab handles",
+                            text: ["structural reqs for tier 1 stanchions and grab handles"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 stanchions and grab handles",
+                            text: ["ADA reqs for tier 1 stanchions and grab handles"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 stanchions and grab handles",
+                            text: ["Design guidelines for tier 1 stanchions and grab handles"],
                         },
                     ]
                 },
@@ -265,24 +283,24 @@ const testData = {
                     displayName: "Handholds",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 1 Handholds",
+                            text: ["Flame smoke and toxicity reqs for tier 1 Handholds"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 1 Handholds",
+                            text: ["structural reqs for tier 1 Handholds"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 1 Handholds",
+                            text: ["ADA reqs for tier 1 Handholds"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 1 Handholds",
+                            text: ["Design guidelines for tier 1 Handholds"],
                         },
                     ]
                 },
@@ -295,43 +313,43 @@ const testData = {
                 {
                     name: "ada",
                     displayName: "American Disabilities Act",
-                    requirements: "ADA reqs",
+                    text: "ADA reqs",
                 },
                 {
                     name: "fst",
                     displayName: "Flame, Smoke, and Toxicity",
-                    requirements: "Flame, smoke, and toxicity reqs",
+                    text: ["Flame, smoke, and toxicity reqs"],
                 },
                 {
                     name: "gst",
                     displayName: "General Statement for Crashworthiness (interior fittings and attachments)",
-                    requirements: "GST reqs (Apta, PRIIA, California Bulletins, FRA, CFR)",
+                    text: ["GST reqs (Apta, PRIIA, California Bulletins, FRA, CFR)"],
                 },
             ],
             components: [
                 {
                     name: "seats",
                     displayName: "Seats",
-                    requirements: [
+                    text: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 seats",
+                            text: ["Flame smoke and toxicity reqs for tier 2 seats"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 seats",
+                            text: ["structural reqs for tier 2 seats"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 seats",
+                            text: ["ADA reqs for tier 2 seats"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 seats",
+                            text: ["Design guidelines for tier 2 seats"],
                         },
                     ]
                 },
@@ -340,24 +358,24 @@ const testData = {
                     displayName: "Tables",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 tables",
+                            text: ["Flame smoke and toxicity reqs for tier 2 tables"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 tables",
+                            text: ["structural reqs for tier 2 tables"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 tables",
+                            text: ["ADA reqs for tier 2 tables"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 tables",
+                            text: ["Design guidelines for tier 2 tables"],
                         },
                     ]
                 },
@@ -366,24 +384,24 @@ const testData = {
                     displayName: "Sidewalls",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 sidewalls",
+                            text: ["Flame smoke and toxicity reqs for tier 2 sidewalls"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 sidewalls",
+                            text: ["structural reqs for tier 2 sidewalls"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 sidewalls",
+                            text: ["ADA reqs for tier 2 sidewalls"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 sidewalls",
+                            text: ["Design guidelines for tier 2 sidewalls"],
                         },
                     ]
                 },
@@ -392,24 +410,24 @@ const testData = {
                     displayName: "Windows",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 windows",
+                            text: ["Flame smoke and toxicity reqs for tier 2 windows"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 windows",
+                            text: ["structural reqs for tier 2 windows"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 windows",
+                            text: ["ADA reqs for tier 2 windows"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 windows",
+                            text: ["Design guidelines for tier 2 windows"],
                         },
                     ]
                 },
@@ -418,24 +436,24 @@ const testData = {
                     displayName: "Carpets",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 carpets",
+                            text: ["Flame smoke and toxicity reqs for tier 2 carpets"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 carpets",
+                            text: ["structural reqs for tier 2 carpets"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 carpets",
+                            text: ["ADA reqs for tier 2 carpets"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 carpets",
+                            text: ["Design guidelines for tier 2 carpets"],
                         },
                     ]
                 },
@@ -444,24 +462,24 @@ const testData = {
                     displayName: "Rubber Flooring",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 rubber flooring",
+                            text: ["Flame smoke and toxicity reqs for tier 2 rubber flooring"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 rubber flooring",
+                            text: ["structural reqs for tier 2 rubber flooring"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 rubber flooring",
+                            text: ["ADA reqs for tier 2 rubber flooring"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 rubber flooring",
+                            text: ["Design guidelines for tier 2 rubber flooring"],
                         },
                     ]
                 },
@@ -470,24 +488,24 @@ const testData = {
                     displayName: "Vestibule Doors",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 Vestibule doors",
+                            text: ["Flame smoke and toxicity reqs for tier 2 Vestibule doors"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 Vestibule doors",
+                            text: ["structural reqs for tier 2 Vestibule doors"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 Vestibule doors",
+                            text: ["ADA reqs for tier 2 Vestibule doors"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 Vestibule doors",
+                            text: ["Design guidelines for tier 2 Vestibule doors"],
                         },
                     ]
                 },
@@ -496,24 +514,24 @@ const testData = {
                     displayName: "Floors",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 Floors",
+                            text: ["Flame smoke and toxicity reqs for tier 2 Floors"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 Floors",
+                            text: ["structural reqs for tier 2 Floors"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 Floors",
+                            text: ["ADA reqs for tier 2 Floors"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 Floors",
+                            text: ["Design guidelines for tier 2 Floors"],
                         },
                     ]
                 },
@@ -522,24 +540,24 @@ const testData = {
                     displayName: "Stanchions and Grab Handles",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 stanchions and grab handles",
+                            text: ["Flame smoke and toxicity reqs for tier 2 stanchions and grab handles"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 stanchions and grab handles",
+                            text: ["structural reqs for tier 2 stanchions and grab handles"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 stanchions and grab handles",
+                            text: ["ADA reqs for tier 2 stanchions and grab handles"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 stanchions and grab handles",
+                            text: ["Design guidelines for tier 2 stanchions and grab handles"],
                         },
                     ]
                 },
@@ -548,24 +566,24 @@ const testData = {
                     displayName: "Handholds",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 2 Handholds",
+                            text: ["Flame smoke and toxicity reqs for tier 2 Handholds"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 2 Handholds",
+                            text: ["structural reqs for tier 2 Handholds"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 2 Handholds",
+                            text: ["ADA reqs for tier 2 Handholds"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 2 Handholds",
+                            text: ["Design guidelines for tier 2 Handholds"],
                         },
                     ]
                 },
@@ -578,17 +596,17 @@ const testData = {
                 {
                     name: "ada",
                     displayName: "American Disabilities Act",
-                    requirements: "ADA reqs",
+                    text: ["ADA reqs"],
                 },
                 {
                     name: "fst",
                     displayName: "Flame, Smoke, and Toxicity",
-                    requirements: "Flame, smoke, and toxicity reqs",
+                    text: ["Flame, smoke, and toxicity reqs"],
                 },
                 {
                     name: "gst",
                     displayName: "General Statement for Crashworthiness (interior fittings and attachments)",
-                    requirements: "GST reqs (Apta, PRIIA, California Bulletins, FRA, CFR)",
+                    text: ["GST reqs (Apta, PRIIA, California Bulletins, FRA, CFR)"],
                 },
             ],
             components: [
@@ -597,24 +615,24 @@ const testData = {
                     displayName: "Seats",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 seats",
+                            text: ["Flame smoke and toxicity reqs for tier 3 seats"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 seats",
+                            text: ["structural reqs for tier 3 seats"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 seats",
+                            text: ["ADA reqs for tier 3 seats"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 seats",
+                            text: ["Design guidelines for tier 3 seats"],
                         },
                     ]
                 },
@@ -623,24 +641,24 @@ const testData = {
                     displayName: "Tables",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 tables",
+                            text: ["Flame smoke and toxicity reqs for tier 3 tables"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 tables",
+                            text: ["structural reqs for tier 3 tables"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 tables",
+                            text: ["ADA reqs for tier 3 tables"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 tables",
+                            text: ["Design guidelines for tier 3 tables"],
                         },
                     ]
                 },
@@ -649,24 +667,24 @@ const testData = {
                     displayName: "Sidewalls",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 sidewalls",
+                            text: ["Flame smoke and toxicity reqs for tier 3 sidewalls"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 sidewalls",
+                            text: ["structural reqs for tier 3 sidewalls"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 sidewalls",
+                            text: ["ADA reqs for tier 3 sidewalls"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 sidewalls",
+                            text: ["Design guidelines for tier 3 sidewalls"],
                         },
                     ]
                 },
@@ -675,24 +693,24 @@ const testData = {
                     displayName: "Windows",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 windows",
+                            text: ["Flame smoke and toxicity reqs for tier 3 windows"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 windows",
+                            text: ["structural reqs for tier 3 windows"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 windows",
+                            text: ["ADA reqs for tier 3 windows"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 windows",
+                            text: ["Design guidelines for tier 3 windows"],
                         },
                     ]
                 },
@@ -701,24 +719,24 @@ const testData = {
                     displayName: "Carpets",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 carpets",
+                            text: ["Flame smoke and toxicity reqs for tier 3 carpets"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 carpets",
+                            text: ["structural reqs for tier 3 carpets"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 carpets",
+                            text: ["ADA reqs for tier 3 carpets"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 carpets",
+                            text: ["Design guidelines for tier 3 carpets"],
                         },
                     ]
                 },
@@ -727,24 +745,24 @@ const testData = {
                     displayName: "Rubber Flooring",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 rubber flooring",
+                            text: ["Flame smoke and toxicity reqs for tier 3 rubber flooring"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 rubber flooring",
+                            text: ["structural reqs for tier 3 rubber flooring"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 rubber flooring",
+                            text: ["ADA reqs for tier 3 rubber flooring"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 rubber flooring",
+                            text: ["Design guidelines for tier 3 rubber flooring"],
                         },
                     ]
                 },
@@ -753,24 +771,24 @@ const testData = {
                     displayName: "Vestibule Doors",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 Vestibule doors",
+                            text: ["Flame smoke and toxicity reqs for tier 3 Vestibule doors"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 Vestibule doors",
+                            text: ["structural reqs for tier 3 Vestibule doors"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 Vestibule doors",
+                            text: ["ADA reqs for tier 3 Vestibule doors"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 Vestibule doors",
+                            text: ["Design guidelines for tier 3 Vestibule doors"],
                         },
                     ]
                 },
@@ -779,24 +797,24 @@ const testData = {
                     displayName: "Floors",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 Floors",
+                            text: ["Flame smoke and toxicity reqs for tier 3 Floors"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 Floors",
+                            text: ["structural reqs for tier 3 Floors"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 Floors",
+                            text: ["ADA reqs for tier 3 Floors"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 Floors",
+                            text: ["Design guidelines for tier 3 Floors"],
                         },
                     ]
                 },
@@ -805,24 +823,24 @@ const testData = {
                     displayName: "Stanchions and Grab Handles",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 stanchions and grab handles",
+                            text: ["Flame smoke and toxicity reqs for tier 3 stanchions and grab handles"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 stanchions and grab handles",
+                            text: ["structural reqs for tier 3 stanchions and grab handles"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 stanchions and grab handles",
+                            text: ["ADA reqs for tier 3 stanchions and grab handles"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 stanchions and grab handles",
+                            text: ["Design guidelines for tier 3 stanchions and grab handles"],
                         },
                     ]
                 },
@@ -831,24 +849,24 @@ const testData = {
                     displayName: "Handholds",
                     requirements: [
                         {
-                            requirement: "fst",
+                            name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: "Flame smoke and toxicity reqs for tier 3 Handholds",
+                            text: ["Flame smoke and toxicity reqs for tier 3 Handholds"],
                         },
                         {
-                            requirement: "structural",
+                            name: "structural",
                             displayName: "Structural",
-                            text: "structural reqs for tier 3 Handholds",
+                            text: ["structural reqs for tier 3 Handholds"],
                         },
                         {
-                            requirement: "ada",
+                            name: "ada",
                             displayName: "American Disability Act",
-                            text: "ADA reqs for tier 3 Handholds",
+                            text: ["ADA reqs for tier 3 Handholds"],
                         },
                         {
-                            requirement: "design guidelines",
+                            name: "design guidelines",
                             displayName: "Design Guidelines",
-                            text: "Design guidelines for tier 3 Handholds",
+                            text: ["Design guidelines for tier 3 Handholds"],
                         },
                     ]
                 },

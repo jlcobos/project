@@ -54,6 +54,7 @@ const testData = {
                     suppliers: [
                         {
                             name: "abc",
+                            website: "www.abc.com",
                             fstCompliant: "Yes",
                             buyUSA: "Yes",
                             portfolio: [],

@@ -1,10 +1,3 @@
-// data navigation: tierX
-// .requirements.general
-//      .name .displayName .requirements
-// .requirements.components 
-//      .component . displayName. .requirements
-// .requirements.components.requirements
-//              .requirement .displayName .text 
 const testData = {
     tier1: {
         requirements: {

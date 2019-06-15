@@ -5,14 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default class  extends Component {
-
-    state = {
-        tier: this.props.match.params.tier,
-        component: this.props.match.params.component,
-        requirements: this.props.match.params.requirements,
-    }
-
     render(){
+        const { params } = this.props.match;
         const options = {
             format: (value) => {
                 value = value.split("***")
@@ -21,15 +15,14 @@ export default class  extends Component {
             formatHref: (value) => {
                 return value.split("***")[0]
             }
-        }
-        
+        }        
         return(
             <Row>
                 <Col>
                     <Context.Consumer>
                         { ({data}) => {
-                            const reqs = data[`tier${this.state.tier}`].requirements.components.find(comp => comp.name === this.state.component);
-                            const textList = reqs.requirements.find(req => req.name === this.state.requirements).text;
+                            const reqs = data[`tier${params.tier}`].requirements.components.find(comp => comp.name === params.component);
+                            const textList = reqs.requirements.find(req => req.name === params.requirements).text;
                             return (
                                 <div>
                                     {textList.map((text, index) => {

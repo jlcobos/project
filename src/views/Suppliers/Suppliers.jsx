@@ -4,15 +4,10 @@ import { NavLink } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
-import Components from "../Components/Components";
 
 export default class Suppliers extends Component {
-    state = {
-        tier: this.props.match.params.tier,
-        component: this.props.match.params.component,
-    }
-
     render(){
+        const { params } = this.props.match;
         return(
             <Row>
                 <Col>
@@ -28,8 +23,8 @@ export default class Suppliers extends Component {
                         </thead>
                         <tbody>
                             <Context.Consumer>
-                                {({data: { [`tier${this.state.tier}`]: { requirements: {components} } }}) => {
-                                        const suppliers = components.find(c => c.name === this.state.component).suppliers
+                                {({data: { [`tier${params.tier}`]: { requirements: {components} } }}) => {
+                                    const suppliers = components.find(c => c.name === params.component).suppliers;
                                     return suppliers.map((supplier, index) => {
                                         return (
                                             <tr key={index}>
@@ -40,7 +35,6 @@ export default class Suppliers extends Component {
                                                     <NavLink to={`/portfolio/${supplier.name}`}>Portfolio</NavLink>
                                                 </td>
                                             </tr>
-
                                             )
                                         })
                                     }

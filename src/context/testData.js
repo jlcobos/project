@@ -1,3 +1,5 @@
+import { seatsReqsFstTier1 } from "./text";
+
 const testData = {
     tier1: {
         requirements: {
@@ -26,7 +28,7 @@ const testData = {
                         {
                             name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: ["Flame smoke and toxicity reqs for tier 1 seats www.google.com/***linkText"],
+                            text: [seatsReqsFstTier1],
                         },
                         {
                             name: "structural",
@@ -47,18 +49,21 @@ const testData = {
                     suppliers: [
                         {
                             name: "abc",
+                            displayName: "ABC Inc.",
+                            location: {
+                                city: "Sacramento",
+                                state: "CA",
+                            },
                             website: "www.abc.com",
                             fstCompliant: "Yes",
                             buyUSA: "Yes",
-                            portfolio: [],
+                            portfolio: [], // link to pdf and/or site
                             contacts: [
                                 {
                                     name: "Mike Smith",
-                                    position: "Director of Sales",
+                                    position: "VP of Procurement",
                                     phone: "800 000 000",
-                                    cell: "000 000 000",
                                     email: "mike@abc.com",
-                                    timeZone: "est"
                                 }
                             ]
                         }

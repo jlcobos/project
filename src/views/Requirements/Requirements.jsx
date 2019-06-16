@@ -4,32 +4,24 @@ import Linkify from 'linkifyjs/react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default class  extends Component {
+export default class Requirements  extends Component {
     render(){
         const { params } = this.props.match;
         const options = {
-            format: (value) => {
+            format: value => {
                 value = value.split("***")
                 return value[value.length - 1]
             },
-            formatHref: (value) => {
-                return value.split("***")[0]
-            }
+            formatHref: value => value.split("***")[0]
         }        
         return(
             <Row>
                 <Col>
                     <Context.Consumer>
-                        { ({data}) => {
-                            const reqs = data[`tier${params.tier}`].requirements.components.find(comp => comp.name === params.component);
-                            const textList = reqs.requirements.find(req => req.name === params.requirements).text;
-                            return (
-                                <div>
-                                    {textList.map((text, index) => {
-                                        return <Linkify key={index} options={options} tagname="p">{text}</Linkify>
-                                        })
-                                    }
-                                </div>
+                        { ({data: { [`tier${params.tier}`]: { requirements: { components } } }}) => {
+                            const component = components.find(comp => comp.name === params.component);
+                            const textList = component.requirements.find(requirement => requirement.name === params.requirements).text;
+                            return textList.map((text, index) => <Linkify key={index} options={options} tagname="p">{text}</Linkify>
                             )}
                         }                
                     </Context.Consumer>

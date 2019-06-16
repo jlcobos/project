@@ -32,7 +32,7 @@ export default class Suppliers extends Component {
                                                 <td>{supplier.fstCompliant}</td>
                                                 <td>{supplier.buyUSA}</td>
                                                 <td>
-                                                    <NavLink to={`/portfolio/${supplier.name}`}>Portfolio</NavLink>
+                                                    <NavLink to={`/components/tier/${params.tier}/${params.component}/suppliers/${supplier.name}`}>Portfolio</NavLink>
                                                 </td>
                                             </tr>
                                             )

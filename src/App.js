@@ -8,7 +8,7 @@ import Components from "./views/Components";
 import Component from "./views/Component";
 import Requirements from "./views/Requirements";
 import Suppliers from "./views/Suppliers";
-import Portfolio from "./views/Portfolio";
+import Supplier from "./views/Supplier";
 import NavBar from "./components/Navs/NavBar";
 import Container from "react-bootstrap/Container";
 
@@ -46,8 +46,8 @@ function App() {
                 <Route exact path="/components/tier/:tier" component={Components} />
                 <Route exact path="/components/tier/:tier/:component" component={Component} />
                 <Route exact path="/components/tier/:tier/:component/suppliers" component={Suppliers} />
+                <Route exact path="/components/tier/:tier/:component/suppliers/:supplier" component={Supplier} />
                 <Route exact path="/components/tier/:tier/:component/:requirements" component={Requirements} />
-                <Route exact path="/portfolio/:supplier" component={Portfolio} />
                 <Route exact path="*" component={() => <p>Error page not found</p>} />
               </Switch>
               {/* <FooterNavWithRouter /> */}

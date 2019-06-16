@@ -1,5 +1,5 @@
 import { seatsReqsFstTier1 } from "./text";
-
+// i made an update
 const testData = {
     tier1: {
         requirements: {

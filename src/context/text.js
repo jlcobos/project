@@ -1,6 +1,5 @@
 import { link1 } from "./links";
+export const seatsReqsFstTier1 = `
 
-export const seatsReqsFstTier1 = {
-    header: "saldfjask",
-    para1: ""
-}
+text ${link1}
+`

@@ -24,7 +24,7 @@ library.add(fab, faHome, faSearch, faChevronLeft, faChevronRight);
 
 function BackButton({history, location: { pathname }}){
   if(pathname === "/") return null
-  else return <Button className="text-center" variant={"light"} onClick={() => history.goBack()} >BACK</Button>
+  else return <Button className="text-center" variant={"light"} onClick={() => history.goBack()}>BACK</Button>
 }
 
 const ButtonWRouter = withRouter(BackButton);

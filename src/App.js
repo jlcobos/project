@@ -10,26 +10,15 @@ import Requirements from "./views/Requirements";
 import Suppliers from "./views/Suppliers";
 import Supplier from "./views/Supplier";
 import NavBar from "./components/Navs/NavBar";
-import Container from "react-bootstrap/Container";
+import Container from "./components/Layout/Container";
 
-import Button from "react-bootstrap/Button";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./index.css";
-import './App.css';
+import './App.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faHome, faSearch, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 library.add(fab, faHome, faSearch, faChevronLeft, faChevronRight);
-
-function BackButton({history, location: { pathname }}){
-  if(pathname === "/") return null
-  else return <Button className="text-center" variant={"light"} onClick={() => history.goBack()}>BACK</Button>
-}
-
-const ButtonWRouter = withRouter(BackButton);
-
 
 
 function App() {
@@ -38,7 +27,7 @@ function App() {
       <Router history={history}>
         <ContextProvider>
           <div>
-            <Container fluid className="p-0">
+            <Container>
               <NavBar/>
             </Container>
             <Container fluid>
@@ -51,8 +40,6 @@ function App() {
                 <Route exact path="/components/tier/:tier/:component/:requirements" component={Requirements} />
                 <Route exact path="*" component={() => <p>Error page not found</p>} />
               </Switch>
-              {/* <FooterNavWithRouter /> */}
-              <ButtonWRouter />
             </Container>
           </div>
         </ContextProvider>

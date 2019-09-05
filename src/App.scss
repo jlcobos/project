@@ -7,19 +7,20 @@ color4: rgba(73, 94, 113, 1); Deep Space Sparkle
 color5: rgba(89, 108, 125, 1); Payne's Grey
 */
 :root {
-  --main-bg-color: rgba(15,42,67,1);
+  --main-bg: rgba(15,42,67,1);
+  --secondary-bg: rgba(36,61,84,1);
+  --dark-slate-gray: rgba(55,78,99,1);
+  --deep-space-sparkle: rgba(73, 94, 113, 1);
+  --paynes-grey: rgba(89, 108, 125, 1);
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: auto;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, span {
+h1, h2, h3, h4, h5, h6, p, a, li, span {
   color: #FFF;
 }
 
@@ -28,5 +29,20 @@ code {
     monospace;
 }
 
+.App {
+  background-color: var(--main-bg-color);
+}
+.pointer {
+  cursor: pointer;
+}
 
 
+
+
+
+
+
+
+
+
+@import '~bootstrap/scss/bootstrap.scss';

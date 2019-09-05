@@ -1,5 +1,3 @@
-import { seatsReqsFstTier1 } from "./text";
-// i made an update
 const testData = {
     tier1: {
         requirements: {
@@ -28,7 +26,7 @@ const testData = {
                         {
                             name: "fst",
                             displayName: "Flame, Smoke, and Toxicity",
-                            text: [seatsReqsFstTier1],
+                            text: ["seatsReqsFstTier1"],
                         },
                         {
                             name: "structural",

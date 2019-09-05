@@ -1,15 +1,5 @@
-body {
-  color: #FFF;
-}
-h1, h2, h3, h4, h5, h6, p {
-  color: #FFF;
-}
 .App {
-  margin:  10px auto;
-  max-width: 400px;
-  height: 700px;
-  overflow: auto;
-  background-color: 	#383838;
+  background-color: var(--main-bg-color);
 }
 .pointer {
   cursor: pointer;

@@ -1,13 +1,32 @@
+/* 
+Color Pallette 
+Main BG: rgba(15,42,67,1) Yankee Blue;
+color 2 rgba(36,61,84,1); Japanese Indigo
+color3: rgba(55,78,99,1); Dark Slate Gray
+color4: rgba(73, 94, 113, 1); Deep Space Sparkle
+color5: rgba(89, 108, 125, 1); Payne's Grey
+*/
+:root {
+  --main-bg-color: rgba(15,42,67,1);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, span {
+  color: #FFF;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+

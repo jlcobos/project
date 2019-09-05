@@ -15,6 +15,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./index.css";
 import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';

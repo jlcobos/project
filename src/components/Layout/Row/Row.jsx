@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Row({children, classes}) {
+export default function Row({children, rowClass}) {
     return (
-        <div className={["row", ...classes].join(" ")}>
+        <div className={`row ${rowClass}`}>
             {children}
         </div>
     )

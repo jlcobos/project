@@ -6,7 +6,7 @@ export default function Card({
     bodyClass, 
     withTitle, titleElement, titleClass, titleText, 
     withCardText, cardTextElement , cardTextClass , cardText, 
-    withNavLink, navLinkRoute, navLinkText
+    withNavLink, navLinkRoute, navLinkText, navLinkClass
 })
 {
     return (
@@ -14,7 +14,7 @@ export default function Card({
             <div className={["card-body", bodyClass].join(" ")}>
                 {withTitle && element({tag: titleElement || "h5", classes: `card-title ${titleClass}`, text: titleText})}
                 {withCardText && element({tag: cardTextElement || "p", classes: `card-text ${cardTextClass}`, text: cardText})}
-                {withNavLink && <NavLink to={navLinkRoute}>{navLinkText}</NavLink>}
+                {withNavLink && <NavLink className={navLinkClass} to={navLinkRoute}>{navLinkText}</NavLink>}
             </div>
         </div>
     );

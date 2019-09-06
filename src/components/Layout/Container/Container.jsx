@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Container({children, classes}) {
+export default function Container({children, containerClass}) {
     return (
-        <div class={["container-fluid",...classes].join(" ")} >
+        <div className={`container-fluid ${containerClass}`} >
             {children}
         </div>
     );

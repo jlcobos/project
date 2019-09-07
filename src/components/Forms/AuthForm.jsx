@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AuthForm({inputs, buttonText}){
+export default function AuthForm({inputs, buttonText, loginForm, signupForm}){
     return (
         <form className="my-3">
             <div className="d-flex justify-content-between p-1">
@@ -14,7 +14,8 @@ export default function AuthForm({inputs, buttonText}){
                 </div>
             })}
             <button type="submit" className="btn btn-primary mb-1">{buttonText}</button>
-            <p className="m-0 p-1">Already have an account?  <a href="#">Login</a></p>
+            {loginForm && <p className="m-0 p-1">Don't have an account?  <a href="#">Signup</a></p>}
+            {signupForm && <p className="m-0 p-1">Already have an account?  <a href="#">Login</a></p>}
         </form>
     );
 }

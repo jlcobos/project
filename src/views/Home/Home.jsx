@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react"
 import { NavLink } from "react-router-dom";
-import Button from "react-bootstrap/Button"
-import Row from "react-bootstrap/Row"
+import Button from "../../components/Button";
+import Row from "../../components/Layout/Row";
 
 export default class Home extends Component {
   state = {

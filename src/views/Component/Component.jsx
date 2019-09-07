@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Row from "../../components/Layout/Row";
+import Col from "../../components/Layout/Col";
 import { Context } from "../../context/context";
 
 export default class Component extends React.Component {

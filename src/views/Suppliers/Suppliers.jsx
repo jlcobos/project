@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import { Context } from "../../context/context";
 import { NavLink } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Table from "react-bootstrap/Table";
+import Row from "../../components/Layout/Row";
+import Col from "../../components/Layout/Col";
 
 export default class Suppliers extends Component {
     render(){
@@ -12,7 +11,7 @@ export default class Suppliers extends Component {
             <Row>
                 <Col>
                     <p className={["text-center"].join(" ")} >Suppliers</p>
-                    <Table striped bordered hover size="sm" variant="dark">
+                    {/* <Table striped bordered hover size="sm" variant="dark"> */}
                         <thead>
                             <tr>
                                 <th>Supplier</th>
@@ -41,7 +40,7 @@ export default class Suppliers extends Component {
                                 }
                             </Context.Consumer>
                         </tbody>
-                    </Table>
+                    {/* </Table> */}
                 </Col>
             </Row>
         );

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Context } from "../../context/context";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Row from "../../components/Layout/Row";
+import Col from "../../components/Layout/Col";
 
 export default class Supplier extends Component {
     render(){

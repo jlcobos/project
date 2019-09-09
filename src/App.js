@@ -12,7 +12,7 @@ import Suppliers from "./views/Suppliers";
 import Supplier from "./views/Supplier";
 
 
-import './App.scss';
+import './Globalcss/App.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -27,8 +27,8 @@ function App() {
           <ContextProvider>
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  {/* <Route exact path="/components/tier/:tier" component={Components} />
-                  <Route exact path="/components/tier/:tier/:component" component={Component} />
+                  {/* <Route exact path="/components/tier/:tier" component={Components} /> */}
+                  {/* <Route exact path="/components/tier/:tier/:component" component={Component} />
                   <Route exact path="/components/tier/:tier/:component/suppliers" component={Suppliers} />
                   <Route exact path="/components/tier/:tier/:component/suppliers/:supplier" component={Supplier} />
                   <Route exact path="/components/tier/:tier/:component/:requirements" component={Requirements} /> */}

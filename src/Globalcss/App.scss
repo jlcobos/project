@@ -1,10 +1,10 @@
-@import '~bootstrap/scss/bootstrap.scss';
+@import "./BootstrapOverrides/Overrides.scss";
+@import "~bootstrap/scss/bootstrap.scss";
 $main-bg: rgba(15,42,67,1);
 $secondary-bg: rgba(36,61,84,1);
 $dark-slate-gray: rgba(55,78,99,1);
 $deep-space-sparkle: rgba(73, 94, 113, 1);
 $paynes-grey: rgba(89, 108, 125, 1);
-
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", sans-serif;
@@ -14,17 +14,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, p, a, li, span {
-  color: #FFF;
+  color: #FFF !important;
 }
 .pointer {
   cursor: pointer;
 }
-
-
-
-
-
-
-
-
-

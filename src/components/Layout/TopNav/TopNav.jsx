@@ -26,7 +26,7 @@ export default class TopNav extends Component {
                 {this.navList.map(navItem => {
                     return (
                         <li key={navItem.text} className="nav-item"> 
-                            <NavLink className="nav-link text-white font-italic" to={navItem.to}>{navItem.text}</NavLink> 
+                            <NavLink className="nav-link font-italic" to={navItem.to}>{navItem.text}</NavLink> 
                         </li> 
                     )        
                 })}

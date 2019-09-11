@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export default function Card({
     cardClass, 
     bodyClass, 
-    withTitle, titleElement, titleClass, titleText, 
+    withTitle, titleElement, titleClass, title, 
     withCardText, cardTextElement , cardTextClass , cardText, 
     withNavLink, navLinkRoute, navLinkText, navLinkClass
 })
@@ -12,7 +12,7 @@ export default function Card({
     return (
         <div className={["card", cardClass].join(" ")} >
             <div className={["card-body", bodyClass].join(" ")}>
-                {withTitle && element({tag: titleElement || "h5", className: `card-title ${titleClass}`, text: titleText})}
+                {withTitle && element({tag: titleElement || "h5", className: `card-title ${titleClass}`, text: title})}
                 {withCardText && element({tag: cardTextElement || "p", classes: `card-text ${cardTextClass}`, text: cardText})}
                 {withNavLink && <NavLink className={navLinkClass} to={navLinkRoute}>{navLinkText}</NavLink>}
             </div>

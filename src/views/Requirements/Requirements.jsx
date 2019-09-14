@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Context } from "../../context/context";
-import Linkify from 'linkifyjs/react';
-import Row from "../../components/Layout/Row";
+import RequirementText from "../../components/Requirements";
+// import Linkify from 'linkifyjs/react';
 import Col from "../../components/Layout/Col";
 
 export default class Requirements  extends Component {
@@ -15,18 +15,20 @@ export default class Requirements  extends Component {
             formatHref: value => value.split("***")[0]
         }        
         return(
-            <Row>
-                <Col>
-                    <Context.Consumer>
-                        { ({data: { [`tier${params.tier}`]: { requirements: { components } } }}) => {
-                            const component = components.find(comp => comp.name === params.component);
-                            const textList = component.requirements.find(requirement => requirement.name === params.requirements).text;
-                            return textList.map((text, index) => <Linkify key={index} options={options} tagname="p">{text}</Linkify>
-                            )}
-                        }                
-                    </Context.Consumer>
-                </Col>
-            </Row>
+            <Context.Consumer>
+                    { ({data: { [`tier${params.tier}`]: { requirements: { components } } }}) => {
+                        const component = components.find(component => component.name === params.component);
+                        const text = component.requirements.find(requirement => requirement.name === params.requirements).text;
+                        return (
+                            <Col colClass="col-12 col-lg-10 offset-lg-1 overflow-auto p-3">
+                                <h1>{text.pageTitle}</h1>
+                                <h3>{text.title}  <sm>{text.subTitle}</sm></h3>
+                                <RequirementText paragraphs={text.paragraphs} />
+                            </Col>
+                        )
+                    }
+                    }                
+                </Context.Consumer>
         );
     }
 }

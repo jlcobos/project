@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import { withRouter } from "react-router";
+// import { withRouter } from "react-router";
 import { ContextProvider } from "./context/context";
 import history from "./app-history";
 import Master from "./components/Layout/Master";
@@ -8,8 +8,8 @@ import Home from "./views/Home";
 import ComponentsList from "./views/ComponentsList";
 import ComponentRegulationList from "./views/ComponentRegulationList";
 import Requirements from "./views/Requirements";
-import Suppliers from "./views/Suppliers";
-import Supplier from "./views/Supplier";
+// import Suppliers from "./views/Suppliers";
+// import Supplier from "./views/Supplier";
 
 
 import './Globalcss/App.scss';

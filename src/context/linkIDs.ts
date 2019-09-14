@@ -155,7 +155,7 @@ const SupplierLinks: LinkName = {
         displayName: `Kiel`,
     },
     adtrans: {
-        url: `https://www.kielna.com/`,
+        url: `https://www.adtrans-seating.com/Seating_Systems.html`,
         displayName: `Adtrans seating`,
     },
 }

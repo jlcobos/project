@@ -1,3 +1,6 @@
+import ADAText from "./RequirementText/ADA";
+
+
 const testData = {
     tier1: {
         requirements: {
@@ -36,7 +39,7 @@ const testData = {
                         {
                             name: "ada",
                             displayName: "American Disability Act",
-                            text: ["ADA reqs for tier 1 seats"],
+                            text: ADAText,
                         },
                         {
                             name: "design guidelines",

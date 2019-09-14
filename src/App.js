@@ -12,7 +12,7 @@ import Requirements from "./views/Requirements";
 // import Supplier from "./views/Supplier";
 
 
-import './Globalcss/App.scss';
+import './CSS/App.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';

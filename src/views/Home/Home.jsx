@@ -20,7 +20,7 @@ export default class Home extends Component {
 				return (
 					<Col key={tier.tier} colSize="col-md-4" colClass="d-flex justify-content-center align-items-center">
 						<NavLink to={`/tier/${tier.tierNumber}/components/list`}>
-							<Card cardClass="text-center square200 transparent-secondary-9 mb-5" withTitle titleText={tier.text} />        
+							<Card cardClass="text-center square200 transparent-secondary-9 mb-5" withTitle title={tier.text} />        
 						</NavLink>
 					</Col>
 				)

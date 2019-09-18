@@ -5,7 +5,7 @@ import { ContextProvider } from "./context/context";
 import history from "./app-history";
 import Master from "./components/Layout/Master";
 import Home from "./views/Home";
-import ComponentsList from "./views/ComponentsList";
+import TierView from "./views/TierView";
 import ComponentRegulationList from "./views/ComponentRegulationList";
 import Requirements from "./views/Requirements";
 // import Suppliers from "./views/Suppliers";
@@ -27,11 +27,11 @@ function App() {
           <ContextProvider>
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route exact path="/tier/:tier/components/list" component={ComponentsList} />
+                  <Route exact path="/tier/:tier" component={TierView} />
                   <Route exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />
                   {/* <Route exact path="/components/tier/:tier/:component/suppliers" component={Suppliers} />
                   <Route exact path="/components/tier/:tier/:component/suppliers/:supplier" component={Supplier} /> */}
-                  <Route exact path="/tier/:tier/components/:component/:requirements" component={Requirements} />
+                  <Route exact path="/tier/:tier/:component/requirements" component={Requirements} />
                   <Route exact path="*" component={() => <p>Error page not found</p>} />
                 </Switch>
           </ContextProvider>

@@ -6,29 +6,22 @@ import Col from "../../components/Layout/Col";
 
 export default class Requirements  extends Component {
     render(){
-        const { params } = this.props.match;
-        const options = {
-            format: value => {
-                value = value.split("***")
-                return value[value.length - 1]
-            },
-            formatHref: value => value.split("***")[0]
-        }        
+        const { params } = this.props.match;       
         return(
             <Context.Consumer>
-                    { ({data: { [`tier${params.tier}`]: { requirements: { components } } }}) => {
-                        const component = components.find(component => component.name === params.component);
-                        const text = component.requirements.find(requirement => requirement.name === params.requirements).text;
+                { 
+                    ({data: { [`tier${params.tier}`]:  {general, components }  }}) => {
+                        const reqs = [...general, ...components].find(x => x.param === params.component);
+                        const { name, subTitle, paragraphs } = reqs;                        
                         return (
                             <Col colClass="col-12 col-lg-10 offset-lg-1 overflow-auto p-3">
-                                <h1>{text.pageTitle}</h1>
-                                <h3>{text.title}  <sm>{text.subTitle}</sm></h3>
-                                <RequirementText paragraphs={text.paragraphs} />
+                                <h3>{name}  <small>{subTitle}</small></h3>
+                                <RequirementText paragraphs={paragraphs} />
                             </Col>
                         )
                     }
-                    }                
-                </Context.Consumer>
+                }                
+            </Context.Consumer>
         );
     }
 }

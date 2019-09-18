@@ -16,10 +16,10 @@ export default class Home extends Component {
 
     render(){
 		return (
-			this.tierLinks.map(tier => {
+			this.tierLinks.map((tier, i) => {
 				return (
-					<Col key={tier.tier} colSize="col-md-4" colClass="d-flex justify-content-center align-items-center">
-						<NavLink to={`/tier/${tier.tierNumber}/components/list`}>
+					<Col key={i} colSize="col-md-4" colClass="d-flex justify-content-center align-items-center">
+						<NavLink to={`/tier/${tier.tierNumber}`}>
 							<Card cardClass="text-center square200 transparent-secondary-9 mb-5" withTitle title={tier.text} />        
 						</NavLink>
 					</Col>

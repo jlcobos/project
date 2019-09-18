@@ -1,5 +1,5 @@
 import React, {Component, createContext} from "react";
-import testData from "./testData";
+import data from "./Data";
 
 export const Context = createContext();
 // export const ContextConsumer = Context.Consumer;
@@ -7,7 +7,7 @@ export const Context = createContext();
 export class ContextProvider extends Component {
 
     state = {
-        data: testData,
+        data,
     }
 
     render(){

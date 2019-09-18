@@ -10,8 +10,8 @@ export default class Home extends Component {
 	
 	tierLinks = [
 		{tierNumber: "1", text: "Tier I", speed: "< 125MPH"},
-		{tierNumber: "2", text: "Tier II", speed: "125MPH - 150MPH"},
-		{tierNumber: "3", text: "Tier III", speed: "> 150MPH"}
+		// {tierNumber: "2", text: "Tier II", speed: "125MPH - 150MPH"},
+		// {tierNumber: "3", text: "Tier III", speed: "> 150MPH"}
 	]
 
     render(){

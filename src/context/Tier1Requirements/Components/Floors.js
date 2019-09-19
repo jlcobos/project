@@ -1,5 +1,5 @@
 export const Floors =  {
-    name: "§38.117 Floors, Steps, and Thresholds",
+    name: "Floors, Steps, and Thresholds",
     displayName: "Floor Requirements",
     param: "floors-steps-thresholds",
     subTitle: "§38.117 Floors, Steps, and Thresholds ss 38.111 General.",

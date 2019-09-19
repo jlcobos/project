@@ -1,5 +1,5 @@
 export const SleepingCompartments = {
-    title: "Sleeping Compartments",
+    name: "Sleeping Compartments",
     displayName: "Sleeping Compartment Requirements",
     param: "sleeping-compartments",
     subTitle: "§38.127 Sleeping compartments",

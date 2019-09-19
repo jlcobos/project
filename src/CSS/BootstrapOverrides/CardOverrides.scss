@@ -1,1 +1,9 @@
-$card-bg: none;
+$card-bg: $bg-primary;
+$bg-secondary: rgba(36,61,84,1);
+@mixin secondary-bg($secondary: false) {
+    @if $secondary {
+        background-color: $bg-secondary;
+    }
+}
+
+.card.secondary {@include secondary-bg($secondary: true);}

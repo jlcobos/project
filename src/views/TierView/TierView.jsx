@@ -12,12 +12,17 @@ export default class TierView extends Component {
                 { 
                     ({data}) => {
                         const { general, components } = data[`tier${params.tier}`];
-                        return [...general, ...components].map(({param, displayName},i) => {                          
+                        return [...general, ...components].map(({param, name},i) => {                          
                             return (
                                 <Col key={i} colSize="col-6 col-md-3 col-sm-4" colClass="d-flex justify-content-center align-items-center">
-                                    <NavLink className=" " to={`/tier/${params.tier}/${param}/requirements`}>
-                                        <Card withTitle title={displayName}/>
-                                    </NavLink>
+                                    <Card 
+                                        cardClass="square200 text-center secondary" 
+                                        withTitle 
+                                        title={name}
+                                        withNavFooter
+                                        navFooterText="Requirements"
+                                        navPath={`/tier/${params.tier}/${param}/requirements`}
+                                    />
                                 </Col>
                             )
                         })

@@ -7,3 +7,7 @@ $bg-secondary: rgba(36,61,84,1);
 }
 
 .card.secondary {@include secondary-bg($secondary: true);}
+
+.card a {
+    text-decoration: none;
+}

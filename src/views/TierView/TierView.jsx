@@ -16,7 +16,8 @@ export default class TierView extends Component {
                             return (
                                 <Col key={i} colSize="col-6 col-md-3 col-sm-4" colClass="d-flex justify-content-center align-items-center">
                                     <Card 
-                                        cardClass="square200 text-center secondary" 
+                                        cardClass="square200 secondary"
+                                        textCenter  
                                         withTitle 
                                         title={name}
                                         withNavFooter

@@ -4,7 +4,7 @@ automatic_scaling:
 
 handlers:
   - url: /
-    static_files: client/build/index.html
-    upload: client/build/index.html
+    static_files: build/index.html
+    upload: build/index.html
   - url: /
-    static_dir: client/build
+    static_dir: build

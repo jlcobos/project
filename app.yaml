@@ -9,4 +9,4 @@ handlers:
   - url: /
     static_files: /client/build
   - url: /
-    static_dir: build
+    static_dir: client/build

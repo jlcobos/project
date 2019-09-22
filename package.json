@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm i && node index.js && npm run build",
+    "start": "npm run build && node index.js",
     "dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd ../client && npm run start",
-    "install": "cd ../client && npm install",
-    "build": "cd ../client && npm install && npm run build",
+    "client": "cd client && npm run start",
+    "client-install": "cd client && npm install",
+    "build": "cd client && npm client-install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

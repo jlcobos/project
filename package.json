@@ -27,7 +27,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "dev": "react-scripts start && node server",
     "build": "react-scripts build",
     "test": "react-scripts test",

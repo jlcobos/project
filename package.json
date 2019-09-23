@@ -1,23 +1,57 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "npm run client && npm install && node index.js",
-    "dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run clientDev\"",
-    "clientDev": "cd client && npm run start",
-    "client": "cd ./client && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "rail",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "^10.x"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "if-env": "^1.0.4"
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bootstrap": "^4.3.1",
+    "if-env": "^1.0.4",
+    "immutable": "^4.0.0-rc.12",
+    "linkifyjs": "^2.1.8",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "require-all": "^3.0.0",
+    "source-map-explorer": "^2.0.1",
+    "typescript": "^3.5.2",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "npm run build && node server.js",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
+    "tslint": "^5.18.0",
+    "tslint-react": "^4.0.0",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.2"
   }

@@ -2,5 +2,8 @@ runtime: nodejs10
 env: standard
 
 handlers:
-  - url: /static
-    static_dir: build
+- url: /
+  static_files: build/index.html
+  upload: build/index.html
+- url: /
+  static_dir: build

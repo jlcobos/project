@@ -9,8 +9,8 @@
 /coverage
 
 # production
-build/static/css/*.map
-build/static/js/*.map
+build/static/css/*.css.map
+build/static/js/*.js.map
 # misc
 .DS_Store
 .env.local

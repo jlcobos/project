@@ -18,6 +18,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.listen(PORT, function() {
+app.listen(PORT, '0.0.0.0',function() {
     console.log(`🌎 ==> Server now on running port ${PORT}!`);
 });

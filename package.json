@@ -11,7 +11,10 @@
     "@fortawesome/free-regular-svg-icons": "^5.9.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
     "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
     "if-env": "^1.0.4",
     "immutable": "^4.0.0-rc.12",
     "linkifyjs": "^2.1.8",
@@ -23,12 +26,11 @@
     "react-scripts": "3.0.1",
     "require-all": "^3.0.0",
     "source-map-explorer": "^2.0.1",
-    "typescript": "^3.5.2",
-    "express": "^4.17.1"
+    "typescript": "^3.5.2"
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "react-scripts start && node server",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

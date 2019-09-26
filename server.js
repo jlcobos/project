@@ -7,11 +7,6 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.set('trust proxy', true);
 
-app.get("/getjson", function(req, res) {   
-    res.json({test: "OK"});
-});
-
-
 if (process.env.NODE_ENV === "production") {
     app.get("/*", function(req, res) {   
         res.sendFile(path.join(__dirname, 'build', 'index.html'));

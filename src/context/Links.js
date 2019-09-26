@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 var APTA_BaseURL = "https://www.apta.com";
 var CFR_BaseURL = "https://www.ecfr.gov";
 var ADA_BaseURL = "https://www.ada.gov";
@@ -142,7 +144,7 @@ var SupplierLinks = {
         displayName: "Kiel"
     },
     adtrans: {
-        url: "https://www.kielna.com/",
+        url: "https://www.adtrans-seating.com/Seating_Systems.html",
         displayName: "Adtrans seating"
     }
 };
@@ -151,3 +153,4 @@ var SupplierLinks = {
 // export const Compin_websitelnk = "http://www.compin.com/?lang=en"
 // export const Kiel_websitelnk = "http://www.kielna.com/"
 // export const Adtrans_websitelnk = "http://www.adtrans-seating.com/Seating_Systems.htm"
+exports.testLink = { link: "www.google.com", displayName: "Google" };

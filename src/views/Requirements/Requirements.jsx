@@ -16,7 +16,7 @@ export default class Requirements  extends Component {
                         return (
                             <Col colClass="col-12 col-lg-10 offset-lg-1 overflow-auto p-3">
                                 <h3>{name}  <small>{subTitle}</small></h3>
-                                <RequirementText paragraphs={paragraphs} />
+                                {paragraphs.map(p => p.text)}
                             </Col>
                         )
                     }

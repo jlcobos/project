@@ -165,3 +165,4 @@ const SupplierLinks: LinkName = {
 // export const Kiel_websitelnk = "http://www.kielna.com/"
 // export const Adtrans_websitelnk = "http://www.adtrans-seating.com/Seating_Systems.htm"
 
+export const testLink = {link: "www.google.com", displayName: "Google"};

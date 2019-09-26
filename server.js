@@ -1,7 +1,7 @@
 'use strict';
 const express = require("express");
 // const path = require("path");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 const app = express();
 app.set('trust proxy', true);
 
@@ -18,6 +18,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.listen(PORT, '0.0.0.0',function() {
-    console.log(`🌎 ==> Server now on running port ${PORT}!`);
-});
+app.listen(PORT, () => console.log(`🌎 ==> Server now on running port ${PORT}!`));

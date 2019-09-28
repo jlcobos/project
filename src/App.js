@@ -12,7 +12,7 @@ import Requirements from "./views/Requirements";
 // import Suppliers from "./views/Suppliers";
 // import Supplier from "./views/Supplier";
 
-
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './CSS/App.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';

@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Col from "../../components/Layout/Col";
 import Input from "../../components/Forms/Input";
 import Checkbox from "../../components/Forms/Checkbox";
+import Dropdown from "../../components/Forms/Dropdown";
 
 export default class SupplierSearch extends Component {
 
@@ -23,7 +24,7 @@ export default class SupplierSearch extends Component {
             <Col colClass="col-xs-12 col-md-12 col-lg-10 offset-lg-1 col-xl-8 offset-lg-2">
                 <form>
                     <Checkbox checkboxList={this.checkboxList} />
-                    <Input inputClass="col-6" type="text" placeholder="Subject" />
+                    <Dropdown displayText={"Select"}  dropdownItems={[{value: "value-1"}, {value: "value-2"}]} />
                 </form>
             </Col>
         );

@@ -7,8 +7,8 @@ export default function Dropdown({displayText, dropdownItems}){
             {displayText}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {dropdownItems.map(({value}, i) => {
-                    return <p key={i} className="dropdown-item text-capitalize text-dark" value={value}>{value.replace("-", " ")}</p>
+                {dropdownItems.map(({value, action}, i) => {
+                    return <p key={i} onClick={() => action(value)} className="dropdown-item text-capitalize text-dark" value={value}>{value.replace("-", " ")}</p>
                 })}
             </div>
         </div>

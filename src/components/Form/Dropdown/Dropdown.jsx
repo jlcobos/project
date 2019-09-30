@@ -1,14 +1,15 @@
 import React from "react";
+import styles from "./Dropdown.module.scss";
 
-export default function Dropdown({displayText, dropdownItems}){
+export default function Dropdown({displayText, values, action}){
     return (
         <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {displayText}
+            <button className="btn btn-secondary dropdown-toggle  text-capitalize" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {displayText.replace("-", " ")}
             </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {dropdownItems.map(({value, action}, i) => {
-                    return <p key={i} onClick={() => action(value)} className="dropdown-item text-capitalize text-dark" value={value}>{value.replace("-", " ")}</p>
+            <div className={`dropdown-menu ${styles.scrollableMenu}`} aria-labelledby="dropdownMenuButton">
+                {values.map((value, i) => {
+                    return <button key={i} onClick={(e) => action(e)} name={displayText} className="dropdown-item text-capitalize text-dark" value={value}>{ typeof value === "string" ? value.replace("-", " ") : value}</button>
                 })}
             </div>
         </div>

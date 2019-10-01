@@ -2,11 +2,12 @@ import React from "react";
 
 export default function Checkbox({inline, checkboxList, action, labelClass, checkboxClass}){
     return (
-        Object.keys(checkboxList).map(key => {
+        checkboxList.map(({name, checked}) => {
+            const displayName = name.replace(/-/g, " ");
             return (
-                <div key={key} className={`form-check ${inline ? "form-check-inline" : ""}`}>
-                    <input type="checkbox" checked={checkboxList[key]} name={key} onChange={(e) => action(e)} className={`form-check-input ${checkboxClass ? checkboxClass : ""}`} id={key} />
-                    <label className={`form-check-label text-capitalize ${labelClass ? labelClass : ""}`} htmlFor={key}>{key.split("-").join(" ")}</label>
+                <div key={name} className={`form-check ${inline ? "form-check-inline" : ""}`}>
+                    <input type="checkbox" checked={checked} name={name} onChange={(e) => action(e)} className={`form-check-input ${checkboxClass ? checkboxClass : ""}`} id={name} />
+                    <label className={`form-check-label text-capitalize ${labelClass ? labelClass : ""}`} htmlFor={name}>{displayName}</label>
                 </div>
                 )
             })

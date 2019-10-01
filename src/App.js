@@ -7,6 +7,7 @@ import Master from "./components/Layout/Master";
 import Home from "./views/Home";
 import TierView from "./views/TierView";
 import SupplierSearch from "./views/SupplierSearch";
+import SupplierSignup from "./views/SupplierSignup";
 import ComponentRegulationList from "./views/ComponentRegulationList";
 import Requirements from "./views/Requirements";
 // import Suppliers from "./views/Suppliers";
@@ -34,6 +35,7 @@ function App() {
                   <Route exact path="/components/tier/:tier/:component/suppliers/:supplier" component={Supplier} /> */}
                   <Route exact path="/tier/:tier/:component/requirements" component={Requirements} />
                   <Route exact path="/tier/:tier/:component/search" component={SupplierSearch} />
+                  <Route exact path="/suppliers/signup" component={SupplierSignup} />
                   <Route exact path="*" component={() => <p>Error page not found</p>} />
                 </Switch>
           </ContextProvider>

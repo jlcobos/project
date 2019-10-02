@@ -10,6 +10,7 @@ import SupplierSearch from "./views/SupplierSearch";
 import SupplierSignup from "./views/SupplierSignup";
 import ComponentRegulationList from "./views/ComponentRegulationList";
 import Requirements from "./views/Requirements";
+import RFP from "./views/RFP";
 // import Suppliers from "./views/Suppliers";
 // import Supplier from "./views/Supplier";
 
@@ -36,6 +37,7 @@ function App() {
                   <Route exact path="/tier/:tier/:component/requirements" component={Requirements} />
                   <Route exact path="/tier/:tier/:component/search" component={SupplierSearch} />
                   <Route exact path="/suppliers/signup" component={SupplierSignup} />
+                  <Route exact path="/suppliers/rfp" component={RFP} />
                   <Route exact path="*" component={() => <p>Error page not found</p>} />
                 </Switch>
           </ContextProvider>

@@ -11,12 +11,12 @@ export default class TopNav extends Component {
             text: "Contact",
         },
         {
-            to: "/about",
-            text: "About",
+            to: "/suppliers/rfp",
+            text: "RFP",
         },
         {
-            to: "/account",
-            text: "Account",
+            to: "/suppliers/signup",
+            text: "Supplier Signup",
         },
     ]
 

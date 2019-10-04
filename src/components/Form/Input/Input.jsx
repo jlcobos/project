@@ -1,10 +1,19 @@
 import React from "react";
 
-export default function Input({type, placeholder, inputClass, inputId, label}){
+export default function Input({type, displayName, inputClass, name, label, action, value, columns, blurAction}){
     return (
-        <div className={"form-group"}>
-            {label && <label for={inputId}>{label}</label>}
-            <input type={type} className={`form-control ${inputClass ? inputClass : ""}`} id={inputId} placeholder={placeholder}/>
+        <div className={`form-group my2 ${ columns || ""}`}>
+            {label && <label for={name}>{displayName}</label>}
+            <input 
+                type={type} 
+                className={`form-control ${inputClass ? inputClass : ""}`} 
+                id={name} 
+                name={name} 
+                placeholder={displayName}
+                value={value}
+                onChange={(e) => action(e)}
+                onBlur={(e) => blurAction(e)}
+            />
         </div>
     )
 }

@@ -14,7 +14,7 @@ export default class RFP extends Component {
             { type: "textarea", name: "Message Body", rows: 5},
             { type: "date", name: "deadline"},
             { type: "checkbox", name: "Requirements", choices: [{name: "cbc-requirement", checked: false}] },
-            { type: "button", name: "file-upload", variant: "primary", text: "File Upload" },
+            { type: "button", name: "file_upload", variant: "primary", text: "File Upload" },
         ]
     }
 
@@ -29,7 +29,7 @@ export default class RFP extends Component {
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
                 <form>
                     {this.state.formInput.map(({name, type, choices, label, rows, text, variant}) => {
-                        const displayName = StringMethods.toDisplayName(name, "-");
+                        const displayName = StringMethods.toDisplayName(name, "_");
                         return (
                             <Fragment key={name} >
                                 {(type === "text") && <Input key={name} type={type} inputId={name} placeholder={displayName} />}

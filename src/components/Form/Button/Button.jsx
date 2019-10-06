@@ -1,7 +1,9 @@
 import React from "react";
 
-export default function Button({variant, action, buttonClass, text}){
+export default function Button({variant, action, buttonClass, text, columns, wrapperClass}){
     return (
-            <button onClick={(e) => action(e)} className={`btn btn-${variant} my-2 ${buttonClass ? buttonClass : ""}`}>{text}</button>
+            <div className={["form-group", columns, wrapperClass].join(" ")}>
+                <button onClick={(e) => action(e)} className={[`btn btn-${variant} w-100`, buttonClass].join(" ")}>{text}</button>
+            </div>
         )
 }

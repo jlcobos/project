@@ -1,19 +1,17 @@
 import React from "react";
-import StringMethods from "../../Utilities/stringMethods";
 
-export default function Checkbox({inline, checkboxList, action, labelClass, checkboxClass, listHeader}){
+export default function Checkbox({inline, choices, action, labelClass, checkboxClass, header, listHeaderClass, columns, values, withHeader}){
     return (
-        <React.Fragment>
-            <h4>{listHeader}</h4>
-            {checkboxList.map(({name, checked}) => {
-                const displayName = StringMethods.toDisplayName(name, "-");
+        <div className={`mb-2 ${columns}`}>
+            {withHeader && <h4 className={`pl-0 ${listHeaderClass && ""}`}>{header}</h4>}
+            {choices.map(({name, displayName}) => {
                 return (
                     <div key={name} className={`form-check ${inline ? "form-check-inline" : ""}`}>
-                        <input type="checkbox" checked={checked} name={name} onChange={(e) => action(e)} className={`form-check-input ${checkboxClass ? checkboxClass : ""}`} id={name} />
+                        <input type="checkbox" checked={values[name]} name={name} onChange={(e) => action(e)} className={`form-check-input ${checkboxClass ? checkboxClass : ""}`} id={name} />
                         <label className={`form-check-label text-capitalize ${labelClass ? labelClass : ""}`} htmlFor={name}>{displayName}</label>
                     </div>
                     )
                 })}
-        </React.Fragment>
+        </div>
     )
 }

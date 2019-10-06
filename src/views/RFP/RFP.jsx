@@ -3,19 +3,29 @@ import Col from "../../components/Layout/Col";
 import Input from "../../components/Form/Input";
 import Checkbox from "../../components/Form/Checkbox";
 import Textarea from "../../components/Form/Textarea";
-import StringMethods from "../../components/Utilities/stringMethods";
 import Button from "../../components/Form/Button";
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
+import { rfpForm, form } from "./RFPFrom";
 // variant, action, buttonClass, text
 export default class RFP extends Component {
     state = {
-        formInput: [
-            { type: "text", name: "Subject",},
-            { type: "textarea", name: "Message Body", rows: 5},
-            { type: "date", name: "deadline"},
-            { type: "checkbox", name: "Requirements", choices: [{name: "cbc-requirement", checked: false}] },
-            { type: "button", name: "file_upload", variant: "primary", text: "File Upload" },
-        ]
+        form: {...form},
+    }
+
+    handleOnChange = ({target: {name, value, checked, type}}) => {
+        const formUpdate = {...this.state.form};
+        formUpdate[name] = type === "checkbox" ? checked : value;
+        this.setState({form: formUpdate});
+        console.log(this.state.form);
+    }
+
+    handleOnBlur = (e) => {
+        console.log("on blur action");
+    }
+
+    handleSubmit = e => {
+        console.log("rfp submit clicked");
+        e.preventDefault();
     }
 
 
@@ -27,17 +37,15 @@ export default class RFP extends Component {
     render(){
         return(
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
-                <form>
-                    {this.state.formInput.map(({name, type, choices, label, rows, text, variant}) => {
-                        const displayName = StringMethods.toDisplayName(name, "_");
+                <form className="d-flex flex-wrap">
+                    {rfpForm.map(({name, displayName, type, choices, list, header, rows, columns}) => {
                         return (
-                            <Fragment key={name} >
-                                {(type === "text") && <Input key={name} type={type} inputId={name} placeholder={displayName} />}
-                                {(type === "date") && <Input key={name} type={type} inputId={name} placeholder={displayName} />}
-                                {(type === "textarea") && <Textarea key={name} rows={rows} textareaId={name} placeholder={displayName} />}
-                                {(type === "checkbox") && <Checkbox key={name} type={type} label={displayName} listHeader={displayName} checkboxList={choices}  />}
-                                {(type === "button") && <Button variant={variant}  name={name} text={text} action={this.fileUpload}  />}
-                            </Fragment>
+                            <React.Fragment key={name}>
+                                {(type === "text") && <Input type={type} value={this.state.form[name]} name={name} action={this.handleOnChange} displayName={displayName} columns={columns} blurAction={this.handleOnBlur} />}
+                                {(type === "textarea") && <Textarea type={type} value={this.state.form[name]} rows={rows} name={name} action={this.handleOnChange} displayName={displayName} columns={columns} blurAction={this.handleOnBlur} />}
+                                {(type === "checkbox") && <Checkbox header={header} list={list} choices={choices} header={header} action={this.handleOnChange} columns={`col-12`} values={this.state.form}  />}
+                                {(type === "button") && <Button variant={`primary`} text={displayName} action={this.handleSubmit} columns={columns} />}
+                            </React.Fragment>
                         )
                     })}
                 </form>

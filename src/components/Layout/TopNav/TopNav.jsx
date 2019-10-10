@@ -7,8 +7,8 @@ export default class TopNav extends Component {
 
     navList = [
         {
-            to: "/contact",
-            text: "Contact",
+            to: "/",
+            text: "Home",
         },
         {
             to: "/suppliers/rfp",

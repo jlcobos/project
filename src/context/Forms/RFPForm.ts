@@ -1,9 +1,11 @@
-export const rfpForm = [
+import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
+
+export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "subject",
         displayName: "Subject",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-12",
         validation: {
             length: 200,
@@ -13,7 +15,7 @@ export const rfpForm = [
         name: "messageBody",
         displayName: "Message Body",
         value: "",
-        type: "textarea",
+        type: inputTypes.textarea,
         rows: 10,
         columns: "col-12",
         validation: {
@@ -24,7 +26,7 @@ export const rfpForm = [
         name: "date",
         displayName: "Date",
         value: null,
-        type: "date",
+        type: inputTypes.date,
         columns: "col-6",
         validation: {
         }
@@ -33,6 +35,7 @@ export const rfpForm = [
         name: "cbcRequirements",
         header: "CBC Requirements",
         type: "checkbox",
+        withHeader: false,
         list: false,
         choices: [
             {
@@ -65,10 +68,10 @@ export const rfpForm = [
     },
 ]
 
-export const form = rfpForm.reduce((acc, {name, value, choices, type}) => {
-    if (type === "checkbox") {
-        choices.map(choice => acc[choice.name] = choice.value)
-    } 
-    else acc[name] = value;
-    return acc;
-}, {});
+// export const form = rfpForm.reduce((acc, {name, value, choices, type}) => {
+//     if (type === "checkbox") {
+//         choices.map(choice => acc[choice.name] = choice.value)
+//     } 
+//     else acc[name] = value;
+//     return acc;
+// }, {});

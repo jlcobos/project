@@ -1,9 +1,11 @@
-export const supplierForm = [
+import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
+
+export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "firstName",
         displayName: "First Name",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-6",
         validation: {
             length: 40,
@@ -13,7 +15,7 @@ export const supplierForm = [
         name: "lastName",
         displayName: "Last Name",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-6",
         validation: {
             length: 40,
@@ -23,7 +25,7 @@ export const supplierForm = [
         name: "jobTitle",
         displayName: "Job Title",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-6",
         validation: {
             length: 40,
@@ -33,7 +35,7 @@ export const supplierForm = [
         name: "companyName",
         displayName: "Company Name",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-6",
         validation: {
             length: 40,
@@ -43,7 +45,7 @@ export const supplierForm = [
         name: "address",
         displayName: "Address",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-6",
         validation: {
             length: 240,
@@ -53,8 +55,8 @@ export const supplierForm = [
         name: "stateOrProvince",
         displayName: "State or Province",
         value: "",
+        type: inputTypes.text,
         columns: "col-6",
-        type: "text",
         validation: {
             length: 40,
         }
@@ -63,7 +65,7 @@ export const supplierForm = [
         name: "city",
         displayName: "City",
         value: "",
-        type: "text",
+        type: inputTypes.text,
         columns: "col-6",
         validation: {
             length: 100,
@@ -73,7 +75,8 @@ export const supplierForm = [
         name: "postalCode",
         displayName: "Postal Code",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns: "col-6",
         validation: {
             length: 5,
         }
@@ -82,7 +85,8 @@ export const supplierForm = [
         name: "country",
         displayName:"Country",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns: "col-6",
         validation: {
             length: 100,
         }
@@ -91,7 +95,8 @@ export const supplierForm = [
         name: "mobileNumber",
         displayName:"Mobile Number",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns: "col-6",
         validation: {
             length: 10,
         }
@@ -100,7 +105,8 @@ export const supplierForm = [
         name: "officeNumber",
         displayName:"Office Number",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns: "col-6",
         validation: {
             length: 10,
         }
@@ -109,17 +115,19 @@ export const supplierForm = [
         name: "email",
         displayName:"Email",
         value: "",
-        type: "email",
+        type: inputTypes.email,
+        columns: "col-6",
         validation: {
-            type: "email",
             length: 100,
+            type: inputTypes.email,
         }
     },
     {
         name: "classification",
         displayName:"Classification",
         value: "",
-        type: "text",
+        type: inputTypes.email,
+        columns: "col-6",
         validation: {
             length: 20,
         }
@@ -128,7 +136,8 @@ export const supplierForm = [
         name: "yearFounded",
         displayName:"Year Founded",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns: "col-6",
         validation: {
             length: 4,
         }
@@ -137,7 +146,8 @@ export const supplierForm = [
         name: "website",
         displayName:"Website",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns:"col-6",
         validation: {
             length: 100,
         }
@@ -146,7 +156,8 @@ export const supplierForm = [
         name: "qualityCertifications",
         displayName:"Quality Certifications",
         value: "",
-        type: "text",
+        type: inputTypes.text,
+        columns: "col-6",
         validation: {
             length: 20,
         }
@@ -155,19 +166,21 @@ export const supplierForm = [
         name: "numberOfLocations",
         displayName:"Number Of Locations",
         value: "",
-        type: "text",
+        type: inputTypes.number,
+        columns: "col-6",
         validation: {
-            type: "number",
             length: 4,
+            type: inputTypes.number,
         }
     },
     {
         name: "employeeSize",
         displayName:"Employee Size",
         value: "",
-        type: "text",
+        type: inputTypes.number,
+        columns: "col-6",
         validation: {
-            type: "number",
+            type: inputTypes.number,
             length: 6,
         }
     },
@@ -175,10 +188,11 @@ export const supplierForm = [
         name: "annualSales",
         displayName:"Annual Sales",
         value: "",
-        type: "number",
+        type: inputTypes.number,
+        columns: "col-6",
         validation: {
-            type: "number",
-            length: 11,
+            type: inputTypes.number,
+            length: 12,
         },
     },
     {
@@ -216,10 +230,10 @@ export const supplierForm = [
 
 ]
 
-export const form = supplierForm.reduce((acc, {name, value, choices, type}) => {
-    if (type === "checkbox") {
-        choices.map(choice => acc[choice.name] = choice.value)
-    } 
-    else acc[name] = value;
-    return acc
-}, {});
+// export const form = supplierForm.reduce((acc, {name, value, choices, type}) => {
+//     if (type === "checkbox") {
+//         choices.map(choice => acc[choice.name] = choices.value)
+//     } 
+//     else acc[name] = value;
+//     return acc
+// }, {});

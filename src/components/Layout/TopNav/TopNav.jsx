@@ -18,6 +18,10 @@ export default class TopNav extends Component {
             to: "/suppliers/signup",
             text: "Supplier Signup",
         },
+        {
+            to: "/tier/:tier/seats/search",
+            text: "Search",
+        },
     ]
 
     renderNavLinks(){

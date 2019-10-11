@@ -45,8 +45,8 @@ export default class SupplierSearch extends Component {
         return(
             <Col colClass="col-xs-12 col-md-12 col-lg-10 offset-lg-1 col-xl-8 offset-lg-2">
                 <form>
-                    <Checkbox action={this.handleValueChange} checkboxList={this.state.checkboxList} />
-                    <Dropdown name={this.state.yearsInOp.name} action={this.handleValueChange}  values={this.state.yearsInOp.values} />
+                    {/* <Checkbox action={this.handleValueChange} checkboxList={this.state.checkboxList} />
+                    <Dropdown name={this.state.yearsInOp.name} action={this.handleValueChange}  values={this.state.yearsInOp.values} /> */}
                 </form>
             </Col>
         );

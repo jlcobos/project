@@ -67,11 +67,3 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-3",
     },
 ]
-
-// export const form = rfpForm.reduce((acc, {name, value, choices, type}) => {
-//     if (type === "checkbox") {
-//         choices.map(choice => acc[choice.name] = choice.value)
-//     } 
-//     else acc[name] = value;
-//     return acc;
-// }, {});

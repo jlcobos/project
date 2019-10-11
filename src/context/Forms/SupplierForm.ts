@@ -1,4 +1,5 @@
 import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
+import { reducer } from "./FormMethods";
 
 export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
@@ -230,10 +231,4 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
 
 ]
 
-// export const form = supplierForm.reduce((acc, {name, value, choices, type}) => {
-//     if (type === "checkbox") {
-//         choices.map(choice => acc[choice.name] = choices.value)
-//     } 
-//     else acc[name] = value;
-//     return acc
-// }, {});
+export const form = supplierForm.reduce(reducer, {});

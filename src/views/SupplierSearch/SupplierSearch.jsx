@@ -6,25 +6,6 @@ import Dropdown from "../../components/Form/Dropdown";
 
 export default class SupplierSearch extends Component {
 
-    state = {
-        checkboxList: [
-            {name: "all", checked: false},
-            {name: "buy-america", checked: false},
-            {name: "by-america", checked: false},
-            {name: "woman-owned", checked: false},
-            {name: "minority-owned", checked: false},
-            {name: "green-certified", checked: false},
-            {name: "established-product", checked: false},
-            {name: "iso-certified", checked: false},
-            {name: "local", checked: false},
-        ],
-        yearsInOp: {
-            name: "years-in-operation",
-            values: new Array(100).fill().map((_, i) => (i + 1).toString()),
-            ["years-in-operation"]: null,
-        }
-    }
-
     handleValueChange = (e) => {
         const { name, value, type, checked } = e.target;
         const checkboxList = [...this.state.checkboxList]; 

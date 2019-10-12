@@ -37,29 +37,36 @@ interface validation {
 
 export interface IInputProps {
     name: string;
+    label: string | boolean;
     displayName: string,
-    value: string | number | boolean;
+    value: string | number | boolean | null;
     type: inputTypes;
     columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12";
     rows?: number;
+    inputClass: string | false;
     validation: validation;
 }
 export interface ICheckboxProps {
     name: string;
     header: string;
+    withHeader: boolean;
     type: "checkbox";
     list: boolean;
-    withHeader: boolean;
+    inline: boolean;
+    checkboxClass: string;
+    labelClass: string;
+    columns: string;
     choices: CheckboxChoices[];
 }
 export interface IButtonProps {
     name: string
     displayName: string;
-    withAction: boolean;
+    withAction?: boolean;
     disabled: boolean;
     action?: string;
     type: "button",
     variant: "primary" | "secondary" | "success" | "danger" | "dark" | "info" | "warning";
     wrapperClass: string,
+    buttonClass: string;
     columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12";
 }

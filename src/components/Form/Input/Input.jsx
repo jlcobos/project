@@ -6,7 +6,7 @@ export default function Input({type, displayName, inputClass, name, label, actio
             {label && <label for={name}>{displayName}</label>}
             <input 
                 type={type} 
-                className={`form-control ${inputClass ? inputClass : ""}`} 
+                className={`form-control ${inputClass || ""}`} 
                 id={name} 
                 name={name} 
                 placeholder={displayName}

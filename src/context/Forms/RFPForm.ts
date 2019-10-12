@@ -3,31 +3,37 @@ import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInt
 export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "subject",
+        label: false,
         displayName: "Subject",
         value: "",
         type: inputTypes.text,
         columns: "col-12",
+        inputClass: "",
         validation: {
             length: 200,
         }
     },
     {
         name: "messageBody",
+        label: false,
         displayName: "Message Body",
         value: "",
         type: inputTypes.textarea,
-        rows: 10,
         columns: "col-12",
+        rows: 10,
+        inputClass: "",
         validation: {
             length: 5000,
         }
     },
     {
         name: "date",
+        label: false,
         displayName: "Date",
         value: null,
         type: inputTypes.date,
         columns: "col-6",
+        inputClass: "",
         validation: {
         }
     },
@@ -37,6 +43,10 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         type: "checkbox",
         withHeader: false,
         list: false,
+        inline: false,
+        checkboxClass: "",
+        labelClass: "",
+        columns: "",
         choices: [
             {
                 name: "cbcRequirement", 
@@ -48,11 +58,11 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "RfpSpecUpload",
         displayName: "File Upload",
-        withAction: false,
         disabled: true,
         type: "button",
         variant: "secondary",
         wrapperClass: "d-block",
+        buttonClass: "",
         columns: "col-3",
     },
     {
@@ -64,6 +74,7 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         type: "button",
         variant: "primary",
         wrapperClass: "",
+        buttonClass: "",
         columns: "col-3",
     },
 ]

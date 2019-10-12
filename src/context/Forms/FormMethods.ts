@@ -1,7 +1,7 @@
-export function reducer(acc,form): {name: string}[] {
-    if (form.type === "checkbox") {
-        form.choices.map(choice => acc[choice.name] = choice.value)
+export function reducer(acc: any, input: any) {
+    if (input.type === "checkbox") {
+        input.choices.map((choice: any) => acc[choice.name] = choice.value)
     } 
-    else acc[name] = form.value;
+    else acc[input.name] = input.value;
     return acc
 }

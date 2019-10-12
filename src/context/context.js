@@ -1,4 +1,5 @@
 import React, {Component, createContext} from "react";
+import { supplierFromAndData, supplierSearchFormAndData, rfpFromAndData } from "./Forms";
 import data from "./Data";
 
 export const Context = createContext();
@@ -8,18 +9,9 @@ export class ContextProvider extends Component {
 
     state = {
         data,
-        supplierSignUpForm: {
-            inputConfig: "",
-            formData: "",
-        },
-        rfpForm: {
-            inputsConfig: "",
-            formData: "",
-        },
-        supplierSearchForm: {
-            inputsConfig: "",
-            formData: "",
-        }
+        supplierFromAndData,
+        rfpFromAndData,
+        supplierSearchFormAndData
     }
 
     handleSubmit = (e, data) => {
@@ -30,7 +22,7 @@ export class ContextProvider extends Component {
         const formUpdate = {...this.state[formName].formData};
         formUpdate[name] = type === "checkbox" ? checked : value;
         this.setState({form: formUpdate});
-        console.log(this.state.form);
+        console.log(this.state[formName]);
     }
 
     handleOnBlur = () => {
@@ -39,7 +31,7 @@ export class ContextProvider extends Component {
 
     render(){
         return(
-            <Context.Provider value={{data: this.state.data}}>
+            <Context.Provider value={{data: this.state}}>
                 {this.props.children}
             </Context.Provider>
             

@@ -8,11 +8,11 @@ const rfpFormData = rfpForm.reduce(reducer, {});
 const supplierSearchFormData = supplierSearchForm.reduce(reducer, {});
 // export const form = supplierForm.reduce(reducer, {});
 
-export const supplierFromAndData = {
+export const supplierFormAndData = {
     supplierForm,
     supplierFormData,
 }
-export const rfpFromAndData = {
+export const rfpFormAndData = {
     rfpForm,
     rfpFormData,
 }

@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import Col from "../../components/Layout/Col";
-import Input from "../../components/Form/Input";
-import Checkbox from "../../components/Form/Checkbox";
-import Dropdown from "../../components/Form/Dropdown";
+import Form from "../../components/Form/Form";
+import { Context } from "../../context/context";
 
 export default class SupplierSearch extends Component {
 
@@ -25,10 +24,12 @@ export default class SupplierSearch extends Component {
     render(){
         return(
             <Col colClass="col-xs-12 col-md-12 col-lg-10 offset-lg-1 col-xl-8 offset-lg-2">
-                <form>
-                    {/* <Checkbox action={this.handleValueChange} checkboxList={this.state.checkboxList} />
-                    <Dropdown name={this.state.yearsInOp.name} action={this.handleValueChange}  values={this.state.yearsInOp.values} /> */}
-                </form>
+                <Context.Consumer>
+                    {({state: {supplierSearchFormAndData: {supplierSearchForm, supplierSearchFormData}},handleOnChange, handleOnBlur, handleSubmit}) => {
+                        console.log(handleOnChange);
+                        return <Form form={supplierSearchForm} formState={supplierSearchFormData} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} handleSubmit={handleSubmit} />
+                    }}
+                </Context.Consumer>
             </Col>
         );
     }

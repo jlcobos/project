@@ -1,5 +1,5 @@
 import React, {Component, createContext} from "react";
-import { supplierFromAndData, supplierSearchFormAndData, rfpFromAndData } from "./Forms";
+import { supplierFormAndData, supplierSearchFormAndData, rfpFormAndData } from "./Forms";
 import data from "./Data";
 
 export const Context = createContext();
@@ -9,20 +9,25 @@ export class ContextProvider extends Component {
 
     state = {
         data,
-        supplierFromAndData,
-        rfpFromAndData,
-        supplierSearchFormAndData
+        supplierFormAndData,
+        rfpFormAndData,
+        supplierSearchFormAndData,
+        // handleSubmit: this.handleSubmit,
+        // handleOnChange: this.handleOnChange,
+        // handleOnBlur: this.handleOnBlur
     }
 
     handleSubmit = (e, data) => {
-        console.log(data);
+        // console.log(data);
+        console.log("on submit detected")
         e.preventDefault();
     }
     handleOnChange = ({formName, target: {name, value, checked, type}}) => {
-        const formUpdate = {...this.state[formName].formData};
-        formUpdate[name] = type === "checkbox" ? checked : value;
-        this.setState({form: formUpdate});
-        console.log(this.state[formName]);
+        console.log("on change detected")
+        // const formUpdate = {...this.state[formName].formData};
+        // formUpdate[name] = type === "checkbox" ? checked : value;
+        // this.setState({form: formUpdate});
+        // console.log(this.state[formName]);
     }
 
     handleOnBlur = () => {
@@ -31,7 +36,7 @@ export class ContextProvider extends Component {
 
     render(){
         return(
-            <Context.Provider value={{data: this.state}}>
+            <Context.Provider value={{state: this.state, handleOnChange: this.handleOnChange, handleOnBlur: this.handleOnBlur, handleSubmit: this.handleSubmit}}>
                 {this.props.children}
             </Context.Provider>
             

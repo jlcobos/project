@@ -64,7 +64,8 @@ export interface IButtonProps {
     withAction?: boolean;
     disabled: boolean;
     action?: string;
-    type: "button",
+    type: "button";
+    formSubmit: boolean;
     variant: "primary" | "secondary" | "success" | "danger" | "dark" | "info" | "warning";
     wrapperClass: string,
     buttonClass: string;

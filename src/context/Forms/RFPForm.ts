@@ -2,6 +2,18 @@ import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInt
 
 export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
+        name: "recipients",
+        label: false,
+        displayName: "Recipients",
+        value: "",
+        type: inputTypes.text,
+        columns: "col-12",
+        inputClass: "",
+        validation: {
+            length: 200,
+        }
+    },
+    {
         name: "subject",
         label: false,
         displayName: "Subject",
@@ -46,7 +58,7 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         inline: false,
         checkboxClass: "",
         labelClass: "",
-        columns: "",
+        columns: "col-12",
         choices: [
             {
                 name: "cbcRequirement", 
@@ -60,8 +72,9 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         displayName: "File Upload",
         disabled: true,
         type: "button",
+        formSubmit: false,
         variant: "secondary",
-        wrapperClass: "d-block",
+        wrapperClass: "",
         buttonClass: "",
         columns: "col-3",
     },
@@ -72,6 +85,7 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         disabled: false,
         action: "handleSubmit",
         type: "button",
+        formSubmit: true,
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

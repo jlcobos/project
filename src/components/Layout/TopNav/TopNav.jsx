@@ -11,6 +11,14 @@ export default class TopNav extends Component {
             text: "Home",
         },
         {
+            to: "/login",
+            text: "Login",
+        },
+        {
+            to: "/signup",
+            text: "Signup",
+        },
+        {
             to: "/suppliers/rfp",
             text: "RFP",
         },

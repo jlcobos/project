@@ -11,6 +11,7 @@ import SupplierSignup from "./views/SupplierSignup";
 import ComponentRegulationList from "./views/ComponentRegulationList";
 import Requirements from "./views/Requirements";
 import RFP from "./views/RFP";
+import LoginAndSignup from "./views/LoginAndSignup";
 // import Suppliers from "./views/Suppliers";
 // import Supplier from "./views/Supplier";
 
@@ -29,6 +30,8 @@ function App() {
         <Master>
           <ContextProvider>
                 <Switch>
+                  <Route exact path="/login" component={LoginAndSignup} />
+                  <Route exact path="/signup" component={LoginAndSignup} />
                   <Route exact path="/" component={Home} />
                   <Route exact path="/tier/:tier" component={TierView} />
                   <Route exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />

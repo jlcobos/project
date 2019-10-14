@@ -1,11 +1,15 @@
 import React from "react";
 
-export default function Button({variant ,handleSubmit, buttonClass, displayName, columns, wrapperClass, disabled}){
+export default function Button(props){
+    const {variant ,handleSubmit, buttonClass, displayName, columns, wrapperClass, disabled, formDataName, formSubmit} = props;
     return (
             <div className={["form-group", columns, wrapperClass].join(" ")}>
                 <button 
                     disabled={disabled} 
-                    onClick={(e) => handleSubmit(e)} 
+                    onClick={(e) => {
+                        formSubmit ? handleSubmit(e,formDataName) : console.log("Unhandled non-form submit button");
+                        e.preventDefault();
+                    }}
                     className={[`btn btn-${variant} w-100`, buttonClass].join(" ")}
                 >
                 {displayName}

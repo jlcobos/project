@@ -1,5 +1,5 @@
 import React, {Component, createContext} from "react";
-import { supplierFormAndData, supplierSearchFormAndData, rfpFormAndData } from "./Forms";
+import { supplierFormAndData, supplierSearchFormAndData, rfpFormAndData, loginAndSignupFormAndData } from "./Forms";
 import data from "./Data";
 
 export const Context = createContext();
@@ -12,26 +12,43 @@ export class ContextProvider extends Component {
         supplierFormAndData,
         rfpFormAndData,
         supplierSearchFormAndData,
+        loginAndSignupFormAndData,
         // handleSubmit: this.handleSubmit,
         // handleOnChange: this.handleOnChange,
         // handleOnBlur: this.handleOnBlur
     }
 
-    handleSubmit = (e, data) => {
-        // console.log(data);
-        console.log("on submit detected")
+    handleSubmit = (e, formDataName) => {
+        const formData = this.getFormData(e, formDataName).formData[formDataName];
+        delete formData[""]; // find out why an empty key/val is occurring
+        console.log(formData);
         e.preventDefault();
     }
-    handleOnChange = ({formName, target: {name, value, checked, type}}) => {
-        console.log("on change detected")
-        // const formUpdate = {...this.state[formName].formData};
-        // formUpdate[name] = type === "checkbox" ? checked : value;
-        // this.setState({form: formUpdate});
-        // console.log(this.state[formName]);
+    handleOnChange = (e,formDataName) => {
+        let data = this.getFormData(e, formDataName);
+        this.setState({[data.key]: data.formData});
+        console.log( e.target.value, e.target.checked,data.formData[formDataName]);
     }
 
-    handleOnBlur = () => {
-        console.log("on Blur action");
+    handleOnBlur = (e,formDataName) => {
+        console.log(formDataName)
+        console.log(`on Blur action for: `, e.target );
+    }
+
+    getFormData = (e,formDataName) => {
+        const { name, value, checked, type } = e.target;
+        let result = {};
+        let formData;
+        let val;
+        for (let key in this.state){
+            if (this.state[key][formDataName]) {
+                formData = {...this.state[key]};
+                result.formData = formData;
+                val = type === "checkbox" ? checked : value;
+                formData[formDataName][name] = val;
+            }
+        }
+        return result;
     }
 
     render(){

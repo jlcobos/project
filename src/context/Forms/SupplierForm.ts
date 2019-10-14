@@ -243,7 +243,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inline: false,
         checkboxClass: "",
         labelClass: "",
-        columns: "",
+        columns: "col-12",
         choices: [
             {name: "veteranOwned", displayName: "Veteran Owned", value: false,},
             {name: "minorityOwned", displayName: "Minority Owned", value: false,},
@@ -260,7 +260,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inline: false,
         checkboxClass: "",
         labelClass: "",
-        columns: "",
+        columns: "col-12",
         choices: [{name: "portfolio", displayName: "Portfolio", value: false}],
     },
     {
@@ -270,6 +270,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         disabled: false,
         action: "handleSubmit",
         type: "button",
+        formSubmit:true,
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

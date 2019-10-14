@@ -1,6 +1,6 @@
 import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
 
-export const loginAndSignupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
+export const loginForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "email",
         label: false,
@@ -11,6 +11,7 @@ export const loginAndSignupForm: Array< IInputProps | ICheckboxProps | IButtonPr
         inputClass: "",
         validation: {
             length: 200,
+            required: true,
         }
     },
     {
@@ -23,23 +24,11 @@ export const loginAndSignupForm: Array< IInputProps | ICheckboxProps | IButtonPr
         inputClass: "",
         validation: {
             length: 16,
+            required: true,
         }
     },
     {
-        name: "confirmPassword",
-        label: false,
-        displayName: "ConfirmPassword",
-        value: "",
-        type: inputTypes.password,
-        columns: "col-12",
-        rows: 10,
-        inputClass: "",
-        validation: {
-            length: 16,
-        }
-    },
-    {
-        name: "loginAndSignup",
+        name: "login",
         displayName: "Submit",
         withAction: true,
         disabled: false,

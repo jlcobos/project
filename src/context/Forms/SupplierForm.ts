@@ -11,7 +11,8 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
-            length: 40,
+            length: 100,
+            required: true,
         }
     },
     {
@@ -23,7 +24,8 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
-            length: 40,
+            length: 100,
+            required: true,
         }
     },
     {
@@ -36,6 +38,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 40,
+            required: true,
         }
     },
     {
@@ -48,6 +51,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 40,
+            required: true,
         }
     },
     {
@@ -60,6 +64,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 240,
+            required: true,
         }
     },
     {
@@ -72,6 +77,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 40,
+            required: true,
         }
     },
     {
@@ -84,6 +90,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 100,
+            required: true,
         }
     },
     {
@@ -96,6 +103,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 5,
+            required: true,
         }
     },
     {
@@ -108,6 +116,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 100,
+            required: true,
         }
     },
     {
@@ -120,6 +129,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 10,
+            required: false,
         }
     },
     {
@@ -132,6 +142,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 10,
+            required: true,
         }
     },
     {
@@ -145,6 +156,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         validation: {
             length: 100,
             type: inputTypes.email,
+            required: true,
         }
     },
     {
@@ -157,6 +169,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 20,
+            required: false,
         }
     },
     {
@@ -169,6 +182,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 4,
+            required: true,
         }
     },
     {
@@ -181,6 +195,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 100,
+            required: false,
         }
     },
     {
@@ -193,6 +208,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         inputClass: "",
         validation: {
             length: 20,
+            required: false,
         }
     },
     {
@@ -206,6 +222,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         validation: {
             length: 4,
             type: inputTypes.number,
+            required: false,
         }
     },
     {
@@ -219,6 +236,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         validation: {
             type: inputTypes.number,
             length: 6,
+            required: false,
         }
     },
     {
@@ -232,6 +250,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         validation: {
             type: inputTypes.number,
             length: 12,
+            required: false,
         },
     },
     {

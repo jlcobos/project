@@ -1,9 +1,8 @@
 import React, {Component, createContext} from "react";
-import { supplierFormAndData, supplierSearchFormAndData, rfpFormAndData, loginAndSignupFormAndData } from "./Forms";
+import { supplierFormAndData, supplierSearchFormAndData, rfpFormAndData, loginFormAndData, signupFormAndData } from "./Forms";
 import data from "./Data";
 
 export const Context = createContext();
-// export const ContextConsumer = Context.Consumer;
 
 export class ContextProvider extends Component {
 
@@ -12,10 +11,8 @@ export class ContextProvider extends Component {
         supplierFormAndData,
         rfpFormAndData,
         supplierSearchFormAndData,
-        loginAndSignupFormAndData,
-        // handleSubmit: this.handleSubmit,
-        // handleOnChange: this.handleOnChange,
-        // handleOnBlur: this.handleOnBlur
+        loginFormAndData,
+        signupFormAndData,
     }
 
     handleSubmit = (e, formDataName) => {

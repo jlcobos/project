@@ -32,7 +32,8 @@ interface CheckboxChoices {
 
 interface validation {
     length?: number;
-    type?: inputTypes;
+    type?: string;
+    required: boolean;
 }
 
 export interface IInputProps {

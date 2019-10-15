@@ -31,7 +31,7 @@ export default function Form({form, formState, handleOnChange, handleOnBlur, han
                 if (inputTypes.includes(input.type)) return <Input key={input.name} formState={formState} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} formDataName={formDataName} {...input} />
                 else if (input.type === "textarea") return <Textarea key={input.name} formState={formState} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} formDataName={formDataName} {...input} />
                 else if (input.type === "checkbox") return <Checkbox key={input.name} formState={formState} handleOnChange={handleOnChange} {...input} formDataName={formDataName} />
-                else if (input.type === "button") return <Button key={input.name} handleSubmit={handleSubmit} {...input} formDataName={formDataName} />
+                else if (input.type === "button") return <Button key={input.name} handleSubmit={handleSubmit} formDataName={formDataName} form={form} {...input} />
                 // else if (formProps.type === "dropdown") return <Input />
             })}
         </form>

@@ -10,8 +10,8 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         columns: "col-12",
         inputClass: "",
         validation: {
-            length: 200,
             required: true,
+            lengthRequired: true,
         }
     },
     {
@@ -23,8 +23,9 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         columns: "col-12",
         inputClass: "",
         validation: {
-            length: 16,
             required: true,
+            lengthRequired: true,
+            length: {min: 8, max: 16}
         }
     },
     {
@@ -37,8 +38,9 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         rows: 10,
         inputClass: "",
         validation: {
-            length: 16,
             required: true,
+            lengthRequired: true,
+            length: {min: 8, max: 16}
         }
     },
     {

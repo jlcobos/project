@@ -1,5 +1,6 @@
 import React, {Component, createContext} from "react";
 import { supplierFormAndData, supplierSearchFormAndData, rfpFormAndData, loginFormAndData, signupFormAndData } from "./Forms";
+import { isValid } from "./Validation/Validation";
 import data from "./Data";
 
 export const Context = createContext();
@@ -15,11 +16,13 @@ export class ContextProvider extends Component {
         signupFormAndData,
     }
 
-    handleSubmit = (e, formDataName) => {
+    handleSubmit = (e, form, formDataName) => {
+        e.preventDefault();
         const formData = this.getFormData(e, formDataName).formData[formDataName];
         delete formData[""]; // find out why an empty key/val is occurring
-        console.log(formData);
-        e.preventDefault();
+        form = form.filter(({type}) => type !== "checkbox" && type !== "button");
+        const validation = isValid(form, formData);
+        console.log(validation);
     }
     handleOnChange = (e,formDataName) => {
         let data = this.getFormData(e, formDataName);

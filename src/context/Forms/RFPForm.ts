@@ -10,8 +10,9 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-12",
         inputClass: "",
         validation: {
-            length: 200,
             required: true,
+            lengthRequired: true,
+            length: {min: 8, max: 16},
         }
     },
     {
@@ -23,8 +24,9 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-12",
         inputClass: "",
         validation: {
-            length: 200,
             required: true,
+            lengthRequired: true,
+            length: {min: 1, max: 500},
         }
     },
     {
@@ -37,8 +39,9 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         rows: 10,
         inputClass: "",
         validation: {
-            length: 5000,
             required: true,
+            lengthRequired: true,
+            length: {min: 8, max: 16},
         }
     },
     {
@@ -51,6 +54,7 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         inputClass: "",
         validation: {
             required: true,
+            lengthRequired: false,
         }
     },
     {

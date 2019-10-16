@@ -7,12 +7,11 @@ import { Context } from "../../context/context";
 //
 export default class Signup extends Component {
     render(){
-        console.log(this.props)
         return(
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
                 <Context.Consumer>
-                    {({state: {signupFormAndData: {signupForm, signupFormData}},handleOnChange, handleOnBlur, handleSubmit}) => {
-                        return <Form form={signupForm} formState={signupFormData} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} handleSubmit={handleSubmit} formDataName={"loginAndSignupFormData"} />
+                {({forms: {signupForm},...rest}) => {
+                        return <Form form={signupForm} formName={"signupForm"} {...rest} />
                     }}
                 </Context.Consumer>
             </Col>

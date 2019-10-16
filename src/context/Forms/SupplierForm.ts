@@ -1,5 +1,4 @@
 import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
-import { reducer } from "./FormMethods";
 
 export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {

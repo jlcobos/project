@@ -5,7 +5,8 @@ import Checkbox from "./Checkbox";
 import Button from "./Button";
 // import DropDown from "./Dropdown";
 
-export default function Form({form, formState, handleOnChange, handleOnBlur, handleSubmit, formDataName}){
+// export default function Form({form, handleOnChange, handleOnBlur, handleSubmit, formName}){
+export default function Form({form, ...props}){
     const inputTypes = [
         "text", 
         "number", 
@@ -26,12 +27,12 @@ export default function Form({form, formState, handleOnChange, handleOnBlur, han
         "hidden"
     ];
     return (
-        <form className="d-flex flex-wrap">        
+        <form className="d-flex flex-wrap">
             {form.map(function(input) {
-                if (inputTypes.includes(input.type)) return <Input key={input.name} formState={formState} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} formDataName={formDataName} {...input} />
-                else if (input.type === "textarea") return <Textarea key={input.name} formState={formState} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} formDataName={formDataName} {...input} />
-                else if (input.type === "checkbox") return <Checkbox key={input.name} formState={formState} handleOnChange={handleOnChange} {...input} formDataName={formDataName} />
-                else if (input.type === "button") return <Button key={input.name} handleSubmit={handleSubmit} formDataName={formDataName} form={form} {...input} />
+                if (inputTypes.includes(input.type)) return <Input key={input.name}  {...input} {...props} />
+                else if (input.type === "textarea") return <Textarea key={input.name} {...input} {...props} />
+                else if (input.type === "checkbox") return <Checkbox key={input.name} {...input} {...props}  />
+                else if (input.type === "button") return <Button key={input.name} {...input} {...props} />
                 // else if (formProps.type === "dropdown") return <Input />
             })}
         </form>

@@ -9,8 +9,8 @@ export default  class SupplierSignup extends Component {
         return(
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
                 <Context.Consumer>
-                    {({state: {supplierFormAndData: {supplierForm, supplierFormData}},handleOnChange, handleOnBlur, handleSubmit}) => {
-                        return <Form form={supplierForm} formState={supplierFormData} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} handleSubmit={handleSubmit} formDataName={"supplierFormData"} />
+                {({forms: {supplierForm},...rest}) => {
+                        return <Form form={supplierForm} formName={"supplierForm"} {...rest} />
                     }}
                 </Context.Consumer>
             </Col>

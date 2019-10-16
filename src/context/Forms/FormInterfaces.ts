@@ -24,7 +24,7 @@ export enum inputTypes {
     image = "image", 
     hidden = "hidden"
 };
-interface CheckboxChoices {
+export interface CheckboxChoices {
     name: string;
     displayName: string;
     value: boolean;

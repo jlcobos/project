@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({type, displayName, inputClass, name, label, columns, formState, handleOnBlur, handleOnChange, formDataName, validation}){
+export default function Input({type, value, displayName, inputClass, name, label, columns, handleOnBlur, handleOnChange, formName, validation}){
     return (
         <div className={`form-group ${ columns || ""}`}>
             {label && <label for={name}>{displayName}</label>}
@@ -10,9 +10,9 @@ export default function Input({type, displayName, inputClass, name, label, colum
                 id={name} 
                 name={name} 
                 placeholder={displayName}
-                value={formState.name}
-                onChange={(e) => handleOnChange(e,formDataName)}
-                onBlur={(e) => handleOnBlur(e,formDataName, validation)}
+                value={value}
+                onChange={(e) => handleOnChange(e,formName)}
+                onBlur={(e) => handleOnBlur(e,formName, validation)}
             />
         </div>
     )

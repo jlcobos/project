@@ -11,8 +11,8 @@ export default class Login extends Component {
         return(
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
                 <Context.Consumer>
-                    {({state: {loginFormAndData: {loginForm, loginFormData}},handleOnChange, handleOnBlur, handleSubmit}) => {
-                        return <Form form={loginForm} formState={loginFormData} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} handleSubmit={handleSubmit} formDataName={"loginFormData"} />
+                    {({forms: {loginForm},...rest}) => {
+                        return <Form form={loginForm} formName={"loginForm"} {...rest} />
                     }}
                 </Context.Consumer>
             </Col>

@@ -48,7 +48,7 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         name: "date",
         label: false,
         displayName: "Date",
-        value: null,
+        value: "",
         type: inputTypes.date,
         columns: "col-6",
         inputClass: "",

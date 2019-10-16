@@ -10,8 +10,8 @@ export default class RFP extends Component {
         return(
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
                 <Context.Consumer>
-                    {({state: {rfpFormAndData: {rfpForm, rfpFormData}},handleOnChange, handleOnBlur, handleSubmit}) => {
-                        return <Form form={rfpForm} formState={rfpFormData} handleOnChange={handleOnChange} handleOnBlur={handleOnBlur} handleSubmit={handleSubmit} formDataName={"rfpFormData"} />
+                {({forms: {rfpForm},...rest}) => {
+                        return <Form form={rfpForm} formName={"rfpForm"} {...rest} />
                     }}
                 </Context.Consumer>
             </Col>

@@ -1,17 +1,17 @@
 import React from "react";
 
-export default function TextArea({rows, name, displayName, textareaClass, label, columns, formState, handleOnBlur, handleOnChange, formDataName}){
+export default function TextArea({rows, name, value, displayName, textareaClass, label, columns, handleOnBlur, handleOnChange, formName}){
     return (
         <div className={`form-group ${ columns || ""}`}>
             {label && <label for={name}>{displayName}</label>}
             <textarea 
                 className={`form-control ${textareaClass ? textareaClass : ""}`} 
                 name={name} 
-                value={formState.name} 
+                value={value} 
                 rows={rows} id={name} 
                 placeholder={displayName}
-                onChange={(e) => handleOnChange(e, formDataName)}
-                onBlur={(e) => handleOnBlur(e, formDataName)}
+                onChange={(e) => handleOnChange(e, formName)}
+                onBlur={(e) => handleOnBlur(e, formName)}
             />
         </div>
     )

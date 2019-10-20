@@ -1,6 +1,19 @@
 import React from "react";
 
-export default function TextArea({rows, name, value, displayName, textareaClass, label, columns, handleOnBlur, handleOnChange, formName}){
+export default function TextArea({
+    rows, 
+    name, 
+    value, 
+    displayName, 
+    textareaClass, 
+    label, 
+    columns, 
+    handleOnBlur, 
+    handleOnChange, 
+    formName, 
+    validation
+    })
+    {
     return (
         <div className={`form-group ${ columns || ""}`}>
             {label && <label for={name}>{displayName}</label>}

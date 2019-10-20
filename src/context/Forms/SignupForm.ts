@@ -11,7 +11,7 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         inputClass: "",
         validation: {
             required: true,
-            lengthRequired: true,
+            lengthRequired: false,
         }
     },
     {
@@ -44,7 +44,7 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         }
     },
     {
-        name: "loginAndSignup",
+        name: "signup",
         displayName: "Submit",
         withAction: true,
         disabled: false,

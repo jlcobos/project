@@ -1,6 +1,6 @@
-import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
+import { IInputProps, ICheckboxProps, IButtonProps, inputTypes, IDropdownProps } from "./FormInterfaces";
 
-export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
+export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonProps | IDropdownProps>  = [
     {
         name: "supplierSearch",
         header: "Search by Category",
@@ -22,6 +22,22 @@ export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonPr
             {name: "isoCertified", displayName: "ISO Certified", value: false},
             // {name: "local", displayName: "Local", value: false},
         ],
+    },
+    {
+        name: "yearsInOperation",
+        displayName: "Years in Operation",
+        type: "dropdown",
+        dropdownClass: "",
+        columns: "",
+        value: "",
+        choices: [
+            {name: "yearsInOperation", displayName: "", value: " "},
+            {name: "yearsInOperation", displayName: "Any", value: "Any"},
+            {name: "yearsInOperation", displayName: "0-5 Years", value: "0-5"},
+            {name: "yearsInOperation", displayName: "5-10 Years", value: "5-10"},
+            {name: "yearsInOperation", displayName: "10-15 Years", value: "10-15"},
+            {name: "yearsInOperation", displayName: "20+ Years", value: "20+"},
+        ]
     },
     {
         name: "supplierSearchSubmit",

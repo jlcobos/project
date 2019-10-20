@@ -29,13 +29,19 @@ export interface CheckboxChoices {
     displayName: string;
     value: boolean;
 }
+export interface IDropdownChoices {
+    name: string;
+    displayName: string;
+    value: any;
+}
 
 interface validation {
     lengthRequired: boolean;
     length?: {min: number; max: number};
     type?: string;
     required: boolean;
-    // validated: {state: true, errors: {}} // rework this
+    valid?: boolean | null;
+    error?: string;
 }
 
 export interface IInputProps {
@@ -44,7 +50,7 @@ export interface IInputProps {
     displayName: string,
     value: string | number | boolean | null;
     type: inputTypes;
-    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12";
+    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
     rows?: number;
     inputClass: string | false;
     validation: validation;
@@ -58,8 +64,18 @@ export interface ICheckboxProps {
     inline: boolean;
     checkboxClass: string;
     labelClass: string;
-    columns: string;
+    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
     choices: CheckboxChoices[];
+}
+
+export interface IDropdownProps {
+    name: string;
+    displayName: string;
+    type: "dropdown";
+    dropdownClass: string;
+    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
+    value: string | number;
+    choices: IDropdownChoices[];
 }
 export interface IButtonProps {
     name: string
@@ -72,5 +88,5 @@ export interface IButtonProps {
     variant: "primary" | "secondary" | "success" | "danger" | "dark" | "info" | "warning";
     wrapperClass: string,
     buttonClass: string;
-    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12";
+    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
 }

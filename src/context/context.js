@@ -1,6 +1,6 @@
 import React, {Component, createContext} from "react";
 import forms from "./Forms";
-import { isValid } from "./Validation/Validation";
+import { isValid } from "./Validation";
 import { formReducer } from "./Forms/FormMethods";
 import data from "./Data";
 
@@ -16,13 +16,14 @@ export class ContextProvider extends Component {
     handleSubmit = (e, formName) => {
         e.preventDefault();
         const formData = formReducer(this.state.forms[formName]);
-        // const validation = isValid(form, formData);
-        console.log(formData);
+        const validation = isValid(this.state.forms[formName].filter(({type}) => type !== "button" && type !== "checkbox"));
+        console.log(validation);
     }
     handleOnChange = (e,formName) => {
         let updatedForm = this.getFormData(e, formName);
         this.setState({[formName]: updatedForm});
-        console.log(this.state.forms[formName]);
+        console.log(e.type,this.state.forms[formName]);
+        if (e.target.type !== "checkbox") e.preventDefault();
     }
 
     handleOnBlur = (e,formDataName) => {

@@ -2,22 +2,29 @@ import React, {Component, createContext} from "react";
 import forms from "./Forms";
 import { isValid } from "./Validation";
 import { formReducer } from "./Forms/FormMethods";
+import Firebase from "./Firebase";
 import data from "./Data";
 
 export const Context = createContext();
 
 export class ContextProvider extends Component {
 
-    state = {
-        data,
-        forms,
+    constructor(){
+        super();
+        this.Auth = new Firebase();
+        this.state = {
+            data,
+            forms,
+        }
     }
 
-    handleSubmit = (e, formName) => {
+
+    handleSubmit = (e, formName, submitType) => {
         e.preventDefault();
         const formData = formReducer(this.state.forms[formName]);
         const validation = isValid(this.state.forms[formName].filter(({type}) => type !== "button" && type !== "checkbox"));
-        console.log(validation);
+        console.log(validation, formData);
+        // if (submitType === "signup") this.signup(this.formData);
     }
     handleOnChange = (e,formName) => {
         let updatedForm = this.getFormData(e, formName);
@@ -44,12 +51,16 @@ export class ContextProvider extends Component {
     
     }
 
+    signup = async ({email,password}) => {
+        await this.Auth.signup({email, password});
+    } 
+        
+
     render(){
         return(
             <Context.Provider value={{data: this.state.data, forms, handleOnChange: this.handleOnChange, handleOnBlur: this.handleOnBlur, handleSubmit: this.handleSubmit}}>
                 {this.props.children}
             </Context.Provider>
-            
         );
     }
 }

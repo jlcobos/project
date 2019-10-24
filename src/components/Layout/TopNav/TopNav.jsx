@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { NavLink } from "react-router-dom";
+import { Context } from "../../../context/context";
 import Row from "../Row";
 import Col from "../Col";
 
@@ -32,6 +33,16 @@ export default class TopNav extends Component {
         },
     ]
 
+    logoutLink(){
+        return (
+            <Context.Consumer>
+                {({currentUser, logout}) => {
+                    return currentUser ? <button onClick={() => logout()}>{"logout"}</button> : null;
+                }}
+            </Context.Consumer>
+        )
+    }
+
     renderNavLinks(){
         return (
             <ul className="nav justify-content-end">
@@ -42,6 +53,7 @@ export default class TopNav extends Component {
                         </li> 
                     )        
                 })}
+                {this.logoutLink()}
             </ul>  
         )
     }

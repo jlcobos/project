@@ -37,6 +37,7 @@ export const loginForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         action: "handleSubmit",
         type: "button",
         formSubmit: true,
+        submitType: "login",
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

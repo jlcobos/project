@@ -51,6 +51,7 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         action: "handleSubmit",
         type: "button",
         formSubmit: true,
+        submitType: "signup",
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

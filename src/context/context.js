@@ -15,21 +15,20 @@ export class ContextProvider extends Component {
         this.state = {
             data,
             forms,
+            currentUser: null,
         }
     }
-
 
     handleSubmit = (e, formName, submitType) => {
         e.preventDefault();
         const formData = formReducer(this.state.forms[formName]);
         const validation = isValid(this.state.forms[formName].filter(({type}) => type !== "button" && type !== "checkbox"));
-        console.log(validation, formData);
-        // if (submitType === "signup") this.signup(this.formData);
+        if (validation.result && submitType === "signup")  this.signup(formData);
+        else if (validation.result && submitType === "login")  this.login(formData);
     }
     handleOnChange = (e,formName) => {
         let updatedForm = this.getFormData(e, formName);
         this.setState({[formName]: updatedForm});
-        console.log(e.type,this.state.forms[formName]);
         if (e.target.type !== "checkbox") e.preventDefault();
     }
 
@@ -38,7 +37,7 @@ export class ContextProvider extends Component {
     }
 
     getFormData = (e,formName) => {
-        const { name, value, checked, type } = e.target;
+        const { name, value, checked } = e.target;
         const form = [...this.state.forms[formName]];
         return form.map(input => {
             if(input.name === name && input.type !== "checkbox") input.value = value;
@@ -51,14 +50,44 @@ export class ContextProvider extends Component {
     
     }
 
-    signup = async ({email,password}) => {
-        await this.Auth.signup({email, password});
+    signup = async ({email, password}) => {
+        const res = await this.Auth.signup(email, password);
+        this.setCurrentUser();
+        console.log(res);
     } 
+    login = async ({email, password}) => {
+        const res = await this.Auth.login(email, password);
+        this.setCurrentUser();
+        console.log(res);
+    }
+    
+    logout = async () => {
+        const res = await this.Auth.logout();
+        this.setCurrentUser();
+        console.log(res);
+    }
+
+    setCurrentUser = () => {
+        // this.setState({currentUser});
+        const currentUser = this.Auth.auth.currentUser;
+        this.setState({currentUser: currentUser ? true : false});
+    }
         
 
     render(){
         return(
-            <Context.Provider value={{data: this.state.data, forms, handleOnChange: this.handleOnChange, handleOnBlur: this.handleOnBlur, handleSubmit: this.handleSubmit}}>
+            <Context.Provider value={
+                {
+                    data: this.state.data, 
+                    handleOnChange: this.handleOnChange, 
+                    handleOnBlur: this.handleOnBlur, 
+                    handleSubmit: this.handleSubmit,
+                    forms: this.state.forms, 
+                    currentUser: this.state.currentUser,
+                    logout: this.logout, 
+                }
+            }
+            >
                 {this.props.children}
             </Context.Provider>
         );

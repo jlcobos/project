@@ -34,16 +34,16 @@ function App() {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/" component={Home} />
-                <Route exact path="/tier/:tier" component={TierView} />
-                <Route exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />
+                <PrivateRoute exact path="/" component={Home} />
+                <PrivateRoute exact path="/tier/:tier" component={TierView} />
+                <PrivateRoute exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />
                 {/* <Route exact path="/components/tier/:tier/:component/suppliers" component={Suppliers} />
                 <Route exact path="/components/tier/:tier/:component/suppliers/:supplier" component={Supplier} /> */}
-                <Route exact path="/tier/:tier/:component/requirements" component={Requirements} />
-                <Route exact path="/tier/:tier/:component/search" component={SupplierSearch} />
-                <Route exact path="/suppliers/signup" component={SupplierSignup} />
-                <Route exact path="/suppliers/rfp" component={RFP} />
-                <Route exact path="*" component={() => <p>Error page not found</p>} />
+                <PrivateRoute exact path="/tier/:tier/:component/requirements" component={Requirements} />
+                <PrivateRoute exact path="/tier/:tier/:component/search" component={SupplierSearch} />
+                <PrivateRoute exact path="/suppliers/signup" component={SupplierSignup} />
+                <PrivateRoute exact path="/suppliers/rfp" component={RFP} />
+                <PrivateRoute exact path="*" component={() => <p>Error page not found</p>} />
               </Switch>
           </Master>
         </ContextProvider>

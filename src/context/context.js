@@ -51,24 +51,33 @@ export class ContextProvider extends Component {
     }
 
     signup = async ({email, password}) => {
-        const res = await this.Auth.signup(email, password);
-        this.setCurrentUser();
-        console.log(res);
+        try {
+            await this.Auth.signup(email, password);
+            this.setCurrentUser();
+        } catch(error) {
+            console.log(error.message);
+        }
     } 
     login = async ({email, password}) => {
-        const res = await this.Auth.login(email, password);
-        this.setCurrentUser();
-        console.log(res);
+        try {
+            await this.Auth.login(email, password);
+            this.setCurrentUser();
+            console.error("login success");
+        } catch(error) {
+            console.error(error.message);
+        }
     }
     
     logout = async () => {
-        const res = await this.Auth.logout();
-        this.setCurrentUser();
-        console.log(res);
+        try {
+            await this.Auth.logout();
+            this.setCurrentUser();
+        } catch (error) {
+            console.log(error.massage);
+        }
     }
 
     setCurrentUser = () => {
-        // this.setState({currentUser});
         const currentUser = this.Auth.auth.currentUser;
         this.setState({currentUser: currentUser ? true : false});
     }

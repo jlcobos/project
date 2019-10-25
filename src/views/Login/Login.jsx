@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { withRouter } from "react-router";
+import { Redirect } from "react-router";
 import Col from "../../components/Layout/Col";
 import Form from "../../components/Form/Form";
 import { Context } from "../../context/context";
@@ -10,7 +10,8 @@ function Login() {
     return (
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
-                {({forms: {loginForm},...rest}) => {
+                {({currentUser, forms: {loginForm},...rest}) => {
+                    if(currentUser) return  <Redirect to="/" />
                     return <Form form={loginForm} formName={"loginForm"} {...rest} />
                 }}
             </Context.Consumer>
@@ -18,4 +19,4 @@ function Login() {
     );
 }
 
-export default withRouter(Login);
+export default Login;

@@ -10,26 +10,32 @@ export default class TopNav extends Component {
         {
             to: "/",
             text: "Home",
+            protected: true,
         },
         {
             to: "/login",
             text: "Login",
+            protected: false,
         },
         {
             to: "/signup",
             text: "Signup",
+            protected: false,
         },
         {
             to: "/suppliers/rfp",
             text: "RFP",
+            protected: true,
         },
         {
             to: "/suppliers/signup",
             text: "Supplier Signup",
+            protected: true,
         },
         {
             to: "/tier/:tier/seats/search",
             text: "Search",
+            protected: true,
         },
     ]
 
@@ -37,7 +43,7 @@ export default class TopNav extends Component {
         return (
             <Context.Consumer>
                 {({currentUser, logout}) => {
-                    return currentUser ? <button onClick={() => logout()}>{"logout"}</button> : null;
+                    return currentUser ? <NavLink className="nav-link font-italic" onClick={e => e.preventDefault()}>{"logout"}</NavLink> : null;
                 }}
             </Context.Consumer>
         )
@@ -45,16 +51,40 @@ export default class TopNav extends Component {
 
     renderNavLinks(){
         return (
-            <ul className="nav justify-content-end">
-                {this.navList.map(navItem => {
+            <Context.Consumer>
+                {({currentUser, logout}) => {
                     return (
-                        <li key={navItem.text} className="nav-item"> 
-                            <NavLink className="nav-link font-italic" to={navItem.to}>{navItem.text}</NavLink> 
-                        </li> 
-                    )        
-                })}
-                {this.logoutLink()}
-            </ul>  
+                        <ul className="nav justify-content-end">
+                            {this.navList.map(navItem => {
+                                if (currentUser && navItem.protected === true) {
+                                    return (
+                                    <li key={navItem.text} className="nav-item"> 
+                                        <NavLink className="nav-link font-italic" to={navItem.to}>{navItem.text}</NavLink> 
+                                    </li> 
+                                )
+                                } else if (!currentUser && !navItem.protected) {
+                                    return (
+                                        <li key={navItem.text} className="nav-item"> 
+                                            <NavLink className="nav-link font-italic" to={navItem.to}>{navItem.text}</NavLink> 
+                                        </li> 
+                                    )
+                                }       
+                            })}
+                            {currentUser && 
+                                <NavLink 
+                                    className="nav-link font-italic" 
+                                    to="/" 
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        logout();
+                                }}>
+                                    {"Logout"}
+                                </NavLink>
+                            } 
+                        </ul>
+                    )
+                }}
+            </Context.Consumer> 
         )
     }
 

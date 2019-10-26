@@ -53,7 +53,7 @@ export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonPr
         disabled: false,
         action: "handleSubmit",
         type: inputTypes.button,
-        formSubmit: false,
+        submitType: "api",
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

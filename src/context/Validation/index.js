@@ -39,15 +39,15 @@ export function validateForm(form){
             if (validationType === validationTypes.stringNumber) input.validation.validationMessage = `${displayName} must be at least ${length.min} to ${length.max} digits long`;
             if (validationType === validationTypes.stringNumber && length.min === length.max) input.validation.validationMessage = `${displayName} must be ${length.min} digits`;
 
-            if (validationType === validationTypes.string) input.validation.validationMessage = `${displayName} must be at least ${length.min} to ${length.max} characters long`;
+            if (validationType === validationTypes.string) input.validation.validationMessage = `${displayName} must be ${length.min} to ${length.max} characters long`;
             if (validationType === validationTypes.string && length.min === length.max) input.validation.validationMessage = `${displayName} must be characters`;
         }
 
-        const password = form.find(i => i.name === "password");
-        if (!isEmpty(password.value)) {
+        const password = form.find(i => i.name === "password") || false;
+        if ( password && !isEmpty(password.value)) {
             if (name === "confirmPassword" && value !== password.value) {
                 input.validation.valid = false;
-                input.validation.validationMessage = "passwords do not match";
+                input.validation.validationMessage = "Passwords do not match";
                 errors++;
             }
 
@@ -55,7 +55,6 @@ export function validateForm(form){
 
         return input;
     });
-
-    if (errors.length === 0) return { isValid: true, form }
+    if (errors === 0) return { isValid: true, form }
     else return {isValid: false, errors};
 }

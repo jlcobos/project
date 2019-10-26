@@ -21,17 +21,17 @@ export class ContextProvider extends Component {
 
     handleSubmit = async (e, formName, submitType) => {
         e.preventDefault();
-        const validatedForm = validateForm(this.state.forms[formName]);
-        this.setState({[formName]: validatedForm});
-        console.log(this.state.forms);
-        if(validatedForm.isValid) {
+        const {isValid, form} = validateForm(this.state.forms[formName]);
+        this.setState({[formName]: form});
+
+        if(isValid) {
             try {
-                if (validatedForm.isValid && submitType === "signup") await this.signup(formData);
-                else if (validatedForm.isValid && submitType === "login") await this.login(formData);
                 const formData = formReducer(this.state.forms[formName]);
+                if (isValid && submitType === "signup") await this.signup(formData);
+                else if (isValid && submitType === "login") await this.login(formData);
             }
             catch(err) {
-                console.log(err);
+                console.log(err.message);
             }
         }
     }
@@ -89,6 +89,7 @@ export class ContextProvider extends Component {
     setCurrentUser = () => {
         const currentUser = this.Auth.auth.currentUser;
         this.setState({currentUser: currentUser ? true : false});
+        console.log("User logged in");
     }
         
 

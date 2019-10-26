@@ -58,7 +58,6 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         disabled: false,
         action: "handleSubmit",
         type: inputTypes.button,
-        formSubmit: true,
         submitType: "signup",
         variant: "primary",
         wrapperClass: "",

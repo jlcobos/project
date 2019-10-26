@@ -76,8 +76,7 @@ export interface IButtonProps {
     disabled: boolean;
     action?: string;
     type: inputTypes.button;
-    formSubmit: boolean;
-    submitType?: "login" | "signup";
+    submitType: "login" | "signup" | "api";
     variant: "primary" | "secondary" | "success" | "danger" | "dark" | "info" | "warning";
     wrapperClass: string,
     buttonClass: string;

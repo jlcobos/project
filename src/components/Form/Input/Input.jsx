@@ -20,14 +20,15 @@ export default function Input(
             {label && <label for={name}>{displayName}</label>}
             <input 
                 type={type} 
-                className={["form-control", inputClass || "",  valid === false ? "formError placeholderErrorTextColor" : "" ].join(" ")} 
+                className={["form-control", inputClass || "",  valid === false ? "formInputBorderError" : "" ].join(" ")} 
                 id={name} 
                 name={name} 
-                placeholder={valid === false ? validationMessage : displayName}
+                placeholder={displayName}
                 value={value}
                 onChange={(e) => handleOnChange(e,formName)}
                 // onBlur={(e) => handleOnBlur(e,formName, validation)}
             />
+            {valid === false &&  <small className="formErrorText">{validationMessage}</small>}
         </div>
     )
 }

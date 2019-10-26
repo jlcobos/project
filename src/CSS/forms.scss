@@ -2,24 +2,27 @@ form {
     margin-top: 15px;
 }
 
-.formError {
-    color: red;
+.formInputBorderError {
     border-color: red;
 }
 
-input.placeholderErrorTextColor {
+.formErrorText {
     color: red;
 }
 
-.placeholderErrorTextColor::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red;
-    opacity: 1; /* Firefox */
-}
+// input.placeholderErrorTextColor {
+//     color: red;
+// }
 
-  .placeholderErrorTextColor:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: red;
-}
+// .placeholderErrorTextColor::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+//     color: red;
+//     opacity: 1; /* Firefox */
+// }
 
-  .placeholderErrorTextColor::-ms-input-placeholder { /* Microsoft Edge */
-    color: red;
-}
+//   .placeholderErrorTextColor:-ms-input-placeholder { /* Internet Explorer 10-11 */
+//     color: red;
+// }
+
+//   .placeholderErrorTextColor::-ms-input-placeholder { /* Microsoft Edge */
+//     color: red;
+// }

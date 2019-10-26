@@ -345,7 +345,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         disabled: false,
         action: "handleSubmit",
         type: inputTypes.button,
-        formSubmit:true,
+        submitType: "api",        
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

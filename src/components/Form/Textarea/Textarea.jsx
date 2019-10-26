@@ -11,14 +11,14 @@ export default function TextArea({
     handleOnBlur, 
     handleOnChange, 
     formName, 
-    validation
+    validation: { valid, validationMessage }
     })
     {
     return (
         <div className={`form-group ${ columns || ""}`}>
             {label && <label for={name}>{displayName}</label>}
             <textarea 
-                className={`form-control ${textareaClass ? textareaClass : ""}`} 
+                className={["form-control", textareaClass || "",  valid === false ? "formInputBorderError" : "" ].join(" ")} 
                 name={name} 
                 value={value} 
                 rows={rows} id={name} 
@@ -26,6 +26,7 @@ export default function TextArea({
                 onChange={(e) => handleOnChange(e, formName)}
                 onBlur={(e) => handleOnBlur(e, formName)}
             />
+            {valid === false &&  <small className="formErrorText">{validationMessage}</small>}
         </div>
     )
 }

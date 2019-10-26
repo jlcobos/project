@@ -4,7 +4,7 @@ export const loginForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "email",
         label: false,
-        displayName: "email",
+        displayName: "Email",
         value: "",
         type: inputTypes.email,
         columns: "col-12",
@@ -40,7 +40,6 @@ export const loginForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         disabled: false,
         action: "handleSubmit",
         type: inputTypes.button,
-        formSubmit: true,
         submitType: "login",
         variant: "primary",
         wrapperClass: "",

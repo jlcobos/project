@@ -10,9 +10,11 @@ export const loginForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-12",
         inputClass: "",
         validation: {
+            validationType: "email",
+            valid: null,
             lengthRequired: false,
             required: true,
-            type: "email",
+            validationMessage: "",
         }
     },
     {
@@ -24,18 +26,20 @@ export const loginForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-12",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: true,
             length: {min: 8, max: 16},
+            validationMessage: "",
         }
     },
     {
         name: "login",
         displayName: "Submit",
-        withAction: true,
         disabled: false,
         action: "handleSubmit",
-        type: "button",
+        type: inputTypes.button,
         formSubmit: true,
         submitType: "login",
         variant: "primary",

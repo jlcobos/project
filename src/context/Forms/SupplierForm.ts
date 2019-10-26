@@ -10,9 +10,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
-
+            validationMessage: "",
         }
     },
     {
@@ -24,8 +26,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -37,8 +42,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -50,8 +58,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -63,8 +74,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -76,8 +90,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -89,8 +106,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -102,8 +122,12 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
-            lengthRequired: false,
+            lengthRequired: true,
+            length: {min: 5, max: 10},
+            validationMessage: "",
         }
     },
     {
@@ -115,8 +139,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -128,9 +155,12 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: false,
             lengthRequired: true,
             length: {min: 10, max: 10},
+            validationMessage: "",
         }
     },
     {
@@ -142,9 +172,12 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "number string",
+            valid: null,
             required: true,
             lengthRequired: true,
             length: {min: 10, max: 10},
+            validationMessage: "",
         }
     },
     {
@@ -156,9 +189,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
-            type: inputTypes.email,
+            validationType: inputTypes.email,
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -170,8 +205,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: false,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -179,13 +217,16 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         label: false,
         displayName:"Year Founded",
         value: "",
-        type: inputTypes.text,
+        type: inputTypes.number,
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "number",
+            valid: null,
             required: true,
             lengthRequired: true,
             length: {min: 4, max: 4},
+            validationMessage: "",
         }
     },
     {
@@ -197,8 +238,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns:"col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             lengthRequired: false,
             required: false,
+            validationMessage: "",
         }
     },
     {
@@ -210,8 +254,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: false,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -223,10 +270,12 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: inputTypes.number,
+            valid: null,
             required: false,
-            type: inputTypes.number,
             lengthRequired: true,
             length: {min: 1, max: 3},
+            validationMessage: "",
         }
     },
     {
@@ -238,9 +287,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: inputTypes.number,
+            valid: null,
             required: true,
-            type: inputTypes.number,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -252,16 +303,18 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: inputTypes.number,
+            valid: null,
             required: false,
-            type: inputTypes.number,
             lengthRequired: false,
+            validationMessage: "",
         },
     },
     {
         name: "diversityAndOwnership",
         header: "Diversity and Ownership",
         withHeader: true,
-        type: "checkbox",
+        type: inputTypes.checkbox,
         list: true,
         inline: false,
         checkboxClass: "",
@@ -278,7 +331,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         name: "portfolio",
         header: "Portfolio",
         withHeader: true,
-        type: "checkbox",
+        type: inputTypes.checkbox,
         list: false,
         inline: false,
         checkboxClass: "",
@@ -289,10 +342,9 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
     {
         name: "SupplierSignupSubmit",
         displayName: "Submit",
-        withAction: true,
         disabled: false,
         action: "handleSubmit",
-        type: "button",
+        type: inputTypes.button,
         formSubmit:true,
         variant: "primary",
         wrapperClass: "",

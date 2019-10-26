@@ -5,7 +5,7 @@ export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonPr
         name: "supplierSearch",
         header: "Search by Category",
         withHeader: false,
-        type: "checkbox",
+        type: inputTypes.checkbox,
         list: true,
         inline: false,
         checkboxClass: "",
@@ -26,10 +26,18 @@ export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonPr
     {
         name: "yearsInOperation",
         displayName: "Years in Operation",
-        type: "dropdown",
+        type: inputTypes.dropdown,
         dropdownClass: "",
         columns: "",
         value: "",
+        validation: {
+            validationType: "string",
+            valid: null,
+            required: true,
+            lengthRequired: false,
+            validationMessage: "",
+
+        },
         choices: [
             {name: "yearsInOperation", displayName: "", value: " "},
             {name: "yearsInOperation", displayName: "Any", value: "Any"},
@@ -42,10 +50,9 @@ export const supplierSearchForm: Array< IInputProps | ICheckboxProps | IButtonPr
     {
         name: "supplierSearchSubmit",
         displayName: "Search",
-        withAction: true,
         disabled: false,
         action: "handleSubmit",
-        type: "button",
+        type: inputTypes.button,
         formSubmit: false,
         variant: "primary",
         wrapperClass: "",

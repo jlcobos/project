@@ -32,6 +32,8 @@ class Firebase {
         if (user) return true;
         else return false;
     });
+
+    // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 }
 export default Firebase;
 

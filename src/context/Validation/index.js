@@ -1,22 +1,61 @@
 import {isEmpty, isEmail, isLength} from 'validator';
+import { inputTypes, validationTypes } from "../Forms/FormInterfaces";
 
-export function isValid(form){
-    const errors = [];
-    let password;
-    form.forEach(input => {
-        console.log(input.validation);
-        const {name, type, value,  validation: {required, lengthRequired, length}} = input;
+// TODO: add type date and number string  && valid date && tel and url
+
+// TODO: add error text to label not in placeholder?
+
+// valid: boolean | null;
+// required: boolean;
+// validationMessage: string;
+// lengthRequired: boolean;
+// type: string;
+// length?: {min: number; max: number};
+
+export function validateForm(form){
+    let errors = 0;
+    const result = form.map(input => {
+        if (input.type === inputTypes.button || input.type === inputTypes.checkbox) return input;
+
+        let {name, type, value, displayName, validation: {validationType, required, lengthRequired, length}} = input;
+
+        input.validation.validationMessage = "";
+        input.validation.valid = null;
+
         if (required && isEmpty(value)) {
-            errors.push({name: name, message: `Field cannot be empty`});
-            return {result: false, errors};
+            input.validation.valid = false;
+            input.validation.validationMessage = `${displayName} Required`;
+            errors++;
+            return input;
         }
-        if (type === "email" && !isEmail(value)) errors.push({result: false, name: name, message: `Invalid email`});
-        if (lengthRequired && !isLength(value, {min: length.min, max: length.max})) errors.push({name: name, message: `Field must be between ${length.min} and ${length.max} characters long`});
-        if (input.name === "password") password = input.value;
-        if (input.name === "confirmPassword" && input.value !== password) errors.push({result: false, name: name, message: `passwords do not match`});
-        // equals(p1, p2) && (errors.passwordsNotEqual = `Password and password confirm do not match.`)
-    })
+        if (validationType === validationTypes.email && !isEmail(value)) {
+            input.validation.valid = false;
+            input.validation.validationMessage = "Invalid Email Format"
+            errors++;
+        };
+        if (lengthRequired && !isLength(value, {min: length.min, max: length.max})) {
+            input.validation.valid = false;
+            errors++;
+            if (validationType === validationTypes.stringNumber) input.validation.validationMessage = `${displayName} must be at least ${length.min} to ${length.max} digits long`;
+            if (validationType === validationTypes.stringNumber && length.min === length.max) input.validation.validationMessage = `${displayName} must be ${length.min} digits`;
 
-    if (errors.length === 0) return { result: true }
-    else return {result: false, errors};
+            if (validationType === validationTypes.string) input.validation.validationMessage = `${displayName} must be at least ${length.min} to ${length.max} characters long`;
+            if (validationType === validationTypes.string && length.min === length.max) input.validation.validationMessage = `${displayName} must be characters`;
+        }
+
+        const password = form.find(i => i.name === "password");
+        if (!isEmpty(password.value)) {
+            if (name === "confirmPassword" && value !== password.value) {
+                input.validation.valid = false;
+                input.validation.validationMessage = "passwords do not match";
+                errors++;
+            }
+
+        }
+
+        return input;
+    });
+
+    if (errors.length === 0) return { isValid: true, form }
+    else return {isValid: false, errors};
 }

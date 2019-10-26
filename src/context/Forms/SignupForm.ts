@@ -10,8 +10,11 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         columns: "col-12",
         inputClass: "",
         validation: {
+            validationType: inputTypes.email,
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
@@ -23,9 +26,12 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         columns: "col-12",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: true,
-            length: {min: 8, max: 16}
+            length: {min: 8, max: 16},
+            validationMessage: "",
         }
     },
     {
@@ -38,18 +44,20 @@ export const signupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = 
         rows: 10,
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: true,
-            length: {min: 8, max: 16}
+            length: {min: 8, max: 16},
+            validationMessage: "",
         }
     },
     {
         name: "signup",
         displayName: "Submit",
-        withAction: true,
         disabled: false,
         action: "handleSubmit",
-        type: "button",
+        type: inputTypes.button,
         formSubmit: true,
         submitType: "signup",
         variant: "primary",

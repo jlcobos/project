@@ -2,20 +2,6 @@ import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInt
 
 export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
-        name: "recipients",
-        label: false,
-        displayName: "Recipients",
-        value: "",
-        type: inputTypes.text,
-        columns: "col-12",
-        inputClass: "",
-        validation: {
-            required: true,
-            lengthRequired: true,
-            length: {min: 8, max: 16},
-        }
-    },
-    {
         name: "subject",
         label: false,
         displayName: "Subject",
@@ -24,9 +10,12 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-12",
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: true,
             length: {min: 1, max: 500},
+            validationMessage: "",
         }
     },
     {
@@ -39,9 +28,12 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         rows: 10,
         inputClass: "",
         validation: {
+            validationType: "string",
+            valid: null,
             required: true,
             lengthRequired: true,
             length: {min: 8, max: 16},
+            validationMessage: "",
         }
     },
     {
@@ -53,14 +45,17 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         columns: "col-6",
         inputClass: "",
         validation: {
+            validationType: "date",
+            valid: null,
             required: true,
             lengthRequired: false,
+            validationMessage: "",
         }
     },
     {
         name: "cbcRequirements",
         header: "CBC Requirements",
-        type: "checkbox",
+        type: inputTypes.checkbox,
         withHeader: false,
         list: false,
         inline: false,
@@ -79,7 +74,7 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         name: "RfpSpecUpload",
         displayName: "File Upload",
         disabled: true,
-        type: "button",
+        type: inputTypes.button,
         formSubmit: false,
         variant: "secondary",
         wrapperClass: "",
@@ -89,10 +84,9 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "RfpSubmit",
         displayName: "Submit",
-        withAction: true,
         disabled: false,
         action: "handleSubmit",
-        type: "button",
+        type: inputTypes.button,
         formSubmit: true,
         variant: "primary",
         wrapperClass: "",

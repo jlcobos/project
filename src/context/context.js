@@ -15,7 +15,8 @@ export class ContextProvider extends Component {
         this.state = {
             data,
             forms,
-            currentUser: null,
+            // currentUser: null,
+            currentUser: true,
         }
     }
 
@@ -36,7 +37,7 @@ export class ContextProvider extends Component {
         }
     }
     handleOnChange = (e,formName) => {
-        let updatedForm = this.getFormData(e, formName);
+        let updatedForm = this.updateForm(e, formName);
         this.setState({[formName]: updatedForm});
         if (e.target.type !== "checkbox") e.preventDefault();
     }
@@ -45,18 +46,25 @@ export class ContextProvider extends Component {
         console.log(`on Blur action for: `, e.target );
     }
 
-    getFormData = (e,formName) => {
-        const { name, value, checked } = e.target;
+    updateForm = (e,formName) => {
+        const { name, value, checked, validity: { valid } } = e.target;
         const form = [...this.state.forms[formName]];
         return form.map(input => {
-            if(input.name === name && input.type !== "checkbox") input.value = value;
+            let validation;
+            if(input.validation) validation = input.validation;
+
+            if(input.name === name && valid && input.type !== "checkbox") {
+                if (validation.lengthRequired && input.value.length < validation.length.max ) input.value = value
+                else if (validation.lengthRequired && value.length >= validation.length.max) return input
+                else input.value = value;
+            }
+
             if (input.type === "checkbox") input.choices = input.choices.map(choice =>{
                 if (choice.name === name) choice.value = checked;
                 return choice;
             });
             return input;
         });
-    
     }
 
     signup = async ({email, password}) => {

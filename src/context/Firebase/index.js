@@ -20,7 +20,13 @@ class Firebase {
 
     signup = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
 
-    login = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
+    login = (email, password) => this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(() => firebase.auth().signInWithEmailAndPassword(email, password))
+    .catch( error => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.error(errorCode, errorMessage);
+    });
 
     logout = () => this.auth.signOut();
 
@@ -33,38 +39,6 @@ class Firebase {
         else return false;
     });
 
-    // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 }
 export default Firebase;
 
-// export const signup = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     console.error(error.message, error.code);
-// });
-
-// export const login = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     console.error(error.message, error.code);
-// });
-
-// export const userAuthState = firebase.auth().onAuthStateChanged(function(user) {
-//     if (user) {
-//       // User is signed in.
-//     const displayName = user.displayName;
-//     const email = user.email;
-//     const emailVerified = user.emailVerified;
-//     const photoURL = user.photoURL;
-//     const isAnonymous = user.isAnonymous;
-//     const uid = user.uid;
-//     const providerData = user.providerData;
-//       // ...
-//     } else {
-//         console.error("user signed out");
-//       // User is signed out.
-//       // ...
-//     }
-// });

@@ -1,7 +1,6 @@
 import React from "react";
-import Link from "../../../components/Link";
+// import Link from "../../../components/Link";
 import { testLink } from "../../Links"
-import { exportSpecifier } from "@babel/types";
 
 export const Doorways =  {
     name: "Doorways",

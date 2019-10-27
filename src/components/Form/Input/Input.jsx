@@ -3,15 +3,16 @@ import React from "react";
 export default function Input(
     {
         type, 
-        value, 
-        displayName, 
-        inputClass, 
         name, 
+        displayName, 
+        value, 
+        inputClass, 
         label, 
         columns, 
         handleOnBlur, 
         handleOnChange, 
-        formName, 
+        formName,
+        pattern, 
         validation: { valid, validationMessage }
     })
     {
@@ -25,6 +26,7 @@ export default function Input(
                 name={name} 
                 placeholder={displayName}
                 value={value}
+                pattern={pattern}
                 onChange={(e) => handleOnChange(e,formName)}
                 // onBlur={(e) => handleOnBlur(e,formName, validation)}
             />

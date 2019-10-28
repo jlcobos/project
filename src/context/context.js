@@ -1,5 +1,6 @@
 import React, {Component, createContext} from "react";
 import forms from "./Forms";
+import supplierTestData from "./SupplierTestData";
 import { validateForm } from "./Validation";
 import { formReducer } from "./Forms/FormMethods";
 import Firebase from "./Firebase";
@@ -15,6 +16,7 @@ export class ContextProvider extends Component {
         this.state = {
             data,
             forms,
+            supplierTestData,
             // currentUser: null,
             currentUser: true,
         }

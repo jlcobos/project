@@ -1,5 +1,5 @@
 import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
-
+console.log(inputTypes.email);
 export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "firstName",
@@ -203,7 +203,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         label: false,
         displayName:"Classification",
         value: "",
-        type: inputTypes.email,
+        type: inputTypes.text,
         columns: "col-6",
         inputClass: "",
         validation: {
@@ -345,9 +345,8 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         name: "SupplierSignupSubmit",
         displayName: "Submit",
         disabled: false,
-        action: "handleSubmit",
         type: inputTypes.button,
-        submitType: "api",        
+        submitType: "supplierSignup",        
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

@@ -1,21 +1,23 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBz6LQRNNC3hi6RtYnzp5npu6O3fGqgJtw",
-    authDomain: "rolling-stock-253305.firebaseapp.com",
-    databaseURL: "https://rolling-stock-253305.firebaseio.com",
-    projectId: "rolling-stock-253305",
-    storageBucket: "rolling-stock-253305.appspot.com",
-    messagingSenderId: "92811993478",
-    appId: "1:92811993478:web:850ad5d33e0ca1f6dccc07",
-    measurementId: "G-0WWHQ9KLS3"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 class Firebase {
     constructor() {
         firebase.initializeApp(firebaseConfig);
         this.auth = firebase.auth();
+        this.db = firebase.firestore();
     }
 
     signup = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
@@ -38,6 +40,22 @@ class Firebase {
         if (user) return true;
         else return false;
     });
+
+
+
+
+
+
+
+    supplierSignup =(formData) => {
+        this.db.collection("suppliers").add(formData)
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+    }
 
 }
 export default Firebase;

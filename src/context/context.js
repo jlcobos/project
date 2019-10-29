@@ -12,7 +12,7 @@ export class ContextProvider extends Component {
 
     constructor(){
         super();
-        this.Auth = new Firebase();
+        this.Firebase = new Firebase();
         this.state = {
             data,
             forms,
@@ -32,6 +32,7 @@ export class ContextProvider extends Component {
                 const formData = formReducer(this.state.forms[formName]);
                 if (isValid && submitType === "signup") await this.signup(formData);
                 else if (isValid && submitType === "login") await this.login(formData);
+                else if (isValid && submitType === "supplierSignup") this.supplierSignup(formData);
             }
             catch(err) {
                 console.log(err.message);
@@ -49,13 +50,14 @@ export class ContextProvider extends Component {
     }
 
     updateForm = (e,formName) => {
-        const { name, value, checked, validity: { valid } } = e.target;
+        const { name, value, checked, validity } = e.target;
         const form = [...this.state.forms[formName]];
         return form.map(input => {
             let validation;
             if(input.validation) validation = input.validation;
-
-            if(input.name === name && valid && input.type !== "checkbox") {
+            
+            console.log(validity.valid);
+            if(input.name === name && input.type !== "checkbox") {
                 if (validation.lengthRequired && input.value.length < validation.length.max ) input.value = value
                 else if (validation.lengthRequired && value.length >= validation.length.max) return input
                 else input.value = value;
@@ -71,7 +73,7 @@ export class ContextProvider extends Component {
 
     signup = async ({email, password}) => {
         try {
-            await this.Auth.signup(email, password);
+            await this.Firebase.signup(email, password);
             this.setCurrentUser();
         } catch(error) {
             console.log(error.message);
@@ -79,7 +81,7 @@ export class ContextProvider extends Component {
     } 
     login = async ({email, password}) => {
         try {
-            await this.Auth.login(email, password);
+            await this.Firebase.login(email, password);
             this.setCurrentUser();
             console.error("login success");
         } catch(error) {
@@ -89,7 +91,7 @@ export class ContextProvider extends Component {
     
     logout = async () => {
         try {
-            await this.Auth.logout();
+            await this.Firebase.logout();
             this.setCurrentUser();
         } catch (error) {
             console.log(error.massage);
@@ -97,9 +99,13 @@ export class ContextProvider extends Component {
     }
 
     setCurrentUser = () => {
-        const currentUser = this.Auth.auth.currentUser;
+        const currentUser = this.Firebase.auth.currentUser;
         this.setState({currentUser: currentUser ? true : false});
         console.log("User logged in");
+    }
+
+    supplierSignup = async (formData) => {
+        this.Firebase.supplierSignup(formData);
     }
         
 

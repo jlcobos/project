@@ -2,7 +2,8 @@ import React, {Component, createContext} from "react";
 import forms from "./Forms";
 import supplierTestData from "./SupplierTestData";
 import { validateForm } from "./Validation";
-import { formReducer } from "./Forms/FormMethods";
+import { formReducer, clearForm } from "./Forms/FormMethods";
+import { ICreateUser, IAddToUsersCollection } from "./Firebase/Models/Users"
 import Firebase from "./Firebase";
 import data from "./Data";
 
@@ -32,7 +33,9 @@ export class ContextProvider extends Component {
                 const formData = formReducer(this.state.forms[formName]);
                 if (isValid && submitType === "signup") await this.signup(formData);
                 else if (isValid && submitType === "login") await this.login(formData);
-                else if (isValid && submitType === "supplierSignup") this.supplierSignup(formData);
+                else if (isValid && submitType === "supplierSignup") await this.supplierSignup(formData);
+                alert("success");
+                this.setState({[formName]: clearForm(form)});
             }
             catch(err) {
                 console.log(err.message);
@@ -46,7 +49,7 @@ export class ContextProvider extends Component {
     }
 
     handleOnBlur = (e,formDataName) => {
-        console.log(`on Blur action for: `, e.target );
+        // console.log(`on Blur action for: `, e.target );
     }
 
     updateForm = (e,formName) => {
@@ -56,7 +59,7 @@ export class ContextProvider extends Component {
             let validation;
             if(input.validation) validation = input.validation;
             
-            console.log(validity.valid);
+            // console.log(validity.valid);
             if(input.name === name && input.type !== "checkbox") {
                 if (validation.lengthRequired && input.value.length < validation.length.max ) input.value = value
                 else if (validation.lengthRequired && value.length >= validation.length.max) return input

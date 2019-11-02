@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { ICreateUser } from "./Models/Users"
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -20,7 +21,11 @@ class Firebase {
         this.db = firebase.firestore();
     }
 
-    signup = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
+    signup = (email, password) => this.auth.createUserWithEmailAndPassword(email, password)
+        .then(res => {
+            this.addToUsersCollection(res.user.uid);
+        })
+        .catch(err => console.error(err));
 
     login = (email, password) => this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(() => firebase.auth().signInWithEmailAndPassword(email, password))
@@ -45,7 +50,13 @@ class Firebase {
 
 
 
-
+    addToUsersCollection = (uid) => {
+        let userId;
+        this.db.collection("users")
+            .doc(uid)
+            .set({this: "worked"})
+            .catch(err=> alert("something went wrong")); // TODO: error message for production
+    }
 
     supplierSignup =(formData) => {
         this.db.collection("suppliers").add(formData)

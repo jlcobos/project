@@ -1,5 +1,5 @@
 import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
-console.log(inputTypes.email);
+
 export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "firstName",

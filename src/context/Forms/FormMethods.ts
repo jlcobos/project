@@ -1,4 +1,4 @@
-import {ICheckboxProps, IInputProps, IButtonProps, IChoices} from "./FormInterfaces";
+import {ICheckboxProps, IInputProps, IButtonProps, IChoices, inputTypes} from "./FormInterfaces";
 
 interface Iresult {[isProperty: string]: string | boolean | number};
 
@@ -10,4 +10,15 @@ export function formReducer(form: any): Iresult {
         return acc;
     },{});
     return result;
+}
+
+export function clearForm(form: any) {
+    return form.map((input: any) => {
+        if(input.hasOwnProperty("value")) {
+            input.value = "";
+        } else if (input.type === inputTypes.checkbox) {
+            input.choices.forEach((ch: IChoices, i: number) => input.choices[i].value = false);
+        }
+        return input;
+    });
 }

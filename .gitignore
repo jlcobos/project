@@ -25,3 +25,5 @@ yarn-error.log*
 
 tsconfig.json 
 tslint.json
+
+/src/context/Firebase/Models 

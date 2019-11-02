@@ -5,7 +5,7 @@ export default function Checkbox({inline, choices, handleOnChange, labelClass, c
         <div className={`mb-2 ${columns}`}>
             {withHeader && <h4 className={`pl-0 ${listHeaderClass && ""}`}>{header}</h4>}
             
-            {choices.map(({name, displayName, value}) => {
+            {choices.map(({name, displayName, value},i) => {
                 return (
                     <div key={name} className={`form-check ${inline ? "form-check-inline" : ""}`}>
                         <input 

@@ -22,3 +22,23 @@ export function clearForm(form: any) {
         return input;
     });
 }
+
+export function updateForm(name: string, value: string, checked: boolean, form: any) {
+    return form.map((input: any) => {
+        let validation;
+        if(input.validation) validation = input.validation;
+        
+        // console.log(validity.valid);
+        if(input.name === name && input.type !== "checkbox") {
+            if (validation.lengthRequired && input.value.length < validation.length.max ) input.value = value
+            else if (validation.lengthRequired && value.length >= validation.length.max) return input
+            else input.value = value;
+        }
+
+        if (input.type === "checkbox") input.choices = input.choices.map((choice: any) =>{
+            if (choice.name === name) choice.value = checked;
+            return choice;
+        });
+        return input;
+    });
+}

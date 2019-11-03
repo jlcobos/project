@@ -2,9 +2,9 @@ import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInt
 
 export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
-        name: "firstName",
+        name: "name",
         label: false,
-        displayName: "First Name",
+        displayName: "Name",
         value: "",
         type: inputTypes.text,
         columns: "col-6",
@@ -18,9 +18,9 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         }
     },
     {
-        name: "lastName",
+        name: "street",
         label: false,
-        displayName: "Last Name",
+        displayName: "Street Number",
         value: "",
         type: inputTypes.text,
         columns: "col-6",
@@ -34,55 +34,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         }
     },
     {
-        name: "jobTitle",
-        label: false,
-        displayName: "Job Title",
-        value: "",
-        type: inputTypes.text,
-        columns: "col-6",
-        inputClass: "",
-        validation: {
-            validationType: "string",
-            valid: null,
-            required: true,
-            lengthRequired: false,
-            validationMessage: "",
-        }
-    },
-    {
-        name: "companyName",
-        label: false,
-        displayName: "Company Name",
-        value: "",
-        type: inputTypes.text,
-        columns: "col-6",
-        inputClass: "",
-        validation: {
-            validationType: "string",
-            valid: null,
-            required: true,
-            lengthRequired: false,
-            validationMessage: "",
-        }
-    },
-    {
-        name: "address",
-        label: false,
-        displayName: "Address",
-        value: "",
-        type: inputTypes.text,
-        columns: "col-6",
-        inputClass: "",
-        validation: {
-            validationType: "string",
-            valid: null,
-            required: true,
-            lengthRequired: false,
-            validationMessage: "",
-        }
-    },
-    {
-        name: "stateOrProvince",
+        name: "state_province",
         label: false,
         displayName: "State or Province",
         value: "",
@@ -281,7 +233,7 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         }
     },
     {
-        name: "employeeSize",
+        name: "numberOfEmployees",
         label: false,
         displayName:"Employee Size",
         value: "",
@@ -352,5 +304,4 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         buttonClass: "",
         columns: "col-3",
     },
-
 ]

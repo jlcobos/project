@@ -32,12 +32,12 @@ class Firebase {
         .catch((err: any) => console.error(err));
 
     login = (credentials: ICreateOrLoginUser) => this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(() => firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password))
-    .catch( (error: any) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.error(errorCode, errorMessage);
-    });
+            .then(() => firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password))
+            .catch( (error: any) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+        });
 
     logout = () => this.auth.signOut();
 
@@ -62,13 +62,14 @@ class Firebase {
     }
 
     supplierSignup =(formData: object) => {
-        const organization = new Organization(formData);
-        var data = JSON.parse(JSON.stringify(organization));
+        const data = this.toJson(new Organization(formData));
         this.db.collection(Collections.organizations)
             .add(data)
-            .then((docRef: any) => console.log("Document written with ID: ", docRef.id))
+            .then((res: any) => console.log("Document written with ID: ", res.id))
             .catch((error: any) => console.error("Error adding document: ", error));
     }
+
+    toJson = (obj: object) => JSON.parse(JSON.stringify(obj));
 
 }
 export default Firebase;

@@ -18,8 +18,8 @@ export class ContextProvider extends Component {
             data,
             forms,
             supplierTestData,
-            // currentUser: null,
-            currentUser: true,
+            currentUserId: false,
+            currentUser: false,
         }
     }
 
@@ -62,9 +62,10 @@ export class ContextProvider extends Component {
 
     setCurrentUser = () => {
         const currentUser = this.Firebase.auth.currentUser;
-        this.setState({currentUser: currentUser ? true : false});
+        this.setState({currentUser: currentUser ? true : false, currentUserId: currentUser.uid});
         if(currentUser) console.log("User logged in")
         else console.log("login failed");
+        console.log(this.state.currentUserId);
     } 
 
     logout = async () => {

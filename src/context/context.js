@@ -35,7 +35,7 @@ export class ContextProvider extends Component {
 
                 if      (isValid && submitType === "signup")         res = await this.Firebase.signup(formData);
                 else if (isValid && submitType === "login")          res = await this.Firebase.login(formData);
-                else if (isValid && submitType === "supplierSignup") res = await this.Firebase.supplierSignup(formData)
+                else if (isValid && submitType === "organizationSignup") res = await this.Firebase.organizationSignup(formData, this.state.currentUserId, this.state.currentUserEmail)
                 
                 this.setState({[formName]: clearForm(form)});
                 this.setCurrentUser();
@@ -62,9 +62,14 @@ export class ContextProvider extends Component {
 
     setCurrentUser = () => {
         const currentUser = this.Firebase.auth.currentUser;
-        this.setState({currentUser: currentUser ? true : false, currentUserId: currentUser.uid});
+        this.setState({
+            currentUser: currentUser ? true : false, 
+            currentUserId: currentUser ? currentUser.uid : false,
+            currentUserEmail: currentUser ? currentUser.email : false,
+        });
+
         if(currentUser) console.log("User logged in")
-        else console.log("login failed");
+        else console.error("login failed"); // TODO: Add meaninful user feedback
         console.log(this.state.currentUserId);
     } 
 

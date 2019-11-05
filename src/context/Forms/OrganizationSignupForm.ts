@@ -1,10 +1,10 @@
 import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInterfaces";
 
-export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
+export const organizationSignupForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
         name: "name",
         label: false,
-        displayName: "Name",
+        displayName: "Company Name",
         value: "",
         type: inputTypes.text,
         columns: "col-6",
@@ -294,11 +294,11 @@ export const supplierForm: Array< IInputProps | ICheckboxProps | IButtonProps>  
         choices: [{name: "portfolio", displayName: "Portfolio", value: false}],
     },
     {
-        name: "SupplierSignupSubmit",
+        name: "organizationSignupSubmit",
         displayName: "Submit",
         disabled: false,
         type: inputTypes.button,
-        submitType: "supplierSignup",        
+        submitType: "organizationSignup",        
         variant: "primary",
         wrapperClass: "",
         buttonClass: "",

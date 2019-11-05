@@ -61,13 +61,22 @@ class Firebase {
             .catch((err: any) => alert("something went wrong")); // TODO: error message for production
     }
 
-    supplierSignup =(formData: object) => {
+    organizationSignup =(formData: object, currentUserUid: string, email: string) => {
         const data = this.toJson(new Organization(formData));
-        this.db.collection(Collections.organizations)
+        this.db
+        .collection(Collections.organizations)
             .add(data)
-            .then((res: any) => console.log("Document written with ID: ", res.id))
+            .then((res) => {
+                this.db.collection(`organizations/${res.id}/members`)
+                    .add({uid: this.db.doc(`users/${currentUserUid}`), email: email})
+                    .then((res: any) => console.log("Document written with ID: ", res.id))
+                    .catch((error: any) => console.error("Error adding document: ", error));
+            })
             .catch((error: any) => console.error("Error adding document: ", error));
+
     }
+
+    create messages Subcollection on bid request
 
     toJson = (obj: object) => JSON.parse(JSON.stringify(obj));
 

@@ -1,11 +1,11 @@
-import { supplierForm } from "./SupplierForm";
+import { organizationSignupForm } from "./OrganizationSignupForm";
 import { rfpForm } from "./RFPForm";
 import { loginForm } from "./LoginForm";
 import { signupForm } from "./SignupForm";
 import { supplierSearchForm } from "./SupplierSearchForm";
 
 const Forms = {
-    supplierForm,
+    organizationSignupForm,
     rfpForm,
     loginForm,
     signupForm,

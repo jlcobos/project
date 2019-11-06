@@ -2,9 +2,9 @@ import { IInputProps, ICheckboxProps, IButtonProps, inputTypes } from "./FormInt
 
 export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     {
-        name: "subject",
+        name: "bidrequestName",
         label: false,
-        displayName: "Subject",
+        displayName: "Bid Request Name",
         value: "",
         type: inputTypes.text,
         columns: "col-12",
@@ -19,9 +19,9 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
         }
     },
     {
-        name: "messageBody",
+        name: "messageToBidders",
         label: false,
-        displayName: "Message Body",
+        displayName: "Message To Bidders",
         value: "",
         type: inputTypes.textarea,
         columns: "col-12",
@@ -54,21 +54,13 @@ export const rfpForm: Array< IInputProps | ICheckboxProps | IButtonProps>  = [
     },
     {
         name: "cbcRequirements",
-        header: "CBC Requirements",
+        displayName: "CBC Requirements",
         type: inputTypes.checkbox,
-        withHeader: false,
-        list: false,
         inline: false,
         checkboxClass: "",
         labelClass: "",
         columns: "col-12",
-        choices: [
-            {
-                name: "cbcRequirement", 
-                displayName: "CBC Requirements", 
-                value: false
-            }
-        ],
+        value: false,
     },
     {
         name: "RfpSpecUpload",

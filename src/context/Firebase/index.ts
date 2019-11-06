@@ -1,9 +1,10 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { ICreateOrLoginUser } from "./Models/Users"
+import { ICreateOrLoginUser, IAddToUsersCollection } from "./Models/Users"
 import { Organization } from "./Models/Organizations"
 import { Collections } from "./Models/Enums";
+import { userInfo } from "os";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -27,7 +28,7 @@ class Firebase {
 
     signup = (newUser: ICreateOrLoginUser) => this.auth.createUserWithEmailAndPassword(newUser.email, newUser.password)
         .then((res: any) => {
-            this.addToUsersCollection(res.user.uid);
+            this.addToUsersCollection({uid: res.user.uid, active: true});
         })
         .catch((err: any) => console.error(err));
 
@@ -54,10 +55,10 @@ class Firebase {
 
 
 
-    addToUsersCollection = (uid: string) => {
+    addToUsersCollection = (user: IAddToUsersCollection) => {
         this.db.collection(Collections.users)
-            .doc(uid)
-            .set({active: true})
+            .doc(user.uid)
+            .set({active: user.active})
             .catch((err: any) => alert("something went wrong")); // TODO: error message for production
     }
 
@@ -76,7 +77,11 @@ class Firebase {
 
     }
 
-    create messages Subcollection on bid request
+    createBidRequest = () => {
+        
+    }
+
+    //create messages Subcollection on bid request
 
     toJson = (obj: object) => JSON.parse(JSON.stringify(obj));
 

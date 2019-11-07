@@ -34,6 +34,7 @@ function App() {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
+                <Route exact path="/organization/home" component={Signup} />
                 <PrivateRoute exact path="/" component={Home} />
                 <PrivateRoute exact path="/tier/:tier" component={TierView} />
                 <PrivateRoute exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />

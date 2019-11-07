@@ -2,9 +2,9 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { ICreateOrLoginUser, IAddToUsersCollection } from "./Models/Users"
+import { UserAuthorization } from "./Models/Enums";
 import { Organization } from "./Models/Organizations"
 import { Collections } from "./Models/Enums";
-import { userInfo } from "os";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -28,7 +28,7 @@ class Firebase {
 
     signup = (newUser: ICreateOrLoginUser) => this.auth.createUserWithEmailAndPassword(newUser.email, newUser.password)
         .then((res: any) => {
-            this.addToUsersCollection({uid: res.user.uid, active: true});
+            this.addToUsersCollection({uid: res.user.uid, authorization: UserAuthorization.user});
         })
         .catch((err: any) => console.error(err));
 
@@ -58,23 +58,25 @@ class Firebase {
     addToUsersCollection = (user: IAddToUsersCollection) => {
         this.db.collection(Collections.users)
             .doc(user.uid)
-            .set({active: user.active})
+            .set({authorization: user.authorization})
             .catch((err: any) => alert("something went wrong")); // TODO: error message for production
     }
 
-    organizationSignup =(formData: object, currentUserUid: string, email: string) => {
-        const data = this.toJson(new Organization(formData));
-        this.db
-        .collection(Collections.organizations)
-            .add(data)
-            .then((res) => {
-                this.db.collection(`organizations/${res.id}/members`)
-                    .add({uid: this.db.doc(`users/${currentUserUid}`), email: email})
-                    .then((res: any) => console.log("Document written with ID: ", res.id))
-                    .catch((error: any) => console.error("Error adding document: ", error));
-            })
-            .catch((error: any) => console.error("Error adding document: ", error));
+    addUserToOrganization = (user: IAddToUsersCollection, organizationId: string) => {
+        this.db.collection(`organizations/${organizationId}/users`)
+            .add({uid: user.uid, authorization: user.authorization})
+            .then((res) => console.log(res)) //TODO: add feedback for production
+            .catch((res) => console.error(res)) // TODO: add feedback for production
+            // TODO: check if user is in another orgs user collection
+    }
 
+    organizationSignup = (formData: object, currentUserUid: string, email: string) => {
+        const data = this.toJson(new Organization(formData));
+        const user: IAddToUsersCollection = {uid: this.db.doc(`users/${currentUserUid}`), authorization: UserAuthorization.admin}
+        this.db.collection(Collections.organizations)
+            .add(data)
+                .then((res) => this.addUserToOrganization(user, res.id))
+                .catch((error: any) => console.error("Error adding document: ", error));
     }
 
     createBidRequest = () => {

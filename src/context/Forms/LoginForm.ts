@@ -1,7 +1,6 @@
 import { IForm, inputTypes, Columns, Variant } from "./FormInterfaces";
 
 export const loginForm: IForm  = {
-
     formName: "loginForm",
     inputs: [
         {

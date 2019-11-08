@@ -9,7 +9,7 @@ export default class SupplierSearch extends Component {
             <Col colClass="col-xs-12 col-md-12 col-lg-10 offset-lg-1 col-xl-8 offset-lg-2">
                 <Context.Consumer>
                 {({forms: {supplierSearchForm},...rest}) => {
-                        return <Form form={supplierSearchForm} formName={"supplierSearchForm"} {...rest} />
+                        return <Form form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
                     }}
                 </Context.Consumer>
             </Col>

@@ -19,7 +19,7 @@ export class ContextProvider extends Component {
             forms,
             supplierTestData,
             currentUserId: false,
-            currentUser: false,
+            currentUser: true,
         }
     }
 
@@ -47,7 +47,7 @@ export class ContextProvider extends Component {
     }
     handleOnChange = (e,formName) => {
         const { name, value, checked } = e.target;
-        const form = [...this.state.forms[formName]];
+        const form = {...this.state.forms[formName]};
 
         let updatedForm = updateForm(name, value, checked, form);
 

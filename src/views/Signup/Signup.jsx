@@ -12,7 +12,7 @@ export default function Signup() {
             <Context.Consumer>
             {({currentUser, forms: {signupForm},...rest}) => {
                 if(currentUser) return  <Redirect to="/" />;
-                return <Form form={signupForm} formName={"signupForm"} {...rest} />
+                return <Form form={signupForm} formName={signupForm.formName} {...rest} />
                 }}
             </Context.Consumer>
         </Col>

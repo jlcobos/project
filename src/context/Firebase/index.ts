@@ -70,17 +70,41 @@ class Firebase {
             // TODO: check if user is in another orgs user collection
     }
 
-    organizationSignup = (formData: object, currentUserUid: string, email: string) => {
+    organizationSignup = (formData: object, currentUserUid: string) => { //TODO: verify user is logged in and authorized to do this action
+
         const data = this.toJson(new Organization(formData));
-        const user: IAddToUsersCollection = {uid: this.db.doc(`users/${currentUserUid}`), authorization: UserAuthorization.admin}
+
+        const user: IAddToUsersCollection = {
+            uid: this.db.doc(`users/${currentUserUid}`), 
+            authorization: UserAuthorization.admin
+        }
+
         this.db.collection(Collections.organizations)
             .add(data)
                 .then((res) => this.addUserToOrganization(user, res.id))
                 .catch((error: any) => console.error("Error adding document: ", error));
     }
 
-    createBidRequest = () => {
-        
+    createBidRequest = async (uid: string, orgId: string) => {
+        const authorized = this.isAdmin(uid, orgId);
+        let res: any;
+        if (authorized) {
+            res = await this.db.collection(`${Collections.organizations}/${orgId}/${Collections.bidRequests}`)
+            .add()
+        }
+    }
+
+    isAdmin = async (uid: string, organizationId: string) => { // TODO: do this in a cloud function with tokens???
+        let res: any;
+        try {
+            res = await this.db.collection(`${Collections.organizations}/${organizationId}/users`)
+                .where("uid", "==", uid)
+                .get();
+    
+            return res.authorization === "admin";
+        } catch(err) {
+            console.error(err) // TODO: fix in production
+        }
     }
 
     //create messages Subcollection on bid request

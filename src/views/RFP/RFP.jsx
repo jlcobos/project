@@ -11,7 +11,7 @@ export default class RFP extends Component {
             <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
                 <Context.Consumer>
                 {({forms: {rfpForm},...rest}) => {
-                        return <Form form={rfpForm} formName={"rfpForm"} {...rest} />
+                        return <Form form={rfpForm} formName={rfpForm.formName} {...rest} />
                     }}
                 </Context.Consumer>
             </Col>

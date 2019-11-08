@@ -28,8 +28,8 @@ export default class TopNav extends Component {
             protected: true,
         },
         {
-            to: "/suppliers/signup",
-            text: "Supplier Signup",
+            to: "/organization/signup",
+            text: "Organization Signup",
             protected: true,
         },
         {

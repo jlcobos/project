@@ -14,7 +14,7 @@ import { inputTypes, validationTypes } from "../Forms/FormInterfaces";
 
 export function validateForm(form){
     let errors = 0;
-    const result = form.map(input => {
+    form.inputs = form.inputs.map(input => {
         if (input.type === inputTypes.button || input.type === inputTypes.checkbox) return input;
 
         let {name, type, value, displayName, validation: {validationType, required, lengthRequired, length}} = input;
@@ -43,7 +43,7 @@ export function validateForm(form){
             if (validationType === validationTypes.string && length.min === length.max) input.validation.validationMessage = `${displayName} must be characters`;
         }
 
-        const password = form.find(i => i.name === "password") || false;
+        const password = form.inputs.find(i => i.name === "password") || false;
         if ( password && !isEmpty(password.value)) {
             if (name === "confirmPassword" && value !== password.value) {
                 input.validation.valid = false;

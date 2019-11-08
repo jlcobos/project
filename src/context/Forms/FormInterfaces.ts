@@ -13,6 +13,32 @@ export enum inputTypes {
     url = "url", 
 };
 
+export enum Variant {
+    primary = "primary", 
+    secondary = "secondary", 
+    success = "success", 
+    danger = "danger", 
+    dark =  "dark", 
+    info = "info", 
+    warning = "warning"
+}
+
+export enum Columns {
+    col1  = "col-1", 
+    col2  = "col-2", 
+    col3  = "col-3", 
+    col4  = "col-4", 
+    col5  = "col-5", 
+    col6  = "col-6", 
+    col7  = "col-7", 
+    col8  = "col-8", 
+    col9  = "col-9", 
+    col10 = "col-10", 
+    col11 = "col-11", 
+    col12 = "col-12", 
+    none  = ""
+}
+
 export enum validationTypes {
     string = "string",
     stringNumber = "string number",
@@ -20,12 +46,11 @@ export enum validationTypes {
     date = "date",
     email = "email",
 }
-export interface IChoices {
-    name: string;
-    displayName: string;
-    value: boolean | string;
-}
 
+export interface IForm {
+    formName: string;
+    inputs: IInput[]
+}
 
 interface validation {
     valid: boolean | null;
@@ -36,48 +61,24 @@ interface validation {
     length?: {min: number; max: number};
 }
 
-export interface IInputProps {
+export interface IInput {
     name: string;
-    label: string | boolean;
     displayName: string,
-    value: string | number | boolean | null;
     type: inputTypes;
-    pattern?: string;
-    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
-    rows?: number;
+    label: string | boolean;
+    value: string | number | boolean | null;
     inputClass: string | false;
-    validation: validation;
-}
-export interface ICheckboxProps {
-    name: string;
-    displayName: string;
-    type: inputTypes.checkbox;
-    inline: boolean;
-    checkboxClass: string;
-    labelClass: string;
-    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
-    value: boolean;
-}
-
-export interface IDropdownProps {
-    name: string;
-    displayName: string;
-    type: inputTypes.dropdown;
-    dropdownClass: string;
-    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
-    value: string | number;
-    validation: validation;
-    choices: IChoices[];
-}
-export interface IButtonProps {
-    name: string
-    displayName: string;
-    disabled: boolean;
+    labelClass?: string;
+    variant?: string;
+    submitType?: "login" | "signup" | "organizationSignup" | "bid" | "api";
+    disabled?: boolean;
     action?: string;
-    type: inputTypes.button;
-    submitType: "login" | "signup" | "organizationSignup" | "api";
-    variant: "primary" | "secondary" | "success" | "danger" | "dark" | "info" | "warning";
-    wrapperClass: string,
-    buttonClass: string;
-    columns: "col-1" | "col-2" | "col-3" | "col-4" | "col-5" | "col-6" | "col-7" | "col-8" | "col-9" | "col-10" | "col-11" | "col-12" | "";
+    wrapperClass?: string;
+    pattern?: string;
+    inline?: boolean;
+    columns: Columns;
+    rows?: number;
+    validation?: validation | false;
+    choices?: {name: string, displayName: string, value: string}[];
+    buttonClass?: string;
 }

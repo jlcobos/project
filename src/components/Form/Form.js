@@ -28,11 +28,11 @@ export default function Form({form, ...props}){
         "hidden"
     ];
     function inputTypeError(){
-        console.log("Input type not recognized");
+        console.error("Input type not recognized");
     }
     return (
         <form className="d-flex flex-wrap">
-            {form.map(function(input) {
+            {form.inputs.map(function(input) {
                 if      (inputTypes.includes(input.type)) return <Input    key={input.name} {...input} {...props} />
                 else if (input.type === "textarea")       return <Textarea key={input.name} {...input} {...props} />
                 else if (input.type === "checkbox")       return <Checkbox key={input.name} {...input} {...props} />

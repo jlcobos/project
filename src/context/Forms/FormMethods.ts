@@ -1,29 +1,30 @@
-import {ICheckboxProps, IInputProps, IButtonProps, IChoices, inputTypes} from "./FormInterfaces";
+import {IInput, inputTypes} from "./FormInterfaces";
 
 interface Iresult {[isProperty: string]: string | boolean | number};
 
 export function formReducer(form: any): Iresult {
-    const result = form.reduce((acc: Iresult, input: any): Iresult => {
+    const formInputs = form.inputs.reduce((acc: Iresult, input: any): Iresult => {
         if (input.type === "dropdown") {
-            input.choices.map((choice: IChoices):any => acc[choice.name] = choice.value)
+            input.choices.map((choice: any):any => acc[choice.name] = choice.value)
         } else if (input.type !== "button" && input.type !== "button") acc[input.name] = input.value;
         return acc;
     },{});
-    return result;
+    return formInputs;
 }
 
 export function clearForm(form: any) {
-    return form.map((input: any) => {
+    form.inputs = form.inputs.map((input: any) => {
 
         if   (input.type === inputTypes.checkbox) input.value = false
         else input.value = "";
 
         return input;
     });
+    return form;
 }
 
 export function updateForm(name: string, value: string, checked: boolean, form: any) {
-    return form.map((input: any) => {
+    form.inputs = form.inputs.map((input: any) => {
         let validation;
         if(input.validation) validation = input.validation;
         
@@ -35,4 +36,5 @@ export function updateForm(name: string, value: string, checked: boolean, form: 
         }
         return input;
     });
+    return form;
 }

@@ -1,4 +1,4 @@
-import { IForm, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IForm, IInput, inputTypes, Columns, Variant } from "./FormInterfaces";
 
 export const supplierSearchForm: IForm  = {
     formName: "supplierSearchForm",
@@ -48,7 +48,7 @@ export const supplierSearchForm: IForm  = {
             value: false,
         },
         {
-            name: "monorityOwned",
+            name: "minorityOwned",
             displayName: "Minority Owned",
             type: inputTypes.checkbox,
             label: false,
@@ -141,5 +141,26 @@ export const supplierSearchForm: IForm  = {
             inputClass: "",
             columns: Columns.col6,
         },
-    ]
+    ],
+    getValues: getValues,
+    getValuesHelper: getValuesHelper,
+}
+
+function getValuesHelper(form: IForm, name: string): any { 
+    const input: any = form.inputs.find((input: IInput) => input.name === name);
+    return input.value;
+}
+
+function getValues(this: IForm) {
+    return {
+        all:              getValuesHelper(this,"all"),
+        buyAmerica:       getValuesHelper(this, "buyAmerica"),
+        byAmerica:        getValuesHelper(this, "byAmerica"),
+        womanOwned:       getValuesHelper(this, "womanOwned"),
+        minorityOwned:    getValuesHelper(this, "minorityOwned"),
+        veteranOwned:     getValuesHelper(this, "veteranOwned"),
+        greenCertified:   getValuesHelper(this, "greenCertified"),
+        isoCertified:     getValuesHelper(this, "isoCertified"),
+        yearsInOperation: getValuesHelper(this, "yearsInOperation"),
+    }
 }

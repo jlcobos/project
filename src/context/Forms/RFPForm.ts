@@ -1,4 +1,4 @@
-import { IForm, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IForm, IInput, inputTypes, Columns, Variant } from "./FormInterfaces";
 
 export const rfpForm: IForm  = {
     formName: "rfpForm",
@@ -92,5 +92,21 @@ export const rfpForm: IForm  = {
             inputClass: "",
             columns: Columns.col6,
         },
-    ]
+    ],
+    getValues: getValues,
+    getValuesHelper: getValuesHelper,
+}
+
+function getValuesHelper(form: IForm, name: string): any { 
+    const input: any = form.inputs.find((input: IInput) => input.name === name);
+    return input.value;
+}
+
+function getValues(this: IForm):any {
+    return {
+        bidrequestName: getValuesHelper(this,"bidrequestName"),
+        messageToBidders: getValuesHelper(this, "messageToBidders"),
+        date: getValuesHelper(this, "date"),
+        cbcRequirements: getValuesHelper(this, "cbcRequirements"),
+    }
 }

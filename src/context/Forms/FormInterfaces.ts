@@ -49,7 +49,9 @@ export enum validationTypes {
 
 export interface IForm {
     formName: string;
-    inputs: IInput[]
+    inputs: IInput[];
+    getValues?: any;
+    getValuesHelper?: (form: IForm,name: string) => any;
 }
 
 interface validation {

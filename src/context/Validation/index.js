@@ -17,7 +17,7 @@ export function validateForm(form){
     form.inputs = form.inputs.map(input => {
         if (input.type === inputTypes.button || input.type === inputTypes.checkbox) return input;
 
-        let {name, type, value, displayName, validation: {validationType, required, lengthRequired, length}} = input;
+        let {name, value, displayName, validation: {validationType, required, lengthRequired, length}} = input;
 
         input.validation.validationMessage = "";
         input.validation.valid = null;

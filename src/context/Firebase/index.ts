@@ -1,9 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { ICreateOrLoginUser, IAddToUsersCollection } from "./Models/Users"
-import { UserAuthorization } from "./Models/Enums";
-import { Organization } from "./Models/Organizations"
+import { UserAuthorization,ICreateOrLoginUser, IAddToUsersCollection } from "../Models/Users";
+import { IOrganization } from "../Models/Organizations"
 import { Collections } from "./Models/Enums";
 
 const firebaseConfig = {
@@ -70,9 +69,7 @@ class Firebase {
             // TODO: check if user is in another orgs user collection
     }
 
-    organizationSignup = (formData: object, currentUserUid: string) => { //TODO: verify user is logged in and authorized to do this action
-
-        const data = this.toJson(new Organization(formData));
+    organizationSignup = (formData: IOrganization, currentUserUid: string) => { //TODO: verify user is logged in and authorized to do this action
 
         const user: IAddToUsersCollection = {
             uid: this.db.doc(`users/${currentUserUid}`), 
@@ -80,7 +77,7 @@ class Firebase {
         }
 
         this.db.collection(Collections.organizations)
-            .add(data)
+            .add(formData)
                 .then((res) => this.addUserToOrganization(user, res.id))
                 .catch((error: any) => console.error("Error adding document: ", error));
     }

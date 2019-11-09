@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Button(props){
-    const {variant ,handleSubmit, buttonClass, displayName, columns, wrapperClass, disabled, formName, formSubmit, submitType} = props;
+    const {variant ,handleSubmit, buttonClass, displayName, columns, wrapperClass, disabled, formName, submitType} = props;
     return (
             <div className={["form-group", columns, wrapperClass].join(" ")}>
                 <button 

@@ -1,4 +1,3 @@
-"use strict";
 exports.__esModule = true;
 var APTA_BaseURL = "https://www.apta.com";
 var CFR_BaseURL = "https://www.ecfr.gov";

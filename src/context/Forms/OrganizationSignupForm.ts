@@ -1,4 +1,5 @@
-import { IForm, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IForm, inputTypes, Columns, Variant, IInput } from "./FormInterfaces";
+import { IOrganization } from "../Models/Organizations";
 
 export const organizationSignupForm: IForm  = {
     formName: "organizationSignupForm",
@@ -389,5 +390,50 @@ export const organizationSignupForm: IForm  = {
             inputClass: "",
             columns: Columns.col6,
         },
-    ]
+    ],
+    getValues: getValues,
+    getValuesHelper: getValuesHelper,
+}
+
+function getValues(this: IForm):IOrganization {
+    return {
+        name: getValuesHelper(this, "name"),
+        phoneNumbers: { 
+            officeNumber: getValuesHelper(this, "officeNumber"), 
+            mobileNumber: getValuesHelper(this, "mobileNumber"), 
+        },
+        email: [
+            { 
+                primary: getValuesHelper(this, "email"), 
+            }
+        ],
+        website:            getValuesHelper(this, "website"),
+        yearFounded:        getValuesHelper(this, "yearFounder"),
+        numberOfEmployees:  getValuesHelper(this, "numberOfEmployees"),
+        numberOfLocations:  getValuesHelper(this, "numberOfLocations"),
+        annualSales:        getValuesHelper(this, "annualSales"),
+        buyAmerica:         getValuesHelper(this, "buyAmerica"),
+        byAmerica:          getValuesHelper(this, "byAmerica"),
+        minorityOwned:      getValuesHelper(this, "minorityOwned"),
+        womanOwned:         getValuesHelper(this, "womanOwned"),
+        veteranOwned:       getValuesHelper(this, "veteranOwned"),
+        isoCertified:       getValuesHelper(this, "isoCertified"),
+        greenCertified:     getValuesHelper(this, "greenCertified"),
+        establishedProduct: getValuesHelper(this, "establishedProduct"),
+        classifications: [
+            getValuesHelper(this, "establishedProduct")
+        ],
+        address: {
+            street:         getValuesHelper(this, "street"),
+            city:           getValuesHelper(this, "city"),
+            state_province: getValuesHelper(this, "state_province"),
+            postalCode:     getValuesHelper(this, "postalCode"),
+            country:        getValuesHelper(this, "country"),
+        },
+    }
+}
+
+function getValuesHelper(form: IForm, name: string): any { 
+    const input: any = form.inputs.find((input: IInput) => input.name === name);
+    return input.value;
 }

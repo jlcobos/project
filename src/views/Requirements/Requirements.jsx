@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Context } from "../../context/context";
-import RequirementText from "../../components/Requirements";
+// import RequirementText from "../../components/Requirements";
 // import Linkify from 'linkifyjs/react';
 import Col from "../../components/Layout/Col";
 

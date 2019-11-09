@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import Card from "../../components/Card";
-import Col from "../../components/Layout/Col";
-import { Context } from "../../context/context";
+// import { NavLink } from "react-router-dom";
+// import Card from "../../components/Card";
+// import Col from "../../components/Layout/Col";
+// import { Context } from "../../context/context";
 
 export default class ComponentRegulationList extends React.Component {
     render(){

@@ -1,20 +1,7 @@
-import {IInput, inputTypes} from "./FormInterfaces";
-
-interface Iresult {[isProperty: string]: string | boolean | number};
-
-export function formReducer(form: any): Iresult {
-    const formInputs = form.inputs.reduce((acc: Iresult, input: any): Iresult => {
-        if (input.type === "dropdown") {
-            input.choices.map((choice: any):any => acc[choice.name] = choice.value)
-        } else if (input.type !== "button" && input.type !== "button") acc[input.name] = input.value;
-        return acc;
-    },{});
-    return formInputs;
-}
+import { IForm, inputTypes } from "./FormInterfaces";
 
 export function clearForm(form: any) {
     form.inputs = form.inputs.map((input: any) => {
-
         if   (input.type === inputTypes.checkbox) input.value = false
         else input.value = "";
 

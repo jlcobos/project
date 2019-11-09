@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import { Redirect } from "react-router";
 import Col from "../../components/Layout/Col";
 import Form from "../../components/Form/Form";

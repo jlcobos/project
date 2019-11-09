@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Col from "../../components/Layout/Col";
 import Form from "../../components/Form/Form";
 import { Context } from "../../context/context";

@@ -1,4 +1,5 @@
-import { IForm, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IForm, IInput, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { ICreateOrLoginUser  } from "../Models/Users"
 
 export const signupForm: IForm  = {
     formName: "signupForm",
@@ -68,5 +69,19 @@ export const signupForm: IForm  = {
             inputClass: "",
             columns: Columns.col12,
         },
-    ]
+    ],
+    getValues: getValues,
+    getValuesHelper: getValuesHelper,
+}
+
+function getValuesHelper(form: IForm, name: string): any { 
+    const input: any = form.inputs.find((input: IInput) => input.name === name);
+    return input.value;
+}
+
+function getValues(this: IForm):ICreateOrLoginUser {
+    return {
+        email:    getValuesHelper(this,"email"),
+        password: getValuesHelper(this, "password"),
+    }
 }

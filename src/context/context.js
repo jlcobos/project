@@ -2,8 +2,7 @@ import React, {Component, createContext} from "react";
 import forms from "./Forms";
 import supplierTestData from "./SupplierTestData";
 import { validateForm } from "./Validation";
-import { formReducer, clearForm, updateForm } from "./Forms/FormMethods";
-import { ICreateUser, IAddToUsersCollection } from "./Firebase/Models/Users"
+import { clearForm, updateForm } from "./Forms/FormMethods";
 import Firebase from "./Firebase/index.ts";
 import data from "./Data";
 
@@ -27,15 +26,23 @@ export class ContextProvider extends Component {
         e.preventDefault();
         const {isValid, form} = validateForm(this.state.forms[formName]);
         this.setState({[formName]: form});
+        const formValues = this.state.forms[formName].getValues();
 
         if(isValid) {
-            try {
-                let res;
-                const formData = formReducer(this.state.forms[formName]);
+            try 
+            {
+                if (submitType === "signup") {
 
-                if      (isValid && submitType === "signup")         res = await this.Firebase.signup(formData);
-                else if (isValid && submitType === "login")          res = await this.Firebase.login(formData);
-                else if (isValid && submitType === "organizationSignup") res = await this.Firebase.organizationSignup(formData, this.state.currentUserId, this.state.currentUserEmail)
+                    await this.Firebase.signup(formValues);
+
+                } else if (submitType === "login") {
+
+                    await this.Firebase.login(formValues);
+
+                } else if (submitType === "organizationSignup") {
+
+                    await this.Firebase.organizationSignup(formValues, this.state.currentUserId, this.state.currentUserEmail);
+                }
                 
                 this.setState({[formName]: clearForm(form)});
                 this.setCurrentUser();
@@ -45,6 +52,7 @@ export class ContextProvider extends Component {
             }
         }
     }
+
     handleOnChange = (e,formName) => {
         const { name, value, checked } = e.target;
         const form = {...this.state.forms[formName]};

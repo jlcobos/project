@@ -8,8 +8,13 @@ export default class TopNav extends Component {
 
     navList = [
         {
-            to: "/",
+            to: "/home",
             text: "Home",
+            protected: true,
+        },
+        {
+            to: "/tier-selection",
+            text: "Tier Selection",
             protected: true,
         },
         {

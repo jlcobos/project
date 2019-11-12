@@ -11,6 +11,7 @@ import OrganizationSignup from "./views/OrganizationSignup";
 import ComponentRegulationList from "./views/ComponentRegulationList";
 import Requirements from "./views/Requirements";
 import RFP from "./views/RFP";
+import UserHome from "./views/UserHome";
 import Login from "./views/Login";
 import Signup from "./views/Signup";
 // import { withRouter } from "react-router";
@@ -34,8 +35,9 @@ function App() {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/organization/home" component={Signup} />
-                <PrivateRoute exact path="/" component={Home} />
+                <PrivateRoute exact path="/home" component={UserHome} />
+                <PrivateRoute exact path="/organization/home" component={Signup} />
+                <PrivateRoute exact path="/tier-selection" component={Home} />
                 <PrivateRoute exact path="/tier/:tier" component={TierView} />
                 <PrivateRoute exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />
                 {/* <Route exact path="/components/tier/:tier/:component/suppliers" component={Suppliers} />

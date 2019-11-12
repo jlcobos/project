@@ -18,7 +18,7 @@ export class ContextProvider extends Component {
             forms,
             supplierTestData,
             currentUserId: false,
-            currentUser: true,
+            currentUser: false,
         }
     }
 
@@ -101,6 +101,8 @@ export class ContextProvider extends Component {
                     handleSubmit: this.handleSubmit,
                     forms: this.state.forms, 
                     currentUser: this.state.currentUser,
+                    currentUserId: this.state.currentUserId,
+                    currentUserEmail: this.state.currentUserEmail,
                     logout: this.logout, 
                 }
             }

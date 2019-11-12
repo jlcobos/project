@@ -2,10 +2,10 @@
 
 export interface IOrganization {
     name: string;
-    phoneNumbers: { officeNumber: string, mobileNumber: string };
-    email: {[key: string]: string}[];
+    phoneNumber: string;
     website: string;
     yearFounded: string;
+    supplier: boolean;
     buyAmerica: boolean;
     byAmerica: boolean;
     minorityOwned: boolean;

@@ -102,27 +102,9 @@ export const organizationSignupForm: IForm  = {
             }
         },
         {
-            name: "mobileNumber",
+            name: "phoneNumber",
             label: false,
-            displayName:"Mobile Number",
-            value: "",
-            type: inputTypes.tel,
-            pattern: "[0-9]*",
-            columns: Columns.col6,
-            inputClass: "",
-            validation: {
-                validationType: "string number",
-                valid: null,
-                required: false,
-                lengthRequired: true,
-                length: {min: 10, max: 10},
-                validationMessage: "",
-            }
-        },
-        {
-            name: "officeNumber",
-            label: false,
-            displayName:"Office Number",
+            displayName:"Phone Number",
             value: "",
             type: inputTypes.tel,
             pattern: "[0-9]*",
@@ -134,22 +116,6 @@ export const organizationSignupForm: IForm  = {
                 required: true,
                 lengthRequired: true,
                 length: {min: 10, max: 10},
-                validationMessage: "",
-            }
-        },
-        {
-            name: "email",
-            label: false,
-            displayName:"Email",
-            value: "",
-            type: inputTypes.email,
-            columns: Columns.col6,
-            inputClass: "",
-            validation: {
-                validationType: inputTypes.email,
-                valid: null,
-                required: true,
-                lengthRequired: false,
                 validationMessage: "",
             }
         },
@@ -312,7 +278,7 @@ export const organizationSignupForm: IForm  = {
             value: false, 
         },
         {
-            name: "buyAmericaCompany",
+            name: "buyAmerica",
             displayName: "Buy America Company",
             type: inputTypes.checkbox,
             label: false,
@@ -323,7 +289,7 @@ export const organizationSignupForm: IForm  = {
             value: false, 
         },
         {
-            name: "byAmericaCompany",
+            name: "byAmerica",
             displayName: "By America",
             type: inputTypes.checkbox,
             label: false,
@@ -397,21 +363,14 @@ export const organizationSignupForm: IForm  = {
 
 function getValues(this: IForm):IOrganization {
     return {
-        name: getValuesHelper(this, "name"),
-        phoneNumbers: { 
-            officeNumber: getValuesHelper(this, "officeNumber"), 
-            mobileNumber: getValuesHelper(this, "mobileNumber"), 
-        },
-        email: [
-            { 
-                primary: getValuesHelper(this, "email"), 
-            }
-        ],
+        name:               getValuesHelper(this, "name"),
+        phoneNumber:        getValuesHelper(this, "phoneNumber"), 
         website:            getValuesHelper(this, "website"),
-        yearFounded:        getValuesHelper(this, "yearFounder"),
+        yearFounded:        getValuesHelper(this, "yearFounded"),
         numberOfEmployees:  getValuesHelper(this, "numberOfEmployees"),
         numberOfLocations:  getValuesHelper(this, "numberOfLocations"),
         annualSales:        getValuesHelper(this, "annualSales"),
+        supplier:           getValuesHelper(this, "supplier"),
         buyAmerica:         getValuesHelper(this, "buyAmerica"),
         byAmerica:          getValuesHelper(this, "byAmerica"),
         minorityOwned:      getValuesHelper(this, "minorityOwned"),
@@ -434,6 +393,7 @@ function getValues(this: IForm):IOrganization {
 }
 
 function getValuesHelper(form: IForm, name: string): any { 
+    console.log(name);
     const input: any = form.inputs.find((input: IInput) => input.name === name);
     return input.value;
 }

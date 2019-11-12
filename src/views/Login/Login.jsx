@@ -11,7 +11,7 @@ function Login() {
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
                 {({currentUser, forms: {loginForm},...rest}) => {
-                    if(currentUser) return  <Redirect to="/" />
+                    if(currentUser) return  <Redirect to="/home" />
                     return <Form form={loginForm} formName={"loginForm"} {...rest} />
                 }}
             </Context.Consumer>

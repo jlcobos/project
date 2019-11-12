@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import { UserAuthorization,ICreateOrLoginUser, IAddToUsersCollection } from "../Models/Users";
 import { IOrganization } from "../Models/Organizations"
-import { Collections } from "./Models/Enums";
+import { Collections } from "../Models/Enums";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -32,7 +32,11 @@ class Firebase {
         .catch((err: any) => console.error(err));
 
     login = (credentials: ICreateOrLoginUser) => this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password))
+            .then(() => {
+                firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+                    .then(res => this.isAdmin())
+                    .catch(err => console.error(err)) // TODO: render useful error
+            })
             .catch( (error: any) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -83,25 +87,30 @@ class Firebase {
     }
 
     createBidRequest = async (uid: string, orgId: string) => {
-        const authorized = this.isAdmin(uid, orgId);
-        let res: any;
-        if (authorized) {
-            res = await this.db.collection(`${Collections.organizations}/${orgId}/${Collections.bidRequests}`)
-            .add()
-        }
+        // const authorized = this.isAdmin(uid, orgId);
+        // let res: any;
+        // if (authorized) {
+        //     res = await this.db.collection(`${Collections.organizations}/${orgId}/${Collections.bidRequests}`)
+        //     .add()
+        // }
     }
 
-    isAdmin = async (uid: string, organizationId: string) => { // TODO: do this in a cloud function with tokens???
-        let res: any;
-        try {
-            res = await this.db.collection(`${Collections.organizations}/${organizationId}/users`)
-                .where("uid", "==", uid)
-                .get();
+    isAdmin = async () => { // TODO: do this in a cloud function with tokens???
+        const userId = this.auth.currentUser.uid;
+        const userReference = this.db.doc(`users/${userId}`)
+        const orgUser = this.db.collectionGroup("users").where("uid", "==", userReference);
+        orgUser.get().then((res: any) => {
+            console.log("users subcollection record ", res.docs[0]);
+        }).catch((err) => console.error(err));
+        // try {
+        //     res = await this.db.collection(`${Collections.organizations}/${organizationId}/users`)
+        //         .where("uid", "==", uid)
+        //         .get();
     
-            return res.authorization === "admin";
-        } catch(err) {
-            console.error(err) // TODO: fix in production
-        }
+        //     return res.authorization === "admin";
+        // } catch(err) {
+        //     console.error(err) // TODO: fix in production
+        // }
     }
 
     //create messages Subcollection on bid request

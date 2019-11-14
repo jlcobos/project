@@ -8,7 +8,7 @@ export interface ICreateOrLoginUser {
     password: string;
 } 
 
-export interface IAddToUsersCollection {
+export interface IAddUserToOrganization {
     uid: string;
-    authorization: UserAuthorization
+    role: UserAuthorization
 }

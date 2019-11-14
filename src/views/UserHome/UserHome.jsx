@@ -7,9 +7,13 @@ const UserHome = () => {
     return(
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
-            {({currentUserEmail}) => {
+            {({currentUserEmail, companyInfo}) => {
+                console.log(companyInfo);
                     return (
-                    <p>Welcome {currentUserEmail}</p>
+                        <div>
+                            <p>Welcome {currentUserEmail}</p>
+                            <p>{companyInfo ? companyInfo.name : "Click here to find your company"}</p>
+                        </div>
                     )
                 }}
             </Context.Consumer>

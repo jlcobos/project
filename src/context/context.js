@@ -19,6 +19,7 @@ export class ContextProvider extends Component {
             supplierTestData,
             currentUserId: false,
             currentUser: false,
+            companyInfo: false,
         }
     }
 
@@ -38,17 +39,17 @@ export class ContextProvider extends Component {
                 } else if (submitType === "login") {
 
                     await this.Firebase.login(formValues);
+                    this.setData();
+                    this.setState({[formName]: clearForm(form)});
 
                 } else if (submitType === "organizationSignup") {
 
-                    await this.Firebase.organizationSignup(formValues, this.state.currentUserId, this.state.currentUserEmail);
+                    await this.Firebase.organizationSignup(formValues);
+                    this.state.companyInfo = await this.Firebase.getOrganizationInfo();
                 }
-                
-                this.setState({[formName]: clearForm(form)});
-                this.setCurrentUser();
             }
             catch(err) {
-                console.log(err.message);
+                console.log(err.message); // TODO: fix for productin
             }
         }
     }
@@ -68,23 +69,27 @@ export class ContextProvider extends Component {
         // console.log(`on Blur action for: `, e.target );
     }
 
-    setCurrentUser = () => {
+    setData = async () => {
+
+        const res = await this.Firebase.getOrganizationInfo();
         const currentUser = this.Firebase.auth.currentUser;
+
         this.setState({
             currentUser: currentUser ? true : false, 
             currentUserId: currentUser ? currentUser.uid : false,
             currentUserEmail: currentUser ? currentUser.email : false,
+            companyInfo: res,
         });
 
         if(currentUser) console.log("User logged in")
-        else console.error("login failed"); // TODO: Add meaninful user feedback
+        else console.error("login failed"); // TODO: Add meaningful user feedback
         console.log(this.state.currentUserId);
     } 
 
     logout = async () => {
         try {
             await this.Firebase.logout();
-            this.setCurrentUser();
+            window.location.replace("/login")
         } 
         catch (error) {
             console.log(error.massage);
@@ -103,7 +108,9 @@ export class ContextProvider extends Component {
                     currentUser: this.state.currentUser,
                     currentUserId: this.state.currentUserId,
                     currentUserEmail: this.state.currentUserEmail,
-                    logout: this.logout, 
+                    companyInfo: this.state.companyInfo,
+                    logout: this.logout,
+                    clearForm: clearForm, 
                 }
             }
             >

@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { UserAuthorization,ICreateOrLoginUser, IAddToUsersCollection } from "../Models/Users";
+import { UserAuthorization,ICreateOrLoginUser, IAddUserToOrganization } from "../Models/Users";
 import { IOrganization } from "../Models/Organizations"
 import { Collections } from "../Models/Enums";
 
@@ -26,22 +26,20 @@ class Firebase {
     }
 
     signup = (newUser: ICreateOrLoginUser) => this.auth.createUserWithEmailAndPassword(newUser.email, newUser.password)
-        .then((res: any) => {
-            this.addToUsersCollection({uid: res.user.uid, authorization: UserAuthorization.user});
-        })
-        .catch((err: any) => console.error(err));
+        .then((res: any) => console.log(res)) // TODO: fix for production
+        .catch((err: any) => console.error(err)); // TODO: fix for production
 
-    login = (credentials: ICreateOrLoginUser) => this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
-                    .then(res => this.isAdmin())
-                    .catch(err => console.error(err)) // TODO: render useful error
-            })
-            .catch( (error: any) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.error(errorCode, errorMessage);
-        });
+    login = async (credentials: ICreateOrLoginUser) => {
+        try 
+        {
+            await this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+                    
+            await firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+        } 
+        catch (err) {
+            console.error(err);
+        }
+    }
 
     logout = () => this.auth.signOut();
 
@@ -49,41 +47,20 @@ class Firebase {
 
     passwordUpdate = (password: string) => this.auth.currentUser.updatePassword(password);
 
-    currentUser = () => this.auth.onAuthStateChanged(function(user: any) {
-        if (user) return true;
+    currentUser = () => this.auth.onAuthStateChanged((res: any) => {
+        if (res) return res;
         else return false;
     });
 
+    organizationSignup = (formData: IOrganization) => { //TODO: verify user is logged in and authorized to do this action
 
+        formData.users.push(this.auth.currentUser.uid);
+        formData.adminUsers.push(this.auth.currentUser.uid);
 
-
-
-    addToUsersCollection = (user: IAddToUsersCollection) => {
-        this.db.collection(Collections.users)
-            .doc(user.uid)
-            .set({authorization: user.authorization})
-            .catch((err: any) => alert("something went wrong")); // TODO: error message for production
-    }
-
-    addUserToOrganization = (user: IAddToUsersCollection, organizationId: string) => {
-        this.db.collection(`organizations/${organizationId}/users`)
-            .add({uid: user.uid, authorization: user.authorization})
-            .then((res) => console.log(res)) //TODO: add feedback for production
-            .catch((res) => console.error(res)) // TODO: add feedback for production
-            // TODO: check if user is in another orgs user collection
-    }
-
-    organizationSignup = (formData: IOrganization, currentUserUid: string) => { //TODO: verify user is logged in and authorized to do this action
-
-        const user: IAddToUsersCollection = {
-            uid: this.db.doc(`users/${currentUserUid}`), 
-            authorization: UserAuthorization.admin
-        }
-
-        this.db.collection(Collections.organizations)
+        this.db.collection(Collections.organizations) // TODO: cross check that user is not part of more than one organization! TODO: dont forget this
             .add(formData)
-                .then((res) => this.addUserToOrganization(user, res.id))
-                .catch((error: any) => console.error("Error adding document: ", error));
+            .then((res) => console.log(res)) // TODO: fix for production
+            .catch((error: any) => console.error("Error adding document: ", error)); // TODO: fix for production
     }
 
     createBidRequest = async (uid: string, orgId: string) => {
@@ -95,27 +72,20 @@ class Firebase {
         // }
     }
 
-    isAdmin = async () => { // TODO: do this in a cloud function with tokens???
-        const userId = this.auth.currentUser.uid;
-        const userReference = this.db.doc(`users/${userId}`)
-        const orgUser = this.db.collectionGroup("users").where("uid", "==", userReference);
-        orgUser.get().then((res: any) => {
-            console.log("users subcollection record ", res.docs[0]);
-        }).catch((err) => console.error(err));
-        // try {
-        //     res = await this.db.collection(`${Collections.organizations}/${organizationId}/users`)
-        //         .where("uid", "==", uid)
-        //         .get();
+    getOrganizationInfo = async () => {
+        try 
+        {
+            const res = await this.db.
+                collection(Collections.organizations)
+                .where("users", "array-contains", this.auth.currentUser.uid)
+                .get();
     
-        //     return res.authorization === "admin";
-        // } catch(err) {
-        //     console.error(err) // TODO: fix in production
-        // }
+                return res.docs[0].data();
+        } 
+        catch (err) {
+            console.error(err); // TODO: fix for production
+        }
     }
-
-    //create messages Subcollection on bid request
-
-    toJson = (obj: object) => JSON.parse(JSON.stringify(obj));
 
 }
 export default Firebase;

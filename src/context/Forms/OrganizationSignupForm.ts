@@ -389,6 +389,8 @@ function getValues(this: IForm):IOrganization {
             postalCode:     getValuesHelper(this, "postalCode"),
             country:        getValuesHelper(this, "country"),
         },
+        adminUsers: [],
+        users: []
     }
 }
 

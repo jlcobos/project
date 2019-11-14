@@ -25,4 +25,6 @@ export interface IOrganization {
         postalCode: string;
         country: string;
     };
+    adminUsers: string[];
+    users: string[];
 }

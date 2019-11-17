@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { UserAuthorization,ICreateOrLoginUser, IAddUserToOrganization } from "../Models/Users";
+import { UserAuthorization, ICreateOrLoginUser, IAddUserToOrganization } from "../Models/Users";
 import { IOrganization } from "../Models/Organizations"
 import { Collections } from "../Models/Enums";
 
@@ -75,8 +75,8 @@ class Firebase {
     getOrganizationInfo = async () => {
         try 
         {
-            const res = await this.db.
-                collection(Collections.organizations)
+            const res = await this.db
+                .collection(Collections.organizations)
                 .where("users", "array-contains", this.auth.currentUser.uid)
                 .get();
     
@@ -87,6 +87,19 @@ class Firebase {
         }
     }
 
+    supplierSearch = async (formValues) => {
+        const res = await this.db
+            // .collection(Collections.organizations)
+            // .where(All = "All")
+            // .where(BuyAmerica = "Buy America")
+            // .where(ByAmerica = "By America")
+            // .where(WomanOwned = "Woman Owned")
+            // .where(MinorityOwned =  "Minority Owned")
+            // .where(VeteranOwned =  "Veteran Owned")
+            // .where(GreenCertified =  "Green Certified")
+            // .where(EstablishedProduct =  "Established Product")
+            // .where(ISOCertified =  "ISO Certified")
+    }
 }
-export default Firebase;
+export default new Firebase();
 

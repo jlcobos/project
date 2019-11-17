@@ -8,7 +8,6 @@ const UserHome = () => {
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
             {({currentUserEmail, companyInfo}) => {
-                console.log(companyInfo);
                     return (
                         <div>
                             <p>Welcome {currentUserEmail}</p>

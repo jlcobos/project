@@ -1,6 +1,8 @@
+import { ISupplierSearch } from "./SupplierSearch";
+
 // import { Countries, States, Provinces, DiversityAndOwnership } from "./Enums";
 
-export interface IOrganization {
+export interface IOrganization extends ISupplierSearch {
     name: string;
     phoneNumber: string;
     website: string;
@@ -25,6 +27,7 @@ export interface IOrganization {
         postalCode: string;
         country: string;
     };
+    components: string;
     adminUsers: string[];
     users: string[];
 }

@@ -1,8 +1,38 @@
-import { IForm, IInput, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IForm, IInput, inputTypes, Columns, Variant, Components } from "./FormInterfaces";
+import { ISupplierSearch } from "../Models/SupplierSearch";
 
 export const supplierSearchForm: IForm  = {
     formName: "supplierSearchForm",
     inputs: [
+        {
+            name: "component",
+            displayName: "Component",
+            label: false,
+            type: inputTypes.dropdown,
+            inputClass: "",
+            wrapperClass: "mb-3",
+            columns: Columns.none,
+            value: "",
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: true,
+                lengthRequired: false,
+                validationMessage: "",
+
+            },
+            choices: [
+                {name: "components", displayName: "",                           value: " "},
+                {name: "components", displayName: "Doorways",                   value: Components.doorways},
+                {name: "components", displayName: "Floors",                     value: Components.floors},
+                {name: "components", displayName: "Floor Panels",               value: Components.floorPanels},
+                {name: "components", displayName: "Handrails and Stanchions",   value: Components.handrailsAndStanchions},
+                {name: "components", displayName: "Lighting",                   value: Components.lighting},
+                {name: "components", displayName: "Public Information Systems", value: Components.publicInformationSystems},
+                {name: "components", displayName: "Restrooms",                  value: Components.restrooms},
+                {name: "components", displayName: "Sleeping Compartments",      value: Components.sleepingCompartments},
+            ]
+        },
         {
             name: "all",
             displayName: "All",
@@ -107,7 +137,7 @@ export const supplierSearchForm: IForm  = {
             displayName: "Years in Operation",
             label: false,
             type: inputTypes.dropdown,
-            inputClass: "",
+            inputClass: "hidden",
             columns: Columns.none,
             value: "",
             validation: {
@@ -135,11 +165,11 @@ export const supplierSearchForm: IForm  = {
             disabled: false,
             action: "handleSubmit",
             type: inputTypes.button,
-            submitType: "api",
+            submitType: "supplierSearch",
             variant: Variant.primary,
             wrapperClass: "",
             inputClass: "",
-            columns: Columns.col6,
+            columns: Columns.none,
         },
     ],
     getValues: getValues,
@@ -151,16 +181,17 @@ function getValuesHelper(form: IForm, name: string): any {
     return input.value;
 }
 
-function getValues(this: IForm) {
+function getValues(this: IForm): ISupplierSearch | {component: any} {
     return {
-        all:              getValuesHelper(this,"all"),
-        buyAmerica:       getValuesHelper(this, "buyAmerica"),
-        byAmerica:        getValuesHelper(this, "byAmerica"),
-        womanOwned:       getValuesHelper(this, "womanOwned"),
-        minorityOwned:    getValuesHelper(this, "minorityOwned"),
-        veteranOwned:     getValuesHelper(this, "veteranOwned"),
-        greenCertified:   getValuesHelper(this, "greenCertified"),
-        isoCertified:     getValuesHelper(this, "isoCertified"),
-        yearsInOperation: getValuesHelper(this, "yearsInOperation"),
+        component:         getValuesHelper(this,"component"),
+        buyAmerica:         getValuesHelper(this, "buyAmerica"),
+        byAmerica:          getValuesHelper(this, "byAmerica"),
+        womanOwned:         getValuesHelper(this, "womanOwned"),
+        minorityOwned:      getValuesHelper(this, "minorityOwned"),
+        veteranOwned:       getValuesHelper(this, "veteranOwned"),
+        greenCertified:     getValuesHelper(this, "greenCertified"),
+        isoCertified:       getValuesHelper(this, "isoCertified"),
+        yearsInOperation:   getValuesHelper(this, "yearsInOperation"),
+        establishedProduct: getValuesHelper(this, "establishedProducts"),
     }
 }

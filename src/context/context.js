@@ -5,6 +5,7 @@ import { validateForm } from "./Validation";
 import { clearForm, updateForm } from "./Forms/FormMethods";
 import Firebase from "./Firebase/index.ts";
 import data from "./Data";
+import { Products } from "./Forms/FormInterfaces";
 
 export const Context = createContext();
 
@@ -12,14 +13,16 @@ export class ContextProvider extends Component {
 
     constructor(){
         super();
-        this.Firebase = new Firebase();
+        this.Firebase = Firebase;
         this.state = {
             data,
             forms,
             supplierTestData,
             currentUserId: false,
-            currentUser: false,
+            currentUser: true,
             companyInfo: false,
+            componentsList: false,
+            supplierSearchResults: false,
         }
     }
 
@@ -46,6 +49,9 @@ export class ContextProvider extends Component {
 
                     await this.Firebase.organizationSignup(formValues);
                     this.state.companyInfo = await this.Firebase.getOrganizationInfo();
+                } else if (submitType === "supplierSearch") {
+                    const supplierSearchResults = await this.Firebase.supplierSearch(formValues);
+                    this.setState({supplierSearchResults})
                 }
             }
             catch(err) {
@@ -54,7 +60,7 @@ export class ContextProvider extends Component {
         }
     }
 
-    handleOnChange = (e,formName) => {
+    handleOnChange = (e,formName, secondaryAction = false) => {
         const { name, value, checked } = e.target;
         const form = {...this.state.forms[formName]};
 
@@ -63,6 +69,38 @@ export class ContextProvider extends Component {
         this.setState({[formName]: updatedForm});
 
         if (e.target.type !== "checkbox") e.preventDefault();
+
+        if(secondaryAction) this.secondaryActions(secondaryAction);
+    }
+
+    secondaryActions = async (secondaryAction) => {
+        if (secondaryAction === "toggleProductsList") {
+            this.toggleProductsList();
+        }
+    }
+
+    toggleProductsList = () => {
+        const element = document.getElementById("components");
+        var classes = element.className.split(" ");
+        if (element.classList) { 
+            element.classList.toggle("hidden");
+        } else {
+            // For IE9
+            var i = classes.indexOf("hidden");
+        
+            if (i >= 0) {
+                classes.splice(i, 1);
+            }
+            else {
+
+                classes.push("hidden");
+                element.className = classes.join(" "); 
+            } 
+        }  
+        if (classes.includes("hidden")) {
+            const updatedForm = updateForm("products", "", false, forms.organizationSignupForm);
+            this.setState({organizationSignupForm: updatedForm});
+        }      
     }
 
     handleOnBlur = (e,formDataName) => {
@@ -94,7 +132,7 @@ export class ContextProvider extends Component {
         catch (error) {
             console.log(error.massage);
         }
-    }       
+    }
 
     render(){
         return(
@@ -111,6 +149,7 @@ export class ContextProvider extends Component {
                     companyInfo: this.state.companyInfo,
                     logout: this.logout,
                     clearForm: clearForm, 
+                    getComponentsList: this.getComponentsList,
                 }
             }
             >

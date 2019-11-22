@@ -1,40 +1,23 @@
 export interface IBidRequest {
-    name: string;
-    requestingOranization: string;
-    requestingOranizationContacts: {
-            uid: string, 
-            bidTeamRole: string
-        }[]; // needs to be user reference
-    biddingOrganizations: {
-            organizationId: string, 
-            contacts: {
-                uid: string
-            }[]
-        };
-    bidActive: boolean;
-    bidRequestSuccessful: boolean;
-    // messages: string
-}
-
-class BidRequest implements IBidRequest {
-    name: string;
-    requestingOranization: string;
-    requestingOranizationContacts: {
-            uid: string, 
-            bidTeamRole: string
-        }[]; // needs to be user reference
-    biddingOrganizations: {
-            organizationId: string, 
+    bidName: string;
+    contacts: { uid: string }; // needs to be user reference
+    bidders: {
+            organizationUid: string, 
             contacts: {
                 uid: string // TODO: needs to be by reference in firebase
             }[]
         };
     bidActive: boolean;
-    bidRequestSuccessful: boolean;
-
-    constructor(formData: IBidRequest){
-
-    }
-
-
+    bidAwarded?: {orgId: string}[]; // TODO: needs to be a reference uid
+    messages?: {
+        organizationUid: string;
+            contactUid: string;
+            subject: string;
+            messageUid: string;
+            link?: string;
+            dateSent: Date;
+        }[];
+    dateCreated: Date;
+    dateUpdated: Date;
+    dateClosed: Date | null;
 }

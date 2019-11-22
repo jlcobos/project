@@ -22,15 +22,15 @@ export const supplierSearchForm: IForm  = {
 
             },
             choices: [
-                {name: "components", displayName: "",                           value: " "},
-                {name: "components", displayName: "Doorways",                   value: Components.doorways},
-                {name: "components", displayName: "Floors",                     value: Components.floors},
-                {name: "components", displayName: "Floor Panels",               value: Components.floorPanels},
-                {name: "components", displayName: "Handrails and Stanchions",   value: Components.handrailsAndStanchions},
-                {name: "components", displayName: "Lighting",                   value: Components.lighting},
-                {name: "components", displayName: "Public Information Systems", value: Components.publicInformationSystems},
-                {name: "components", displayName: "Restrooms",                  value: Components.restrooms},
-                {name: "components", displayName: "Sleeping Compartments",      value: Components.sleepingCompartments},
+                {name: "component", displayName: "",                           value: " "},
+                {name: "component", displayName: "Doorways",                   value: Components.doorways},
+                {name: "component", displayName: "Floors",                     value: Components.floors},
+                {name: "component", displayName: "Floor Panels",               value: Components.floorPanels},
+                {name: "component", displayName: "Handrails and Stanchions",   value: Components.handrailsAndStanchions},
+                {name: "component", displayName: "Lighting",                   value: Components.lighting},
+                {name: "component", displayName: "Public Information Systems", value: Components.publicInformationSystems},
+                {name: "component", displayName: "Restrooms",                  value: Components.restrooms},
+                {name: "component", displayName: "Sleeping Compartments",      value: Components.sleepingCompartments},
             ]
         },
         {
@@ -139,7 +139,7 @@ export const supplierSearchForm: IForm  = {
             type: inputTypes.dropdown,
             inputClass: "hidden",
             columns: Columns.none,
-            value: "",
+            value: "any",
             validation: {
                 validationType: "string",
                 valid: null,
@@ -176,14 +176,17 @@ export const supplierSearchForm: IForm  = {
     getValuesHelper: getValuesHelper,
 }
 
-function getValuesHelper(form: IForm, name: string): any { 
+function getValuesHelper(form: IForm, name: string) { 
     const input: any = form.inputs.find((input: IInput) => input.name === name);
     return input.value;
 }
 
-function getValues(this: IForm): ISupplierSearch | {component: any} {
-    return {
-        component:         getValuesHelper(this,"component"),
+function getValues(this: IForm) {
+    const component = getValuesHelper(this,"component");
+    const all =       { component: getValuesHelper(this,"all")};
+
+    const searchCriteria: ISupplierSearch | {component: string} = {
+        component:          getValuesHelper(this,"component"),
         buyAmerica:         getValuesHelper(this, "buyAmerica"),
         byAmerica:          getValuesHelper(this, "byAmerica"),
         womanOwned:         getValuesHelper(this, "womanOwned"),
@@ -191,7 +194,10 @@ function getValues(this: IForm): ISupplierSearch | {component: any} {
         veteranOwned:       getValuesHelper(this, "veteranOwned"),
         greenCertified:     getValuesHelper(this, "greenCertified"),
         isoCertified:       getValuesHelper(this, "isoCertified"),
-        yearsInOperation:   getValuesHelper(this, "yearsInOperation"),
-        establishedProduct: getValuesHelper(this, "establishedProducts"),
+        yearsInOperation:   "5-10",//getValuesHelper(this, "yearsInOperation"),
+        establishedProduct: getValuesHelper(this, "establishedProduct"),
     }
+
+    return {...all,...searchCriteria};
+
 }

@@ -1,11 +1,11 @@
 import { Components } from "../Forms/FormInterfaces";
 
 export  interface ISupplierSearch {
+    womanOwned: boolean;
+    veteranOwned: boolean;
+    minorityOwned: boolean;
     buyAmerica: boolean;
     byAmerica: boolean;
-    womanOwned: boolean;
-    minorityOwned: boolean;
-    veteranOwned: boolean;
     greenCertified: boolean;
     isoCertified: boolean;
     establishedProduct:  boolean;
@@ -13,14 +13,14 @@ export  interface ISupplierSearch {
 }
 
 export const DiversityOwnershipAndCertifications: ISupplierSearch = { 
+    womanOwned: true, 
     veteranOwned: true, 
     minorityOwned: true, 
-    womanOwned: true, 
     buyAmerica: true,
     byAmerica: true, 
     greenCertified:  true, 
-    establishedProduct:  true, 
     isoCertified:  true,
+    establishedProduct:  true, 
     yearsInOperation: "",
 };
 

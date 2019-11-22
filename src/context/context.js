@@ -51,7 +51,7 @@ export class ContextProvider extends Component {
                     this.state.companyInfo = await this.Firebase.getOrganizationInfo();
                 } else if (submitType === "supplierSearch") {
                     const supplierSearchResults = await this.Firebase.supplierSearch(formValues);
-                    this.setState({supplierSearchResults})
+                    this.setState({supplierSearchResults});
                 }
             }
             catch(err) {

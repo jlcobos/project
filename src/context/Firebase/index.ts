@@ -53,7 +53,7 @@ class Firebase {
     });
 
     organizationSignup = (formData: IOrganization) => { //TODO: verify user is logged in and authorized to do this action
-
+// TODO: check that suppliers are not duplicates based on address, company name etc...
         formData.users.push(this.auth.currentUser.uid);
         formData.adminUsers.push(this.auth.currentUser.uid);
 
@@ -75,8 +75,7 @@ class Firebase {
     getOrganizationInfo = async () => {
         try 
         {
-            const res = await this.db
-                .collection(Collections.organizations)
+            const res = await this.db.collection(Collections.organizations)
                 .where("users", "array-contains", this.auth.currentUser.uid)
                 .get();
     
@@ -88,17 +87,22 @@ class Firebase {
     }
 
     supplierSearch = async (formValues) => {
-        const res = await this.db
-            // .collection(Collections.organizations)
-            // .where(All = "All")
-            // .where(BuyAmerica = "Buy America")
-            // .where(ByAmerica = "By America")
-            // .where(WomanOwned = "Woman Owned")
-            // .where(MinorityOwned =  "Minority Owned")
-            // .where(VeteranOwned =  "Veteran Owned")
-            // .where(GreenCertified =  "Green Certified")
-            // .where(EstablishedProduct =  "Established Product")
-            // .where(ISOCertified =  "ISO Certified")
+        let query = await this.db.collection(Collections.organizations);
+;
+            if (formValues.component)          query = query.where("components", "==", formValues.component);
+            if (formValues.buyAmerica)         query = query.where("buyAmerica", "==", formValues.buyAmerica);
+            if (formValues.byAmerica)          query = query.where("byAmerica", "==", formValues.byAmerica);
+            if (formValues.establishedProduct) query = query.where("establishedProduct", "==", formValues.establishedProduct);
+            if (formValues.greenCertified)     query = query.where("greenCertified", "==", formValues.greenCertified);
+            if (formValues.isoCertified)       query = query.where("isoCertified", "==", formValues.isoCertified);
+            if (formValues.minorityOwned)      query = query.where("minorityOwned", "==", formValues.minorityOwned);
+            if (formValues.veteranOwned)       query = query.where("veteranOwned", "==", formValues.veteranOwned);
+            if (formValues.womanOwned)         query = query.where("womanOwned", "==", formValues.womanOwned);
+
+        const result = await query.get();
+
+        result.forEach(doc => console.log(doc.data()));
+        return query;
     }
 }
 export default new Firebase();

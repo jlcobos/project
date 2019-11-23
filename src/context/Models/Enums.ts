@@ -1,7 +1,7 @@
 export enum Collections {
     users = "users",
     organizations = "organizations",
-    bidRequests = "bidRequests",
+    RFP = "RFP",
     componentsList = "componentsList",
 }
 

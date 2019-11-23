@@ -1,5 +1,6 @@
 export interface IBidRequest {
     bidName: string;
+    RequestMessage: string;
     contacts: { uid: string }; // needs to be user reference
     bidders: {
             organizationUid: string, 

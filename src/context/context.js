@@ -134,6 +134,12 @@ export class ContextProvider extends Component {
         }
     }
 
+    createRFP = async (formData) => {
+        const rfp = this.state.forms.initializeRFP(formData);
+        const newRfpId = await this.Firebase.createRFP(rfp);
+        console.log(newRfpId);
+    }
+
     render(){
         return(
             <Context.Provider value={
@@ -151,6 +157,7 @@ export class ContextProvider extends Component {
                     clearForm: clearForm, 
                     getComponentsList: this.getComponentsList,
                     supplierSearchResults: this.state.supplierSearchResults,
+                    createRFP: this.createRFP
                 }
             }
             >

@@ -63,13 +63,15 @@ class Firebase {
             .catch((error: any) => console.error("Error adding document: ", error)); // TODO: fix for production
     }
 
-    createBidRequest = async (uid: string, orgId: string) => {
+    createRFP = async (rfp) => {
         // const authorized = this.isAdmin(uid, orgId);
-        // let res: any;
-        // if (authorized) {
-        //     res = await this.db.collection(`${Collections.organizations}/${orgId}/${Collections.bidRequests}`)
-        //     .add()
-        // }
+        try {
+            const res = await this.db.collection(Collections.RFP)
+            .add(rfp);
+            return res.id;
+        } catch (err) {
+            console.error(err.messge) // TODO: handle this
+        }
     }
 
     getOrganizationInfo = async () => {
@@ -89,6 +91,7 @@ class Firebase {
     supplierSearch = async (formValues) => {
         let query = await this.db.collection(Collections.organizations);
 
+            if(0 < 1)                          query = query.where("supplier", "==", true);
             if (formValues.component)          query = query.where("components", "==", formValues.component);
             if (formValues.buyAmerica)         query = query.where("buyAmerica", "==", formValues.buyAmerica);
             if (formValues.byAmerica)          query = query.where("byAmerica", "==", formValues.byAmerica);
@@ -100,7 +103,7 @@ class Firebase {
             if (formValues.womanOwned)         query = query.where("womanOwned", "==", formValues.womanOwned);
 
         let result = await query.get();
-        result = result.docs.map(doc => doc.data());
+        result = result.docs.map(doc => ({id: doc.id,...doc.data()}));
         return result;
     }       
 }

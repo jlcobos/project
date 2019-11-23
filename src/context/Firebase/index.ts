@@ -88,7 +88,7 @@ class Firebase {
 
     supplierSearch = async (formValues) => {
         let query = await this.db.collection(Collections.organizations);
-;
+
             if (formValues.component)          query = query.where("components", "==", formValues.component);
             if (formValues.buyAmerica)         query = query.where("buyAmerica", "==", formValues.buyAmerica);
             if (formValues.byAmerica)          query = query.where("byAmerica", "==", formValues.byAmerica);
@@ -99,11 +99,10 @@ class Firebase {
             if (formValues.veteranOwned)       query = query.where("veteranOwned", "==", formValues.veteranOwned);
             if (formValues.womanOwned)         query = query.where("womanOwned", "==", formValues.womanOwned);
 
-        const result = await query.get();
-
-        result.forEach(doc => console.log(doc.data()));
-        return query;
-    }
+        let result = await query.get();
+        result = result.docs.map(doc => doc.data());
+        return result;
+    }       
 }
 export default new Firebase();
 

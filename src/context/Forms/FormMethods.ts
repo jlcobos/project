@@ -1,4 +1,4 @@
-import { IForm, inputTypes } from "./FormInterfaces";
+import { inputTypes } from "./FormInterfaces";
 
 export function clearForm(form: any) {
     form.inputs = form.inputs.map((input: any) => {

@@ -5,6 +5,7 @@ import history from "./app-history";
 import Master from "./components/Layout/Master";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./views/Home";
+import Organization from "./views/Organization";
 import TierView from "./views/TierView";
 import SupplierSearch from "./views/SupplierSearch";
 import OrganizationSignup from "./views/OrganizationSignup";
@@ -36,7 +37,7 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/home" component={UserHome} />
-                <PrivateRoute exact path="/organization/home" component={Signup} />
+                <PrivateRoute exact path="/organization/home" component={Organization} />
                 <PrivateRoute exact path="/tier-selection" component={Home} />
                 <PrivateRoute exact path="/tier/:tier" component={TierView} />
                 <PrivateRoute exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />

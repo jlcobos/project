@@ -1,6 +1,5 @@
 import { IForm, inputTypes, Columns, Variant, IInput, SecondaryActions, Components } from "./FormInterfaces";
 import { IOrganization } from "../Models/Organizations";
-import { ISupplierSearch } from "../Models/SupplierSearch";
 
 export const organizationSignupForm: IForm  = {
     formName: "organizationSignupForm",

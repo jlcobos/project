@@ -4,7 +4,7 @@ import Form from "../../components/Form/Form";
 import Col from "../../components/Layout/Col";
 import Row from "../../components/Layout/Row";
 import List from "../../components/List";
-import Button from "../../components/Form/Button";
+//TODO: add vetted supplier as search criteria. 
 function SupplierSearch() {
 
     const [newBid, setNewBid] = useState(false);
@@ -49,7 +49,7 @@ function SupplierSearch() {
                 return (
                     <Fragment>
                             <Row>
-                                <BidRequestButton handleOnClick={setNewBid} currentState={newBid} />
+                                <BidRequestButton handleOnClick={bidManager} currentState={newBid} />
                             </Row>
                             <Row>
                                 <Form form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />

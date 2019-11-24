@@ -182,8 +182,7 @@ function getValuesHelper(form: IForm, name: string) {
 }
 
 function getValues(this: IForm) {
-    const component = getValuesHelper(this,"component");
-    const all =       { component: getValuesHelper(this,"all")};
+    const all =  { component: getValuesHelper(this,"all")};
 
     const searchCriteria: ISupplierSearch | {component: string} = {
         component:          getValuesHelper(this,"component"),

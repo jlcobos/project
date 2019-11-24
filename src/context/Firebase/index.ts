@@ -32,12 +32,12 @@ class Firebase {
     login = async (credentials: ICreateOrLoginUser) => {
         try 
         {
-            await this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-                    
-            await firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+            await this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);                    
+            const res = await firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password);
+            console.log(res.user.uid, res.user.email); // TODO: handle this
         } 
         catch (err) {
-            console.error(err);
+            console.error(err); // TODO: handle this
         }
     }
 
@@ -47,13 +47,11 @@ class Firebase {
 
     passwordUpdate = (password: string) => this.auth.currentUser.updatePassword(password);
 
-    currentUser = () => this.auth.onAuthStateChanged((res: any) => {
-        if (res) return res;
-        else return false;
-    });
 
     organizationSignup = (formData: IOrganization) => { //TODO: verify user is logged in and authorized to do this action
 // TODO: check that suppliers are not duplicates based on address, company name etc...
+// TODO: check that a user is not part of another organization.
+// TODO: make sure that at least one user is the admin.
         formData.users.push(this.auth.currentUser.uid);
         formData.adminUsers.push(this.auth.currentUser.uid);
 
@@ -63,7 +61,7 @@ class Firebase {
             .catch((error: any) => console.error("Error adding document: ", error)); // TODO: fix for production
     }
 
-    createRFP = async (rfp) => {
+    createRFP = async (rfp) => { // TODO: user must be part of organization and admin or setup one time use case?
         // const authorized = this.isAdmin(uid, orgId);
         try {
             const res = await this.db.collection(Collections.RFP)
@@ -74,14 +72,23 @@ class Firebase {
         }
     }
 
-    getOrganizationInfo = async () => {
+    getOrganization = async () => { // TODO: only show relevant information, since this is passed by state to various places to include other use id's. perhaps on a cloud function
         try 
         {
             const res = await this.db.collection(Collections.organizations)
                 .where("users", "array-contains", this.auth.currentUser.uid)
                 .get();
-    
-                return res.docs[0].data();
+
+                if (res.empty) {
+                    return false;
+                } 
+                else if (res.docs.length > 1) {
+                    console.log("user assigned to more than one organization"); // TODO: handle this and make a log and alert to dev team
+                    return false;
+                } 
+                else {
+                    return res.docs[0].data();
+                }
         } 
         catch (err) {
             console.error(err); // TODO: fix for production

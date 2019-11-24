@@ -18,12 +18,33 @@ export class ContextProvider extends Component {
             data,
             forms,
             supplierTestData,
-            currentUserId: false,
-            currentUser: true,
-            companyInfo: false,
+            isLoggedIn: false,
+            currentUser: false,
+            organization: false,
+            belongsToOrganization: false,
             componentsList: false,
             supplierSearchResults: false,
         }
+    }
+
+    componentDidMount(){
+        this.Firebase.auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const organization = await this.Firebase.getOrganization();
+                console.log(organization)
+                this.setState({
+                    isLoggedIn: true,
+                    currentUser: user,
+                    organization: organization,
+                });
+            }
+            else {
+                this.setState({
+                    isLoggedIn: false,
+                    currentUser: false,
+                })
+            }
+        });
     }
 
     handleSubmit = async (e, formName, submitType) => {
@@ -107,21 +128,13 @@ export class ContextProvider extends Component {
         // console.log(`on Blur action for: `, e.target );
     }
 
-    setData = async () => {
+    getOrganization = async () => {
 
-        const res = await this.Firebase.getOrganizationInfo();
-        const currentUser = this.Firebase.auth.currentUser;
-
+        const organization = await this.Firebase.getOrganization();
+        
         this.setState({
-            currentUser: currentUser ? true : false, 
-            currentUserId: currentUser ? currentUser.uid : false,
-            currentUserEmail: currentUser ? currentUser.email : false,
-            companyInfo: res,
+            organizationInfo: organization,
         });
-
-        if(currentUser) console.log("User logged in")
-        else console.error("login failed"); // TODO: Add meaningful user feedback
-        console.log(this.state.currentUserId);
     } 
 
     logout = async () => {
@@ -145,18 +158,17 @@ export class ContextProvider extends Component {
             <Context.Provider value={
                 {
                     data: this.state.data, 
+                    supplierSearchResults: this.state.supplierSearchResults,
+                    forms: this.state.forms,
+                    isLoggedIn: this.state.isLoggedIn,
+                    currentUser: this.state.currentUser,
+                    organization: this.state.organization,
                     handleOnChange: this.handleOnChange, 
                     handleOnBlur: this.handleOnBlur, 
                     handleSubmit: this.handleSubmit,
-                    forms: this.state.forms, 
-                    currentUser: this.state.currentUser,
-                    currentUserId: this.state.currentUserId,
-                    currentUserEmail: this.state.currentUserEmail,
-                    companyInfo: this.state.companyInfo,
                     logout: this.logout,
                     clearForm: clearForm, 
                     getComponentsList: this.getComponentsList,
-                    supplierSearchResults: this.state.supplierSearchResults,
                     createRFP: this.createRFP
                 }
             }

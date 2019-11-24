@@ -68,7 +68,7 @@ class Firebase {
             .add(rfp);
             return res.id;
         } catch (err) {
-            console.error(err.messge) // TODO: handle this
+            console.error(err.message) // TODO: handle this
         }
     }
 
@@ -87,7 +87,7 @@ class Firebase {
                     return false;
                 } 
                 else {
-                    return res.docs[0].data();
+                    return {id: res.docs[0].id, ...res.docs[0].data()};
                 }
         } 
         catch (err) {

@@ -24,6 +24,7 @@ export class ContextProvider extends Component {
             belongsToOrganization: false,
             componentsList: false,
             supplierSearchResults: false,
+            currentRFPs: false,
         }
     }
 
@@ -34,7 +35,7 @@ export class ContextProvider extends Component {
                 console.log(organization)
                 this.setState({
                     isLoggedIn: true,
-                    currentUser: user,
+                    currentUser: {uid: user.uid, email: user.email},
                     organization: organization,
                 });
             }
@@ -140,7 +141,7 @@ export class ContextProvider extends Component {
     logout = async () => {
         try {
             await this.Firebase.logout();
-            window.location.replace("/login")
+            // window.location.replace("/login");
         } 
         catch (error) {
             console.log(error.massage);

@@ -64,8 +64,6 @@ export default class TopNav extends Component {
         return (
             <Context.Consumer>
                 {({logout, organization, isLoggedIn}) => {
-                    console.log(this.navLinks);
-                    console.log(Boolean(organization));
                     if(organization) currentNavLinks = this.navLinks.filter(n => n.to !== "/organization/signup");
                     if(!Boolean(organization)) currentNavLinks = this.navLinks.filter(n => n.to !== "/organization/home");
                     return (

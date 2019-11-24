@@ -8,14 +8,15 @@ export function initializeRFP(data: any): IRFP {
     return {
         bidName: "test",
         RequestMessage: "this is a request for proposal",
-        contacts: data,
-        bidders: {
-            organizationUid: "",
-            contacts: [{uid: ""}],
-        },
+        buyer: data.organizationId,
+        bidders: data.suppliers.map((s: string) => ({
+            organizationId: s,
+            contacts: [],
+        })),
         bidActive: true,
         bidAwardedTo: null,
         messages: null, // TODO: messages interface
+        createdBy: data.userId,
         dateCreated: new Date(),
         dateUpdated: new Date(),
         dateClosed: null,
@@ -25,23 +26,22 @@ export function initializeRFP(data: any): IRFP {
 interface IRFP {
     bidName: string;
     RequestMessage: string;
-    contacts: { uid: string }[]; // needs to be user reference
+    buyer: string; // TODO: needs to be an organization reference
     bidders: {
-            organizationUid: string, 
-            contacts: {
-                uid: string // TODO: needs to be by reference in firebase
-            }[]
+            organizationId: string, 
+            contacts: string[],
         };
     bidActive: boolean;
     bidAwardedTo?: {orgId: string}[] | null; // TODO: needs to be a reference uid
     messages?: {
-        organizationUid: string;
-            contactUid: string;
+        organizationId: string;
+            uid: string;
             subject: string;
             messageUid: string;
             link?: string;
             dateSent: Date;
         }[] | null;
+    createdBy: string, // TODO: by reference
     dateCreated: Date;
     dateUpdated: Date;
     dateClosed: Date | null;

@@ -1,12 +1,14 @@
 import { IForm, IInput, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IRFP } from "../Models/RFP";
+import { RFPStatus } from "../Models/Enums";
 
-export const rfpForm: IForm  = {
-    formName: "rfpForm",
+export const initializeRFPForm: IForm  = {
+    formName: "initializeRFPForm",
     inputs: [
         {
-            name: "bidrequestName",
+            name: "rfpTitle",
             label: false,
-            displayName: "Bid Request Name",
+            displayName: "RFP Title",
             value: "",
             type: inputTypes.text,
             columns: Columns.col12,
@@ -21,9 +23,9 @@ export const rfpForm: IForm  = {
             }
         },
         {
-            name: "messageToBidders",
+            name: "requestMessage",
             label: false,
-            displayName: "Message To Bidders",
+            displayName: "RFP Invite Message",
             value: "",
             type: inputTypes.textarea,
             columns: Columns.col12,
@@ -39,9 +41,9 @@ export const rfpForm: IForm  = {
             }
         },
         {
-            name: "date",
+            name: "proposalDueBy",
             label: false,
-            displayName: "Date",
+            displayName: "Date Due",
             value: "",
             type: inputTypes.date,
             columns: Columns.col6,
@@ -55,8 +57,8 @@ export const rfpForm: IForm  = {
             }
         },
         {
-            name: "cbcRequirements",
-            displayName: "CBC Requirements",
+            name: "cbcRequired",
+            displayName: "CBC Required",
             type: inputTypes.checkbox,
             label: false,
             inline: false,
@@ -74,7 +76,7 @@ export const rfpForm: IForm  = {
             type: inputTypes.button,
             submitType: "api",
             variant: Variant.secondary,
-            wrapperClass: "",
+            wrapperClass: "hidden",
             inputClass: "",
             columns: Columns.col6,
         },
@@ -86,7 +88,7 @@ export const rfpForm: IForm  = {
             disabled: false,
             action: "handleSubmit",
             type: inputTypes.button,
-            submitType: "api",
+            submitType: "activateDraftRFP",
             variant: Variant.primary,
             wrapperClass: "",
             inputClass: "",
@@ -102,11 +104,12 @@ function getValuesHelper(form: IForm, name: string): any {
     return input.value;
 }
 
-function getValues(this: IForm):any {
-    return {
-        bidrequestName: getValuesHelper(this,"bidrequestName"),
-        messageToBidders: getValuesHelper(this, "messageToBidders"),
-        date: getValuesHelper(this, "date"),
-        cbcRequirements: getValuesHelper(this, "cbcRequirements"),
-    }
+function getValues(this: IForm, draftRFP: {id: string, data: IRFP}): {id: string, data: IRFP} {
+    draftRFP.data.rfpTitle = getValuesHelper(this,"rfpTitle");
+    draftRFP.data.requestMessage = getValuesHelper(this, "requestMessage");
+    draftRFP.data.proposalDueBy = getValuesHelper(this, "proposalDueBy");
+    draftRFP.data.cbcRequired = getValuesHelper(this, "cbcRequired");
+    draftRFP.data.status = RFPStatus.Active;
+
+    return draftRFP;
 }

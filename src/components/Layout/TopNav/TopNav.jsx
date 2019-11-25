@@ -42,11 +42,11 @@ export default class TopNav extends Component {
             text: "Signup",
             protected: false,
         },
-        {
-            to: "/suppliers/rfp",
-            text: "RFP",
-            protected: true,
-        },
+        // {
+        //     to: "/initialize-rfp",
+        //     text: "RFP",
+        //     protected: true,
+        // },
     ]
 
     logoutLink(){

@@ -61,14 +61,57 @@ class Firebase {
             .catch((error: any) => console.error("Error adding document: ", error)); // TODO: fix for production
     }
 
-    createRFP = async (rfp) => { // TODO: user must be part of organization and admin or setup one time use case?
+    createDraftRFP = async (formData) => { // TODO: user must be part of organization and admin or setup one time use case?
         // const authorized = this.isAdmin(uid, orgId);
         try {
-            const res = await this.db.collection(Collections.RFP)
-            .add(rfp);
-            return res.id;
+            const res = await this.db.collection(Collections.RFP).add(formData);
+
+            const rfp = await this.getRFP(res.id);
+
+            return rfp;
+
         } catch (err) {
             console.error(err.message) // TODO: handle this
+        }
+    }
+
+    activateDraftRFP = async (draftRFP) => {
+        const { rfpTitle, requestMessage, proposalDueBy, cbcRequired, status } = draftRFP.data;
+        try {
+            const res = await this.db.collection(Collections.RFP)
+                .doc(draftRFP.id)
+                .set({
+                    rfpTitle,
+                    requestMessage,
+                    proposalDueBy,
+                    cbcRequired,
+                    status
+                    }, 
+                    {
+                        merge: true
+                    });
+
+            console.log("activated RFP response:", res);
+            return res;
+        } catch (err) {
+
+        }
+    }
+
+    getRFP = async (id) => {
+        try {
+            const res = await this.db.collection(Collections.RFP)
+                .doc(id)
+                .get();
+
+            if (res.exists) {
+            console.log({id: res.id, data: res.data()});
+                
+                return {id: res.id, data: res.data()};
+            }
+        }
+        catch (err) {
+            console.error(err); // TODO: take care of this 
         }
     }
 
@@ -96,22 +139,27 @@ class Firebase {
     }
 
     supplierSearch = async (formValues) => {
-        let query = await this.db.collection(Collections.organizations);
-
-            if(0 < 1)                          query = query.where("supplier", "==", true);
-            if (formValues.component)          query = query.where("components", "==", formValues.component);
-            if (formValues.buyAmerica)         query = query.where("buyAmerica", "==", formValues.buyAmerica);
-            if (formValues.byAmerica)          query = query.where("byAmerica", "==", formValues.byAmerica);
-            if (formValues.establishedProduct) query = query.where("establishedProduct", "==", formValues.establishedProduct);
-            if (formValues.greenCertified)     query = query.where("greenCertified", "==", formValues.greenCertified);
-            if (formValues.isoCertified)       query = query.where("isoCertified", "==", formValues.isoCertified);
-            if (formValues.minorityOwned)      query = query.where("minorityOwned", "==", formValues.minorityOwned);
-            if (formValues.veteranOwned)       query = query.where("veteranOwned", "==", formValues.veteranOwned);
-            if (formValues.womanOwned)         query = query.where("womanOwned", "==", formValues.womanOwned);
-
-        let result = await query.get();
-        result = result.docs.map(doc => ({id: doc.id,...doc.data()}));
-        return result;
+        try {
+            let query = await this.db.collection(Collections.organizations);
+    
+                if(0 < 1)                          query = query.where("supplier", "==", true);
+                if (formValues.component)          query = query.where("components", "==", formValues.component);
+                if (formValues.buyAmerica)         query = query.where("buyAmerica", "==", formValues.buyAmerica);
+                if (formValues.byAmerica)          query = query.where("byAmerica", "==", formValues.byAmerica);
+                if (formValues.establishedProduct) query = query.where("establishedProduct", "==", formValues.establishedProduct);
+                if (formValues.greenCertified)     query = query.where("greenCertified", "==", formValues.greenCertified);
+                if (formValues.isoCertified)       query = query.where("isoCertified", "==", formValues.isoCertified);
+                if (formValues.minorityOwned)      query = query.where("minorityOwned", "==", formValues.minorityOwned);
+                if (formValues.veteranOwned)       query = query.where("veteranOwned", "==", formValues.veteranOwned);
+                if (formValues.womanOwned)         query = query.where("womanOwned", "==", formValues.womanOwned);
+    
+            let result = await query.get();
+            result = result.docs.map(doc => ({id: doc.id,...doc.data()}));
+            return result;
+        }
+        catch (err) {
+            console.error(err) // TODO: handle this
+        }
     }       
 }
 export default new Firebase();

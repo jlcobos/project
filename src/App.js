@@ -46,7 +46,7 @@ function App() {
                 <PrivateRoute exact path="/tier/:tier/:component/requirements" component={Requirements} />
                 <PrivateRoute exact path="/tier/:tier/:component/search" component={SupplierSearch} />
                 <PrivateRoute exact path="/organization/signup" component={OrganizationSignup} />
-                <PrivateRoute exact path="/suppliers/rfp" component={RFP} />
+                <PrivateRoute exact path="/initialize-rfp" component={RFP} />
                 <PrivateRoute exact path="*" component={() => <p>Error page not found</p>} />
               </Switch>
           </Master>

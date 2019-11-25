@@ -88,7 +88,7 @@ export interface IInput {
     inputClass: string | false;
     labelClass?: string;
     variant?: string;
-    submitType?: "login" | "signup" | "organizationSignup" | "bid" | "api" | "supplierSearch";
+    submitType?: "login" | "signup" | "organizationSignup" | "bid" | "api" | "supplierSearch" | "activateDraftRFP";
     disabled?: boolean;
     action?: string;
     wrapperClass?: string;

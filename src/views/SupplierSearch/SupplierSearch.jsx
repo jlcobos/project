@@ -1,4 +1,5 @@
 import React, {useState, Fragment} from "react";
+import { NavLink } from "react-router-dom";
 import { Context } from "../../context/context";
 import Form from "../../components/Form/Form";
 import Col from "../../components/Layout/Col";
@@ -7,7 +8,6 @@ import List from "../../components/List";
 //TODO: add vetted supplier as search criteria. 
 function SupplierSearch() {
 
-    const [newBid, setNewBid] = useState(false);
     const [suppliers, setSuppliers] = useState([]);
 
     function addSupplier(name, id){
@@ -23,6 +23,19 @@ function SupplierSearch() {
         setSuppliers(updatedList);
     }
 
+    function newRfpButton(createDraftRFP, organization, currentUser){
+        if (suppliers.length > 0) {
+            return (
+                <button 
+                    className="btn btn-info" 
+                    onClick={() => createDraftRFP({suppliers: suppliers.map(s => s.id), organizationId: organization.id, userId: currentUser.uid})}
+                >
+                    <NavLink to={"/initialize-rfp"}>Next Step To Initialize RFP</NavLink>
+                </button>
+            )
+        }
+    }
+
     const renderSuppliers = suppliers.map(s => (
         <div key={s.id}>
             <p style={{display: "inline"}}>{s.name}</p>
@@ -34,9 +47,9 @@ function SupplierSearch() {
     return(
         <Col colClass="col-xs-12 col-md-12 col-lg-10 offset-lg-1">
             <Context.Consumer>
-            {({organization, currentUser, forms: {supplierSearchForm}, supplierSearchResults, createRFP,...rest}) => {
+            {({organization, currentUser, forms: {supplierSearchForm}, supplierSearchResults, createDraftRFP,...rest}) => {
                 const isOrg = Boolean(organization);
-                console.log(currentUser);
+
                 const items = supplierSearchResults ? supplierSearchResults.map(supplier => <SearchItem supplier={supplier} addSupplier={addSupplier} isOrg />) : null;
                 return (
                     <Fragment>
@@ -45,7 +58,7 @@ function SupplierSearch() {
                             </Row>
                             <Row>
                                 {renderSuppliers}
-                                {suppliers.length > 0 ? <button className="btn btn-info" onClick={() => createRFP({suppliers: suppliers.map(s => s.id), organizationId: organization.id, userId: currentUser.uid})}>Initialize RFP</button> : null}
+                                {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
                                 {!!supplierSearchResults && supplierSearchResults.length > 0 ? 
                                     <List 
                                     items={items} 
@@ -98,19 +111,3 @@ function SearchItem({supplier, addSupplier, isOrg}) {
         </div>
     )
 }
-
-function BidRequestButton(props) {
-    if (props.isOrg) {
-        return (
-            <div>
-                <button 
-                    onClick={ e => props.handleOnClick(!props.currentState) }
-                    className={"btn btn-primary"}
-                >
-                    {props.currentState ? "Cancel" : "New Request for Proposal"}
-                </button>
-            </div>
-        )
-    } else return null;
-}
-    // variant ,handleSubmit, buttonClass, displayName, columns, wrapperClass, disabled, formName, submitType

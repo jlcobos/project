@@ -25,6 +25,7 @@ export class ContextProvider extends Component {
             componentsList: false,
             supplierSearchResults: false,
             currentRFPs: false,
+            draftRFP: false,
         }
     }
 
@@ -32,7 +33,7 @@ export class ContextProvider extends Component {
         this.Firebase.auth.onAuthStateChanged(async (user) => {
             if (user) {
                 const organization = await this.Firebase.getOrganization();
-                console.log(organization)
+
                 this.setState({
                     isLoggedIn: true,
                     currentUser: {uid: user.uid, email: user.email},
@@ -52,7 +53,7 @@ export class ContextProvider extends Component {
         e.preventDefault();
         const {isValid, form} = validateForm(this.state.forms[formName]);
         this.setState({[formName]: form});
-        const formValues = this.state.forms[formName].getValues();
+        const formValues = this.state.forms[formName].getValues(this.state.draftRFP);
 
         if(isValid) {
             try 
@@ -74,6 +75,10 @@ export class ContextProvider extends Component {
                 } else if (submitType === "supplierSearch") {
                     const supplierSearchResults = await this.Firebase.supplierSearch(formValues);
                     await this.setState({supplierSearchResults});
+                } else if (submitType === "activateDraftRFP") {
+                    const res = await this.Firebase.activateDraftRFP(formValues);
+                    console.log(res);
+                    this.setState({draftRFP: null});
                 }
             }
             catch(err) {
@@ -148,10 +153,10 @@ export class ContextProvider extends Component {
         }
     }
 
-    createRFP = async (formData) => {
-        const rfp = this.state.forms.initializeRFP(formData);
-        const newRfpId = await this.Firebase.createRFP(rfp);
-        console.log(newRfpId);
+    createDraftRFP = async (formData) => {
+        const rfpData = this.state.forms.RFP(formData);
+        const draftRFP = await this.Firebase.createDraftRFP(rfpData);
+        this.setState({draftRFP: draftRFP}); // TODO: set to false when rfp initialized
     }
 
     render(){
@@ -170,7 +175,8 @@ export class ContextProvider extends Component {
                     logout: this.logout,
                     clearForm: clearForm, 
                     getComponentsList: this.getComponentsList,
-                    createRFP: this.createRFP
+                    createDraftRFP: this.createDraftRFP,
+                    draftRFP: this.state.draftRFP,
                 }
             }
             >

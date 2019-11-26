@@ -24,7 +24,7 @@ export class ContextProvider extends Component {
             belongsToOrganization: false,
             componentsList: false,
             supplierSearchResults: false,
-            currentRFPs: false,
+            currentRFPs: [],
             draftRFP: false,
         }
     }
@@ -33,11 +33,12 @@ export class ContextProvider extends Component {
         this.Firebase.auth.onAuthStateChanged(async (user) => {
             if (user) {
                 const organization = await this.Firebase.getOrganization();
-
+                const currentRFPs = await this.Firebase.getAllRFPs(organization.id);
                 this.setState({
                     isLoggedIn: true,
                     currentUser: {uid: user.uid, email: user.email},
-                    organization: organization,
+                    organization,
+                    currentRFPs,
                 });
             }
             else {
@@ -82,7 +83,8 @@ export class ContextProvider extends Component {
                 }
             }
             catch(err) {
-                console.log(err.message); // TODO: fix for productin
+                console.log(err.message); // TODO: fix for production
+                // TODO: this could be the universal error handler
             }
         }
     }
@@ -159,11 +161,17 @@ export class ContextProvider extends Component {
         this.setState({draftRFP: draftRFP}); // TODO: set to false when rfp initialized
     }
 
+    getAllRFPs = async () => {
+        const currentRFPs = await this.Firebase.getAllRFPs(this.state.organization.id);
+        this.setState({currentRFPs})
+    }
+
     render(){
         return(
             <Context.Provider value={
                 {
                     data: this.state.data, 
+                    currentRFPs: this.state.currentRFPs,
                     supplierSearchResults: this.state.supplierSearchResults,
                     forms: this.state.forms,
                     isLoggedIn: this.state.isLoggedIn,

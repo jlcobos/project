@@ -13,7 +13,7 @@ export function RFP(data: any): IRFP {
         })),
         status: RFPStatus.Draft,
         bidAwardedTo: null,
-        messages: null, // TODO: messages interface
+        messages: [], // TODO: messages interface
         createdBy: data.userId,
         proposalDueBy: null,
         cbcRequired: false,

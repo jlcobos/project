@@ -7,6 +7,7 @@ export default function Input(
         displayName, 
         value, 
         inputClass, 
+        wrapperClass,
         label, 
         columns, 
         handleOnBlur, 
@@ -17,7 +18,7 @@ export default function Input(
     })
     {
     return (
-        <div className={["form-group", columns].join(" ")}>
+        <div className={["form-group", columns, wrapperClass].join(" ")}>
             {label && <label for={name}>{displayName}</label>}
             <input 
                 type={type} 

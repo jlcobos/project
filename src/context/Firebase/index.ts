@@ -80,38 +80,56 @@ class Firebase {
         try {
             const res = await this.db.collection(Collections.RFP)
                 .doc(draftRFP.id)
-                .set({
+                .update({
                     rfpTitle,
                     requestMessage,
                     proposalDueBy,
                     cbcRequired,
                     status
-                    }, 
-                    {
-                        merge: true
-                    });
+                });
 
-            console.log("activated RFP response:", res);
+            console.log("RFP Successfully set to 'active'");
             return res;
         } catch (err) {
-
+            console.error(err); // TODO: take care of this
         }
     }
 
     getRFP = async (id) => {
         try {
-            const res = await this.db.collection(Collections.RFP)
+            const res = await this.db
+                .collection(Collections.RFP)
                 .doc(id)
                 .get();
 
             if (res.exists) {
-            console.log({id: res.id, data: res.data()});
-                
                 return {id: res.id, data: res.data()};
             }
         }
         catch (err) {
             console.error(err); // TODO: take care of this 
+        }
+    }
+
+    getAllRFPs = async (organizationId) => {
+        try {
+            const res = await this.db
+                .collection(Collections.RFP)
+                .where("buyer", "==", organizationId)
+                .where("status", "==", "Active")
+                .get();
+
+            const res2 = await this.db
+                .collection(Collections.RFP)
+                .where("buyer", "==", organizationId)
+                .where("status", "==", "Draft")
+                .get();
+
+            if (res.empty && res2.empty) return []
+            else return [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
+            
+        } catch (err) {
+            console.error(err); // TODO: take care of this
         }
     }
 

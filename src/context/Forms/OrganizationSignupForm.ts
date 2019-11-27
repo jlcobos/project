@@ -1,4 +1,4 @@
-import { IForm, inputTypes, Columns, Variant, IInput } from "./FormInterfaces";
+import { IForm, inputTypes, Columns, Variant, IInput, SecondaryActions, Components } from "./FormInterfaces";
 import { IOrganization } from "../Models/Organizations";
 
 export const organizationSignupForm: IForm  = {
@@ -234,6 +234,60 @@ export const organizationSignupForm: IForm  = {
             },
         },
         {
+            name: "yearsInOperation",
+            displayName: "Years in Operation",
+            label: false,
+            type: inputTypes.dropdown,
+            inputClass: "hidden",
+            columns: Columns.none,
+            value: "",
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: true,
+                lengthRequired: false,
+                validationMessage: "",
+
+            },
+            choices: [
+                {name: "yearsInOperation", displayName: "",            value: " "},
+                {name: "yearsInOperation", displayName: "Any",         value: "Any"},
+                {name: "yearsInOperation", displayName: "0-5 Years",   value: "0-5"},
+                {name: "yearsInOperation", displayName: "5-10 Years",  value: "5-10"},
+                {name: "yearsInOperation", displayName: "10-15 Years", value: "10-15"},
+                {name: "yearsInOperation", displayName: "20+ Years",   value: "20+"},
+            ]
+        },
+        {
+            name: "components",
+            displayName: "Components",
+            label: false,
+            type: inputTypes.dropdown,
+            inputClass: "",
+            wrapperClass: "hidden",
+            columns: Columns.none,
+            value: "",
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: true,
+                lengthRequired: false,
+                validationMessage: "",
+
+            },
+            choices: [
+                {name: "components", displayName: "",                           value: " "},
+                {name: "components", displayName: "Doorways",                   value: Components.doorways},
+                {name: "components", displayName: "Floors",                     value: Components.floors},
+                {name: "components", displayName: "Floor Panels",               value: Components.floorPanels},
+                {name: "components", displayName: "Handrails and Stanchions",   value: Components.handrailsAndStanchions},
+                {name: "components", displayName: "Lighting",                   value: Components.lighting},
+                {name: "components", displayName: "Public Information Systems", value: Components.publicInformationSystems},
+                {name: "components", displayName: "Restrooms",                  value: Components.restrooms},
+                {name: "components", displayName: "Sleeping Compartments",      value: Components.sleepingCompartments},
+            ]
+        },
+        {
             name: "supplier",
             displayName: "Supplier",
             type: inputTypes.checkbox,
@@ -243,6 +297,7 @@ export const organizationSignupForm: IForm  = {
             labelClass: "",
             columns: Columns.col12,
             value: false, 
+            secondaryAction: SecondaryActions.toggleProductsList,
         },
         {
             name: "veteranOwned",
@@ -361,7 +416,7 @@ export const organizationSignupForm: IForm  = {
     getValuesHelper: getValuesHelper,
 }
 
-function getValues(this: IForm):IOrganization {
+function getValues(this: IForm): IOrganization {
     return {
         name:               getValuesHelper(this, "name"),
         phoneNumber:        getValuesHelper(this, "phoneNumber"), 
@@ -379,6 +434,7 @@ function getValues(this: IForm):IOrganization {
         isoCertified:       getValuesHelper(this, "isoCertified"),
         greenCertified:     getValuesHelper(this, "greenCertified"),
         establishedProduct: getValuesHelper(this, "establishedProduct"),
+        yearsInOperation:   getValuesHelper(this, "yearsInOperation"),
         classifications: [
             getValuesHelper(this, "establishedProduct")
         ],
@@ -389,6 +445,7 @@ function getValues(this: IForm):IOrganization {
             postalCode:     getValuesHelper(this, "postalCode"),
             country:        getValuesHelper(this, "country"),
         },
+        components:         getValuesHelper(this, "components"),
         adminUsers: [],
         users: []
     }

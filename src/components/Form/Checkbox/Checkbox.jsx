@@ -9,7 +9,8 @@ export default function Checkbox({
     checkboxClass, 
     columns, 
     formName, 
-    displayName
+    displayName,
+    secondaryAction
 }){
     return (
         <div className={`${columns} mb-2 form-check ${inline ? "form-check-inline" : ""}`}>
@@ -19,7 +20,7 @@ export default function Checkbox({
                 name={name} 
                 type="checkbox" 
                 checked={value} 
-                onChange={(e) => handleOnChange(e,formName)} 
+                onChange={(e) => handleOnChange(e,formName, secondaryAction)} 
             />
             <label className={`form-check-label text-capitalize ${labelClass ? labelClass : ""}`} htmlFor={name}>{displayName}</label>
         </div>

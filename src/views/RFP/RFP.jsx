@@ -6,11 +6,13 @@ import { Context } from "../../context/context";
 // TODO: deadline for submittal, document specification upload
 //
 const RFP = () => {
+    // TODO: create draft mode for status before submitting.
+    // TODO: user can save as draft if not submitting right away
     return(
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
-            {({forms: {rfpForm},...rest}) => {
-                    return <Form form={rfpForm} formName={rfpForm.formName} {...rest} />
+            {({draftRfp, forms: {initializeRFPForm},...rest}) => {
+                    return <Form form={initializeRFPForm} formName={initializeRFPForm.formName} {...rest} />
                 }}
             </Context.Consumer>
         </Col>

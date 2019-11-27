@@ -4,7 +4,8 @@ export default function Dropdown({
     name, 
     displayName, 
     value, 
-    dropdownClass, 
+    inputClass,
+    wrapperClass, 
     choices, 
     columns,
     handleOnChange, 
@@ -12,10 +13,13 @@ export default function Dropdown({
     validation: { valid, validationMessage }, 
 })
 {
-    const buttonClass = (valid === false) ? "btn btn-danger dropdown-toggle  text-capitalize" : "btn btn-primary dropdown-toggle  text-capitalize" 
+    const buttonClass = (valid === false) ? 
+        "btn btn-danger dropdown-toggle  text-capitalize" 
+        : 
+        "btn btn-primary dropdown-toggle  text-capitalize";
     return (
-        <div>
-            <div className={`dropdown ${columns}`}>
+        <div id={name} className={wrapperClass}>
+            <div className={["dropdown", columns, inputClass].join(" ")}>
                 <button className={buttonClass} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {`${displayName}: ${value}`}
                 </button>

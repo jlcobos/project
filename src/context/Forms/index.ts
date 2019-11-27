@@ -1,15 +1,19 @@
 import { organizationSignupForm } from "./OrganizationSignupForm";
-import { rfpForm } from "./RFPForm";
+import { initializeRFPForm } from "./InitializeRFPForm";
+import { RFP } from "./RFP";
+import { rfpMessageForm } from "./RFPMessage";
 import { loginForm } from "./LoginForm";
 import { signupForm } from "./SignupForm";
 import { supplierSearchForm } from "./SupplierSearchForm";
 
 const Forms = {
     organizationSignupForm,
-    rfpForm,
+    RFP,
+    initializeRFPForm,
     loginForm,
     signupForm,
-    supplierSearchForm
+    supplierSearchForm,
+    rfpMessageForm,
 }
 
 export default Forms;

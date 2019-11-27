@@ -6,15 +6,30 @@ import Col from "../Col";
 
 export default class TopNav extends Component {
 
-    navList = [
+    navLinks = [
         {
             to: "/home",
             text: "Home",
             protected: true,
         },
         {
+            to: "/organization/signup",
+            text: "Organization Signup",
+            protected: true,
+        },
+        {
+            to: "/organization/home",
+            text: "Organization Account",
+            protected: true,
+        },
+        {
             to: "/tier-selection",
             text: "Tier Selection",
+            protected: true,
+        },
+        {
+            to: "/tier/:tier/seats/search",
+            text: "Search",
             protected: true,
         },
         {
@@ -27,21 +42,11 @@ export default class TopNav extends Component {
             text: "Signup",
             protected: false,
         },
-        {
-            to: "/suppliers/rfp",
-            text: "RFP",
-            protected: true,
-        },
-        {
-            to: "/organization/signup",
-            text: "Organization Signup",
-            protected: true,
-        },
-        {
-            to: "/tier/:tier/seats/search",
-            text: "Search",
-            protected: true,
-        },
+        // {
+        //     to: "/initialize-rfp",
+        //     text: "RFP",
+        //     protected: true,
+        // },
     ]
 
     logoutLink(){
@@ -55,19 +60,22 @@ export default class TopNav extends Component {
     }
 
     renderNavLinks(){
+        let currentNavLinks;
         return (
             <Context.Consumer>
-                {({currentUser, logout}) => {
+                {({logout, organization, isLoggedIn}) => {
+                    if(organization) currentNavLinks = this.navLinks.filter(n => n.to !== "/organization/signup");
+                    if(!Boolean(organization)) currentNavLinks = this.navLinks.filter(n => n.to !== "/organization/home");
                     return (
                         <ul className="nav justify-content-end">
-                            {this.navList.map(navItem => {
-                                if (currentUser && navItem.protected === true) {
+                            {currentNavLinks.map(navItem => {
+                                if (isLoggedIn && navItem.protected) {
                                     return (
                                     <li key={navItem.text} className="nav-item"> 
                                         <NavLink className="nav-link font-italic" to={navItem.to}>{navItem.text}</NavLink> 
                                     </li> 
                                 )
-                                } else if (!currentUser && !navItem.protected) {
+                                } else if (!isLoggedIn && !navItem.protected) {
                                     return (
                                         <li key={navItem.text} className="nav-item"> 
                                             <NavLink className="nav-link font-italic" to={navItem.to}>{navItem.text}</NavLink> 
@@ -75,7 +83,7 @@ export default class TopNav extends Component {
                                     )
                                 }       
                             })}
-                            {currentUser && 
+                            {isLoggedIn && 
                                 <NavLink 
                                     className="nav-link font-italic" 
                                     to="/" 

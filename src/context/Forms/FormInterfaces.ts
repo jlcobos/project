@@ -23,6 +23,17 @@ export enum Variant {
     warning = "warning"
 }
 
+export enum Components {
+    doorways = "doorways",
+    floors = "floors",
+    floorPanels = "floor panels",
+    handrailsAndStanchions = "handrails and stanchions",
+    lighting = "lighting",
+    publicInformationSystems = "public information systems",
+    restrooms = "restrooms",
+    sleepingCompartments = "sleeping compartments"
+}
+
 export enum Columns {
     col1  = "col-1", 
     col2  = "col-2", 
@@ -45,6 +56,11 @@ export enum validationTypes {
     number = "number",
     date = "date",
     email = "email",
+}
+
+export enum SecondaryActions {
+    getComponentsList = "getComponentsList",
+    toggleProductsList = "toggleProductsList",
 }
 
 export interface IForm {
@@ -72,7 +88,7 @@ export interface IInput {
     inputClass: string | false;
     labelClass?: string;
     variant?: string;
-    submitType?: "login" | "signup" | "organizationSignup" | "bid" | "api";
+    submitType?: "login" | "signup" | "organizationSignup" | "bid" | "api" | "supplierSearch" | "activateDraftRFP" | "rfpMessage";
     disabled?: boolean;
     action?: string;
     wrapperClass?: string;
@@ -81,6 +97,7 @@ export interface IInput {
     columns: Columns;
     rows?: number;
     validation?: validation | false;
-    choices?: {name: string, displayName: string, value: string}[];
+    choices?: null | {name: string, displayName: string, value: string}[];
     buttonClass?: string;
+    secondaryAction?: SecondaryActions;
 }

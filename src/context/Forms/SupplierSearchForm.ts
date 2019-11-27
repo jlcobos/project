@@ -1,8 +1,38 @@
-import { IForm, IInput, inputTypes, Columns, Variant } from "./FormInterfaces";
+import { IForm, IInput, inputTypes, Columns, Variant, Components } from "./FormInterfaces";
+import { ISupplierSearch } from "../Models/SupplierSearch";
 
 export const supplierSearchForm: IForm  = {
     formName: "supplierSearchForm",
     inputs: [
+        {
+            name: "component",
+            displayName: "Component",
+            label: false,
+            type: inputTypes.dropdown,
+            inputClass: "",
+            wrapperClass: "mb-3",
+            columns: Columns.none,
+            value: "",
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: true,
+                lengthRequired: false,
+                validationMessage: "",
+
+            },
+            choices: [
+                {name: "component", displayName: "",                           value: " "},
+                {name: "component", displayName: "Doorways",                   value: Components.doorways},
+                {name: "component", displayName: "Floors",                     value: Components.floors},
+                {name: "component", displayName: "Floor Panels",               value: Components.floorPanels},
+                {name: "component", displayName: "Handrails and Stanchions",   value: Components.handrailsAndStanchions},
+                {name: "component", displayName: "Lighting",                   value: Components.lighting},
+                {name: "component", displayName: "Public Information Systems", value: Components.publicInformationSystems},
+                {name: "component", displayName: "Restrooms",                  value: Components.restrooms},
+                {name: "component", displayName: "Sleeping Compartments",      value: Components.sleepingCompartments},
+            ]
+        },
         {
             name: "all",
             displayName: "All",
@@ -107,9 +137,9 @@ export const supplierSearchForm: IForm  = {
             displayName: "Years in Operation",
             label: false,
             type: inputTypes.dropdown,
-            inputClass: "",
+            inputClass: "hidden",
             columns: Columns.none,
-            value: "",
+            value: "any",
             validation: {
                 validationType: "string",
                 valid: null,
@@ -135,32 +165,38 @@ export const supplierSearchForm: IForm  = {
             disabled: false,
             action: "handleSubmit",
             type: inputTypes.button,
-            submitType: "api",
+            submitType: "supplierSearch",
             variant: Variant.primary,
             wrapperClass: "",
             inputClass: "",
-            columns: Columns.col6,
+            columns: Columns.none,
         },
     ],
     getValues: getValues,
     getValuesHelper: getValuesHelper,
 }
 
-function getValuesHelper(form: IForm, name: string): any { 
+function getValuesHelper(form: IForm, name: string) { 
     const input: any = form.inputs.find((input: IInput) => input.name === name);
     return input.value;
 }
 
 function getValues(this: IForm) {
-    return {
-        all:              getValuesHelper(this,"all"),
-        buyAmerica:       getValuesHelper(this, "buyAmerica"),
-        byAmerica:        getValuesHelper(this, "byAmerica"),
-        womanOwned:       getValuesHelper(this, "womanOwned"),
-        minorityOwned:    getValuesHelper(this, "minorityOwned"),
-        veteranOwned:     getValuesHelper(this, "veteranOwned"),
-        greenCertified:   getValuesHelper(this, "greenCertified"),
-        isoCertified:     getValuesHelper(this, "isoCertified"),
-        yearsInOperation: getValuesHelper(this, "yearsInOperation"),
+    const all =  { component: getValuesHelper(this,"all")};
+
+    const searchCriteria: ISupplierSearch | {component: string} = {
+        component:          getValuesHelper(this,"component"),
+        buyAmerica:         getValuesHelper(this, "buyAmerica"),
+        byAmerica:          getValuesHelper(this, "byAmerica"),
+        womanOwned:         getValuesHelper(this, "womanOwned"),
+        minorityOwned:      getValuesHelper(this, "minorityOwned"),
+        veteranOwned:       getValuesHelper(this, "veteranOwned"),
+        greenCertified:     getValuesHelper(this, "greenCertified"),
+        isoCertified:       getValuesHelper(this, "isoCertified"),
+        yearsInOperation:   "5-10",//getValuesHelper(this, "yearsInOperation"),
+        establishedProduct: getValuesHelper(this, "establishedProduct"),
     }
+
+    return {...all,...searchCriteria};
+
 }

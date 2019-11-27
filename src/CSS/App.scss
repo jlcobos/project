@@ -1,11 +1,14 @@
+$primaryBg: rgba(55,78,99,1);
+$SecondaryBG: rgba(73, 94, 113, 1);
+$TertiaryBG: rgba(89, 108, 125, 1);
 @import "./BootstrapOverrides/Overrides.scss";
-@import "./anchorTags.scss";
-@import "./flexbox.scss";
-@import "./forms.scss";
-@import "./heightAndWidth.scss";
-$dark-slate-gray: rgba(55,78,99,1);
-$deep-space-sparkle: rgba(73, 94, 113, 1);
-$paynes-grey: rgba(89, 108, 125, 1);
+@import "./AnchorTags.scss";
+@import "./Flexbox.scss";
+@import "./Forms.scss";
+@import "./HeightAndWidth.scss";
+@import "./List.scss";
+@import "./Text.scss";
+@import "./ToggleClasses.scss";
 
 html, body {
   height: 100vh;

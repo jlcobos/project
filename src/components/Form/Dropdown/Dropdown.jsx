@@ -10,6 +10,7 @@ export default function Dropdown({
     columns,
     handleOnChange, 
     formName, 
+    required,
     validation: { valid, validationMessage }, 
 })
 {

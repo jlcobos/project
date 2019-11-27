@@ -240,7 +240,7 @@ export const organizationSignupForm: IForm  = {
             type: inputTypes.dropdown,
             inputClass: "hidden",
             columns: Columns.none,
-            value: "",
+            value: "10",
             validation: {
                 validationType: "string",
                 valid: null,
@@ -266,7 +266,7 @@ export const organizationSignupForm: IForm  = {
             inputClass: "",
             wrapperClass: "hidden",
             columns: Columns.none,
-            value: "",
+            value: "none",
             validation: {
                 validationType: "string",
                 valid: null,
@@ -452,7 +452,6 @@ function getValues(this: IForm): IOrganization {
 }
 
 function getValuesHelper(form: IForm, name: string): any { 
-    console.log(name);
     const input: any = form.inputs.find((input: IInput) => input.name === name);
     return input.value;
 }

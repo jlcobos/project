@@ -30,10 +30,12 @@ export class ContextProvider extends Component {
     }
 
     componentDidMount(){
+        let currentRFPs = [];
         this.Firebase.auth.onAuthStateChanged(async (user) => {
             if (user) {
                 const organization = await this.Firebase.getOrganization();
-                const currentRFPs = await this.Firebase.getAllRFPs(organization.id);
+                if(organization) currentRFPs = await this.Firebase.getAllRFPs(organization.id);
+
                 this.setState({
                     isLoggedIn: true,
                     currentUser: {uid: user.uid, email: user.email},
@@ -72,7 +74,8 @@ export class ContextProvider extends Component {
                 } else if (submitType === "organizationSignup") {
 
                     await this.Firebase.organizationSignup(formValues);
-                    this.state.companyInfo = await this.Firebase.getOrganizationInfo();
+                    const organization = await this.Firebase.getOrganization();
+                    this.setState({organization});
                 } else if (submitType === "supplierSearch") {
                     const supplierSearchResults = await this.Firebase.supplierSearch(formValues);
                     await this.setState({supplierSearchResults});

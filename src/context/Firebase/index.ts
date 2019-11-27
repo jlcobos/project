@@ -57,7 +57,7 @@ class Firebase {
 
         this.db.collection(Collections.organizations) // TODO: cross check that user is not part of more than one organization! TODO: dont forget this
             .add(formData)
-            .then((res) => console.log(res)) // TODO: fix for production
+            .then((res) => console.log("New Organization Created")) // TODO: fix for production
             .catch((error: any) => console.error("Error adding document: ", error)); // TODO: fix for production
     }
 

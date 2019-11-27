@@ -27,11 +27,14 @@ export default function Organization() {
                                 <h2 className={"mt-5"}>Current RFP's</h2>
                                     <List 
                                         items={
-                                            currentRFPs.map((rfp) => <RFP 
-                                                                            rfp={rfp.rfp}
-                                                                            form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
-                                                                        />
-                                                                    )}
+                                            currentRFPs && currentRFPs.map((rfp) => {
+                                                return (
+                                                    <RFP 
+                                                        rfp={rfp.rfp}
+                                                        form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
+                                                    />
+                                                )
+                                            })}
                                     />
                                 </Col>
                             </Row>

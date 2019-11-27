@@ -38,6 +38,7 @@ function App() {
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/home" component={UserHome} />
                 <PrivateRoute exact path="/organization/home" component={Organization} />
+                <PrivateRoute exact path="/organization/signup" component={OrganizationSignup} />
                 <PrivateRoute exact path="/tier-selection" component={Home} />
                 <PrivateRoute exact path="/tier/:tier" component={TierView} />
                 <PrivateRoute exact path="/tier/:tier/components/:component" component={ComponentRegulationList} />
@@ -45,7 +46,6 @@ function App() {
                 <Route exact path="/components/tier/:tier/:component/suppliers/:supplier" component={Supplier} /> */}
                 <PrivateRoute exact path="/tier/:tier/:component/requirements" component={Requirements} />
                 <PrivateRoute exact path="/tier/:tier/:component/search" component={SupplierSearch} />
-                <PrivateRoute exact path="/organization/signup" component={OrganizationSignup} />
                 <PrivateRoute exact path="/initialize-rfp" component={RFP} />
                 <PrivateRoute exact path="*" component={() => <p>Error page not found</p>} />
               </Switch>

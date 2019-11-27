@@ -28,7 +28,7 @@ export default class TopNav extends Component {
             protected: true,
         },
         {
-            to: "/tier/:tier/seats/search",
+            to: "/supplier-search",
             text: "Search",
             protected: true,
         },

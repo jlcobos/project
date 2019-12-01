@@ -6,6 +6,7 @@ export interface IRFP {
     buyer: string; // TODO: needs to be an organization reference
     bidders: {
             organizationId: string, 
+            organizationName: string, 
             contacts: string[],
         };
     status: RFPStatus;
@@ -20,10 +21,11 @@ export interface IRFP {
 }
 
 export interface IMessage {
+    // rfpId: string;
     sendingOrganizationId: string;
     senderUID: string;
     receivingOrganizationId: string;
     subject: string;
     message: string;
-    dateSent: Date;
+    dateSent: any;
 }

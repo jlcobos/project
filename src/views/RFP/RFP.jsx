@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router";
 import Col from "../../components/Layout/Col";
 import Form from "../../components/Form/Form";
 import { Context } from "../../context/context";
@@ -11,8 +12,9 @@ const RFP = () => {
     return(
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
-            {({draftRfp, forms: {initializeRFPForm},...rest}) => {
-                    return <Form form={initializeRFPForm} formName={initializeRFPForm.formName} {...rest} />
+            {({draftRfp, forms: {initializeRFPForm}, rfpActive,...rest}) => {
+                    if (rfpActive) return <Redirect to="/organization/home" />
+                    else return <Form form={initializeRFPForm} formName={initializeRFPForm.formName} {...rest} />
                 }}
             </Context.Consumer>
         </Col>

@@ -7,8 +7,9 @@ export function RFP(data: any): IRFP {
         rfpTitle: "",
         requestMessage: "",
         buyer: data.organizationId,
-        bidders: data.suppliers.map((s: string) => ({
-            organizationId: s,
+        bidders: data.suppliers.map((s: {name: string, id: string}) => ({
+            organizationId: s.id,
+            organizationName: s.name,
             contacts: [],
         })),
         status: RFPStatus.Draft,

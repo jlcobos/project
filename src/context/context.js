@@ -27,22 +27,28 @@ export class ContextProvider extends Component {
             currentRFPs: [],
             draftRFP: false,
             rfpActive: false,
+            supplierRFPs: [],
         }
     }
 
     componentDidMount(){
         let currentRFPs = [];
+        let supplierRFPs;
         this.Firebase.auth.onAuthStateChanged(async (user) => {
             if (user) {
                 const organization = await this.Firebase.getOrganization();
 
-                if(organization) currentRFPs = await this.Firebase.getAllRFPs(organization.id);
+                if(organization) {
+                    currentRFPs = await this.Firebase.getAllRFPs(organization.id);
+                    supplierRFPs = await this.Firebase.getSupplierRFPs(organization.id);
+                }
 
                 this.setState({
                     isLoggedIn: true,
                     currentUser: {uid: user.uid, email: user.email},
                     organization,
                     currentRFPs,
+                    supplierRFPs,
                 });
             }
             else {
@@ -165,7 +171,12 @@ export class ContextProvider extends Component {
         this.setState({
             organizationInfo: organization,
         });
-    } 
+    }
+    
+    getBidder = async (organizationId) => {
+        const bidder = await this.Firebase.getRFPSupplier(organizationId);
+        return bidder;
+    }
 
     logout = async () => {
         try {
@@ -196,6 +207,7 @@ export class ContextProvider extends Component {
                 {
                     data: this.state.data, 
                     currentRFPs: this.state.currentRFPs,
+                    supplierRFPs: this.state.supplierRFPs,
                     supplierSearchResults: this.state.supplierSearchResults,
                     forms: this.state.forms,
                     isLoggedIn: this.state.isLoggedIn,
@@ -212,6 +224,7 @@ export class ContextProvider extends Component {
                     rfpActive: this.state.rfpActive,
                     toggleFlag: this.toggleFlag,
                     prefillFormField: this.prefillFormField,
+                    getBidder: this.getBidder,
                 }
             }
             >

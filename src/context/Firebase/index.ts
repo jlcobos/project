@@ -114,6 +114,21 @@ class Firebase {
         }
     }
 
+    getSupplierRFPs = async (organizationId) => {
+        try {
+            const res = await this.db
+                .collection(Collections.RFP)
+                .where("bidders", "array-contains", organizationId)
+                .get();
+                console.log("supplier rfp empty?: "+res.empty)
+                if (!res.empty) return [...res.docs.map(doc => ({id: doc.id, ...doc.data()}))]
+                else return [];
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     getAllRFPs = async (organizationId) => {
         try {
             const res = await this.db
@@ -138,6 +153,11 @@ class Firebase {
         } catch (err) {
             console.error(err); // TODO: take care of this
         }
+    }
+
+    getRFPSupplier = async (organizationId) => {
+        const res = await this.getOrganizationById(organizationId);
+        return { name: res.data().name}
     }
 
     sendRFPMessage = async (formData) => {
@@ -184,7 +204,7 @@ class Firebase {
     getOrganizationById = async (id) => {
         try {
             const res = await this.db.collection(Collections.organizations).doc(id).get();
-            console.log(res);
+            console.log(res); // TODO: remove on prod
             return res;
         } catch (err) {
             console.error(err); // TODO: fix this

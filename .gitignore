@@ -8,10 +8,15 @@
 # testing
 /coverage
 
+.firebase
+
 # production
 build/static/css/*.css.map
 build/static/js/*.js.map
 build
+README.md
+package-lock.json
+
 # misc
 .DS_Store
 .env

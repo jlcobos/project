@@ -3,8 +3,10 @@ import "firebase/auth";
 import "firebase/firestore";
 import { UserAuthorization, ICreateOrLoginUser, IAddUserToOrganization } from "../Models/Users";
 import { IOrganization } from "../Models/Organizations"
+import { IMessage } from "../Models/RFP"
 import { Collections } from "../Models/Enums";
-
+import { updateExpression } from "@babel/types";
+// TODO: fix all timestamps and all id references need to be firebase id references
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -89,9 +91,10 @@ class Firebase {
                 });
 
             console.log("RFP Successfully set to 'active'");
-            return res;
+            return true;
         } catch (err) {
             console.error(err); // TODO: take care of this
+            // TODO: perhaps set false and use that to give error ?
         }
     }
 
@@ -111,6 +114,21 @@ class Firebase {
         }
     }
 
+    getSupplierRFPs = async (organizationId) => {
+        try {
+            const res = await this.db
+                .collection(Collections.RFP)
+                .where("bidders", "array-contains", organizationId)
+                .get();
+                console.log("supplier rfp empty?: "+res.empty)
+                if (!res.empty) return [...res.docs.map(doc => ({id: doc.id, ...doc.data()}))]
+                else return [];
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     getAllRFPs = async (organizationId) => {
         try {
             const res = await this.db
@@ -124,13 +142,40 @@ class Firebase {
                 .where("buyer", "==", organizationId)
                 .where("status", "==", "Draft")
                 .get();
+                // TODO: make sure the supplier name is updated in rfp if it's updated in org
+                // TODO: make sure the supplier is deleted if organization is deleted or some sort of notification
+                let rfps = [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
 
+                console.log(rfps);
             if (res.empty && res2.empty) return []
             else return [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
             
         } catch (err) {
             console.error(err); // TODO: take care of this
         }
+    }
+
+    getRFPSupplier = async (organizationId) => {
+        const res = await this.getOrganizationById(organizationId);
+        return { name: res.data().name}
+    }
+
+    sendRFPMessage = async (formData) => {
+        const timeStamp = new Date();
+        const message: IMessage = { 
+            sendingOrganizationId: formData.sendingOrganizationId,
+            receivingOrganizationId: formData.receivingOrganizationId,
+            senderUID: formData.senderUID,
+            subject: formData.subject,
+            message: formData.message,
+            dateSent: timeStamp,
+        }
+        console.log(formData);
+        await this.db.collection(Collections.RFP)
+        .doc(formData.rfpId)
+        .update({
+            messages: firebase.firestore.FieldValue.arrayUnion(message)
+        })
     }
 
     getOrganization = async () => { // TODO: only show relevant information, since this is passed by state to various places to include other use id's. perhaps on a cloud function
@@ -153,6 +198,16 @@ class Firebase {
         } 
         catch (err) {
             console.error(err); // TODO: fix for production
+        }
+    }
+
+    getOrganizationById = async (id) => {
+        try {
+            const res = await this.db.collection(Collections.organizations).doc(id).get();
+            console.log(res); // TODO: remove on prod
+            return res;
+        } catch (err) {
+            console.error(err); // TODO: fix this
         }
     }
 

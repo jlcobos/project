@@ -28,7 +28,7 @@ function SupplierSearch() {
             return (
                 <button 
                     className="btn btn-info" 
-                    onClick={() => createDraftRFP({suppliers: suppliers.map(s => s.id), organizationId: organization.id, userId: currentUser.uid})}
+                    onClick={() => createDraftRFP({suppliers: suppliers.map(s => s), organizationId: organization.id, userId: currentUser.uid})}
                 >
                     <NavLink to={"/initialize-rfp"}>Next Step To Initialize RFP</NavLink>
                 </button>

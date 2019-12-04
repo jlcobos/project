@@ -9,7 +9,7 @@ export const rfpMessageForm: IForm  = {
             label: false,
             displayName: "Subject",
             value: "",
-            type: inputTypes.email,
+            type: inputTypes.text,
             columns: Columns.col12,
             inputClass: "",
             validation: {
@@ -29,6 +29,23 @@ export const rfpMessageForm: IForm  = {
             rows: 10,
             columns: Columns.col12,
             inputClass: "",
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: true,
+                lengthRequired: false,
+                validationMessage: "",
+            }
+        },
+        {
+            name: "rfpId",
+            label: false,
+            displayName: "RFP ID",
+            value: "",
+            type: inputTypes.password,
+            columns: Columns.col12,
+            inputClass: "",
+            wrapperClass: "hidden",
             validation: {
                 validationType: "string",
                 valid: null,
@@ -112,8 +129,8 @@ function getValuesHelper(form: IForm, name: string): any {
     return input.value;
 }
 
-function getValues(this: IForm):IMessage {
-    return {
+function getValues(this: IForm) {
+    const message: IMessage = {
         sendingOrganizationId: getValuesHelper(this, "sendingOrganizationId"),
         senderUID: getValuesHelper(this, "senderUID"),
         receivingOrganizationId: getValuesHelper(this, "receivingOrganizationId"),
@@ -121,4 +138,5 @@ function getValues(this: IForm):IMessage {
         message: getValuesHelper(this, "message"),
         dateSent: new Date(),
     }
+    return { rfpId: getValuesHelper(this, "rfpId"), ...message};
 }

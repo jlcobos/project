@@ -11,7 +11,7 @@ export default function Signup() {
         <Col colSize={`col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3`}>
             <Context.Consumer>
             {({currentUser, forms: {signupForm},...rest}) => {
-                if(currentUser) return  <Redirect to="tier-selection" />;
+                if(currentUser) return  <Redirect to="/home" />;
                 return <Form form={signupForm} formName={signupForm.formName} {...rest} />
                 }}
             </Context.Consumer>

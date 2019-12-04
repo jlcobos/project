@@ -1,63 +1,65 @@
-import React, { Component } from "react"
+import React, { Component, useEffect, useContext, useState } from "react"
 import { Context } from "../../context/context";
+import BuyerRFPView from "./BuyerRFPView";
+import SupplierRFPView from "./SupplierRFPView";
 import Col from "../../components/Layout/Col";
 import Row from "../../components/Layout/Row";
 import List from "../../components/List";
 import Form from "../../components/Form/Form";
-import Modal from "../../components/Modal";
 
 // TODO: on backend: still check if user s authorized to create an rfp;
 
 export default function Organization() {
-
-
-
-
+    const {organization, currentRFPs, supplierRFPs, forms: { rfpMessageForm }, toggleFlag, rfpActive, currentUser, ...rest} = useContext(Context)
+    useEffect( () => { if (rfpActive) toggleFlag("rfpActive", false) });
+    console.log(supplierRFPs);
     return (
         <Col  colSize="col-12" colClass="col-xs-12">
-            <Context.Consumer>
-                {({organization, currentRFPs, forms: {rfpMessageForm}, ...rest}) => {
-                    return (
-                        <React.Fragment>
-                            <Row>
-                                <h1>{organization.name}</h1>
-                            </Row>
-                            <Row>
-                                <Col colClass={"col-xs-12 col-md-6"}>
-                                <h2 className={"mt-5"}>Current RFP's</h2>
-                                    <List 
-                                        items={
-                                            currentRFPs && currentRFPs.map((rfp) => {
-                                                return (
-                                                    <RFP 
-                                                        rfp={rfp.rfp}
-                                                        form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
-                                                    />
-                                                )
-                                            })}
+            <Row>
+                <h1>{organization.name}</h1>
+            </Row>
+            <Row>
+                <Col colClass={"col-xs-12 col-md-12"}>
+                <h2 className={"mt-5"}>Current RFP's</h2>
+                    <List 
+                        items={
+                            currentRFPs && currentRFPs.map((rfp) => {
+                                return (
+                                    <BuyerRFPView 
+                                        rfp={rfp.rfp}
+                                        rfpId={rfp.id}
+                                        orgId={organization.id}
+                                        currentUserId={currentUser.uid}
+                                        form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
                                     />
-                                </Col>
-                            </Row>
-                        </React.Fragment>
-                    )
-                }}
-            </Context.Consumer>
+                                )
+                            })
+                        }
+                    />
+                </Col>
+            </Row>
+                {supplierRFPs.length > 0 &&
+                    <Row>
+                        <Col colClass={"col-xs-12 col-md-12"}>
+                        <h2 className={"mt-5"}>Requested Proposals</h2>
+                            <List 
+                                items={
+                                    supplierRFPs.map((rfp) => {
+                                        return (
+                                            <SupplierRFPView 
+                                                rfp={rfp}
+                                                rfpId={rfp.id}
+                                                orgId={organization.id}
+                                                currentUserId={currentUser.uid}
+                                                form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
+                                            />
+                                        )
+                                    })
+                                }
+                            />
+                        </Col>
+                    </Row>
+                }
         </Col>
     )
-}
-
-function RFP({rfp, form}) {
-    return  <React.Fragment>
-                <h4>Title: {rfp.rfpTitle || "No Title"}</h4>
-                <p>Status: {rfp.status}</p>
-                {/* <p>Date Created: {rfp.dateCreated}</p>
-                <p>Last Updated: {rfp.dateUpdated}</p> */}
-                <Modal 
-                    modalOpenText={"New Message"}
-                    headerText={"New Message For: " }
-                    actionText={"Send"}
-                >
-                    {form}
-                </Modal>
-            </React.Fragment>
 }

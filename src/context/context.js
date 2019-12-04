@@ -26,21 +26,29 @@ export class ContextProvider extends Component {
             supplierSearchResults: false,
             currentRFPs: [],
             draftRFP: false,
+            rfpActive: false,
+            supplierRFPs: [],
         }
     }
 
     componentDidMount(){
         let currentRFPs = [];
+        let supplierRFPs;
         this.Firebase.auth.onAuthStateChanged(async (user) => {
             if (user) {
                 const organization = await this.Firebase.getOrganization();
-                if(organization) currentRFPs = await this.Firebase.getAllRFPs(organization.id);
+
+                if(organization) {
+                    currentRFPs = await this.Firebase.getAllRFPs(organization.id);
+                    supplierRFPs = await this.Firebase.getSupplierRFPs(organization.id);
+                }
 
                 this.setState({
                     isLoggedIn: true,
                     currentUser: {uid: user.uid, email: user.email},
                     organization,
                     currentRFPs,
+                    supplierRFPs,
                 });
             }
             else {
@@ -56,7 +64,7 @@ export class ContextProvider extends Component {
         e.preventDefault();
         const {isValid, form} = validateForm(this.state.forms[formName]);
         this.setState({[formName]: form});
-        const formValues = this.state.forms[formName].getValues(this.state.draftRFP);
+        const formValues = this.state.forms[formName].getValues();
 
         if(isValid) {
             try 
@@ -68,7 +76,6 @@ export class ContextProvider extends Component {
                 } else if (submitType === "login") {
 
                     await this.Firebase.login(formValues);
-                    this.setData();
                     this.setState({[formName]: clearForm(form)});
 
                 } else if (submitType === "organizationSignup") {
@@ -76,23 +83,35 @@ export class ContextProvider extends Component {
                     await this.Firebase.organizationSignup(formValues);
                     const organization = await this.Firebase.getOrganization();
                     this.setState({organization});
+
                 } else if (submitType === "supplierSearch") {
+
                     const supplierSearchResults = await this.Firebase.supplierSearch(formValues);
                     await this.setState({supplierSearchResults});
+
                 } else if (submitType === "activateDraftRFP") {
-                    const res = await this.Firebase.activateDraftRFP(formValues);
-                    console.log(res);
-                    this.setState({draftRFP: null});
+
+                    await this.Firebase.activateDraftRFP(formValues);
+                    this.setState({
+                        draftRFP: null,
+                        rfpActive: true, 
+                    });
+
+                    this.setState({[formName]: clearForm(form)});
+
+                } else if (submitType === "rfpMessage") {
+
+                    await this.Firebase.sendRFPMessage(formValues); // TODO: ok to user when message when sent
                 }
             }
             catch(err) {
-                console.log(err.message); // TODO: fix for production
+                console.log(err); // TODO: fix for production
                 // TODO: this could be the universal error handler
             }
         }
     }
 
-    handleOnChange = (e,formName, secondaryAction = false) => {
+    handleOnChange = (e, formName, secondaryAction = false) => {
         const { name, value, checked } = e.target;
         const form = {...this.state.forms[formName]};
 
@@ -109,6 +128,12 @@ export class ContextProvider extends Component {
         if (secondaryAction === "toggleProductsList") {
             this.toggleProductsList();
         }
+    }
+
+    prefillFormField = (inputName, value, formName) => {
+        const form = {...this.state.forms[formName]};
+        let updatedForm = updateForm(inputName, value, false, form);
+        this.setState({[formName]: updatedForm});
     }
 
     toggleProductsList = () => {
@@ -146,7 +171,12 @@ export class ContextProvider extends Component {
         this.setState({
             organizationInfo: organization,
         });
-    } 
+    }
+    
+    getBidder = async (organizationId) => {
+        const bidder = await this.Firebase.getRFPSupplier(organizationId);
+        return bidder;
+    }
 
     logout = async () => {
         try {
@@ -169,12 +199,15 @@ export class ContextProvider extends Component {
         this.setState({currentRFPs})
     }
 
+    toggleFlag = (flag, value) => { this.setState({[flag]: value}) }
+
     render(){
         return(
             <Context.Provider value={
                 {
                     data: this.state.data, 
                     currentRFPs: this.state.currentRFPs,
+                    supplierRFPs: this.state.supplierRFPs,
                     supplierSearchResults: this.state.supplierSearchResults,
                     forms: this.state.forms,
                     isLoggedIn: this.state.isLoggedIn,
@@ -188,6 +221,10 @@ export class ContextProvider extends Component {
                     getComponentsList: this.getComponentsList,
                     createDraftRFP: this.createDraftRFP,
                     draftRFP: this.state.draftRFP,
+                    rfpActive: this.state.rfpActive,
+                    toggleFlag: this.toggleFlag,
+                    prefillFormField: this.prefillFormField,
+                    getBidder: this.getBidder,
                 }
             }
             >

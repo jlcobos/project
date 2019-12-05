@@ -22,9 +22,6 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
                 <h4>Title: {rfp.rfpTitle || "No Title"}</h4>
                 <p>Status: {rfp.status}</p>
 
-                <button type="button" className="btn btn-link" onClick={() => setShowMessages(!showMessages) }>{showMessages ? "Close Messages" : "Show Messages"}</button>
-                {messageHistory && showMessages && <Messages messages={messageHistory} />}
-
                 <button 
                     type="button" 
                     className="btn btn-link" 
@@ -39,6 +36,8 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
                     New Message
                 </button>
 
+                <button type="button" className="btn btn-link" onClick={() => setShowMessages(!showMessages) }>{showMessages ? "Close Messages" : "Show Messages"}</button>
+                {messageHistory && showMessages && <Messages messages={messageHistory} />}
 
                 <Modal 
                     headerText={`New Message`}
@@ -50,13 +49,19 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
 }
 
 function Messages({messages}){
+    const reversedMessages = messages.reverse();
     return (
         <ul>
-            {messages.map((message, i) => {
+            {reversedMessages.map((message, i) => {
+                console.log(message.dateSent.toDate().toDateString());
+                console.log(message.dateSent.toDate().getHours());
+                console.log(message.dateSent.toDate().getMinutes());
                 return (
                     <li key={i}>
-                        <h5>{message.subject}</h5>
-                        <p>{message.message}</p>
+                        {/* <p>{message.dateSent ? message.dateSent.toDate() : "no send date"}</p> */}
+                        <p>Date Sent: {message.dateSent.toDate().toDateString()}</p>
+                        <h5>Subject: {message.subject}</h5>
+                        <p>Message Body: {message.message}</p>
                     </li>
                 ) 
             })}

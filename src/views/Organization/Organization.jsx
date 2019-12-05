@@ -38,28 +38,27 @@ export default function Organization() {
                     />
                 </Col>
             </Row>
-                {supplierRFPs.length > 0 &&
-                    <Row>
-                        <Col colClass={"col-xs-12 col-md-12"}>
-                        <h2 className={"mt-5"}>Requested Proposals</h2>
-                            <List 
-                                items={
-                                    supplierRFPs.map((rfp) => {
-                                        return (
-                                            <SupplierRFPView 
-                                                rfp={rfp}
-                                                rfpId={rfp.id}
-                                                orgId={organization.id}
-                                                currentUserId={currentUser.uid}
-                                                form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
-                                            />
-                                        )
-                                    })
-                                }
-                            />
-                        </Col>
-                    </Row>
-                }
+            
+            <Row>
+                <Col colClass={"col-xs-12 col-md-12"}>
+                <h2 className={"mt-5"}>Requested Proposals</h2>
+                    <List 
+                        items={
+                            supplierRFPs.map((rfp) => {
+                                return (
+                                    <SupplierRFPView 
+                                        rfp={rfp}
+                                        rfpId={rfp.id}
+                                        orgId={organization.id}
+                                        currentUserId={currentUser.uid}
+                                        form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
+                                    />
+                                )
+                            })
+                        }
+                    />
+                </Col>
+            </Row>
         </Col>
     )
 }

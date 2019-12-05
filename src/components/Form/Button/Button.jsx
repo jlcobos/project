@@ -8,6 +8,8 @@ export default function Button(props){
                     disabled={disabled} 
                     onClick={ e => handleSubmit(e, formName, submitType) }
                     className={[`btn btn-${variant} w-100`, buttonClass].join(" ")}
+                    data-dismiss="modal" 
+                    aria-label="Close"
                 >
                 {displayName}
                 </button>

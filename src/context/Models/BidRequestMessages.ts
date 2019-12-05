@@ -5,7 +5,7 @@ export interface BidRequestMessages {
         uid: string;
         message: string;
         documentReference: string;
-        timeStamp: Date;
+        timeStamp: Date | null;
     }[];
 
 }

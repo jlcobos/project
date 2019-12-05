@@ -32,7 +32,7 @@ export class ContextProvider extends Component {
     }
 
     componentDidMount(){
-        let currentRFPs = [];
+        let currentRFPs;
         let supplierRFPs;
         this.Firebase.auth.onAuthStateChanged(async (user) => {
             if (user) {
@@ -55,6 +55,14 @@ export class ContextProvider extends Component {
                 this.setState({
                     isLoggedIn: false,
                     currentUser: false,
+                    organization: false,
+                    belongsToOrganization: false,
+                    componentsList: false,
+                    supplierSearchResults: false,
+                    currentRFPs: [],
+                    draftRFP: false,
+                    rfpActive: false,
+                    supplierRFPs: [],
                 })
             }
         });
@@ -91,10 +99,13 @@ export class ContextProvider extends Component {
 
                 } else if (submitType === "activateDraftRFP") {
 
-                    await this.Firebase.activateDraftRFP(formValues);
+                    await this.Firebase.activateDraftRFP(formValues, this.state.draftRFP);
+                    const currentRFPs = await this.Firebase.getAllRFPs(this.state.organization.id);
+
                     this.setState({
                         draftRFP: null,
-                        rfpActive: true, 
+                        rfpActive: true,
+                        currentRFPs, 
                     });
 
                     this.setState({[formName]: clearForm(form)});
@@ -102,6 +113,13 @@ export class ContextProvider extends Component {
                 } else if (submitType === "rfpMessage") {
 
                     await this.Firebase.sendRFPMessage(formValues); // TODO: ok to user when message when sent
+                    const currentRFPs = await this.Firebase.getAllRFPs(this.state.organization.id);
+                    const supplierRFPs = await this.Firebase.getSupplierRFPs(this.state.organization.id);
+                    
+                    this.setState({
+                        currentRFPs,
+                        supplierRFPs,
+                    });
                 }
             }
             catch(err) {

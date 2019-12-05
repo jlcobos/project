@@ -77,8 +77,8 @@ class Firebase {
         }
     }
 
-    activateDraftRFP = async (draftRFP) => {
-        const { rfpTitle, requestMessage, proposalDueBy, cbcRequired, status } = draftRFP.data;
+    activateDraftRFP = async (formValues, draftRFP) => {
+        const { rfpTitle, requestMessage, proposalDueBy, cbcRequired, status } = formValues;
         try {
             const res = await this.db.collection(Collections.RFP)
                 .doc(draftRFP.id)
@@ -120,7 +120,7 @@ class Firebase {
                 .collection(Collections.RFP)
                 .where("bidders", "array-contains", organizationId)
                 .get();
-                console.log("supplier rfp empty?: "+res.empty)
+                console.log("supplier rfp empty?: " + res.empty)
                 if (!res.empty) return [...res.docs.map(doc => ({id: doc.id, ...doc.data()}))]
                 else return [];
 
@@ -146,8 +146,7 @@ class Firebase {
                 // TODO: make sure the supplier is deleted if organization is deleted or some sort of notification
                 let rfps = [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
 
-                console.log(rfps);
-            if (res.empty && res2.empty) return []
+            if (res.empty && res2.empty) return [];
             else return [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
             
         } catch (err) {
@@ -161,14 +160,13 @@ class Firebase {
     }
 
     sendRFPMessage = async (formData) => {
-        const timeStamp = new Date();
         const message: IMessage = { 
             sendingOrganizationId: formData.sendingOrganizationId,
             receivingOrganizationId: formData.receivingOrganizationId,
             senderUID: formData.senderUID,
             subject: formData.subject,
             message: formData.message,
-            dateSent: timeStamp,
+            dateSent: firebase.firestore.Timestamp.fromDate(new Date()),
         }
         console.log(formData);
         await this.db.collection(Collections.RFP)

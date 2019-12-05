@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../context/context";
 import Modal from "../../../components/Modal";
+import moment from "moment";
 
 export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}) { // TODO: if rfp closed: remove all possible actions
     const { prefillFormField, organization } = useContext(Context);
@@ -49,17 +50,14 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
 }
 
 function Messages({messages}){
-    const reversedMessages = messages.reverse();
+    const reversedMessages = messages.reverse(); // TODO: add timezone
+    // TODO: prepend messages so you dont have to reverse ??
     return (
         <ul>
             {reversedMessages.map((message, i) => {
-                console.log(message.dateSent.toDate().toDateString());
-                console.log(message.dateSent.toDate().getHours());
-                console.log(message.dateSent.toDate().getMinutes());
                 return (
                     <li key={i}>
-                        {/* <p>{message.dateSent ? message.dateSent.toDate() : "no send date"}</p> */}
-                        <p>Date Sent: {message.dateSent.toDate().toDateString()}</p>
+                        <p>Date Sent: {moment(message.dateSent.toDate()).format("MMMM Do YYYY, h:mm a")}</p>
                         <h5>Subject: {message.subject}</h5>
                         <p>Message Body: {message.message}</p>
                     </li>

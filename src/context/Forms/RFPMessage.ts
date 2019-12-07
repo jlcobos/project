@@ -6,7 +6,8 @@ export const rfpMessageForm: IForm  = {
     inputs: [
         {
             name: "subject",
-            label: false,
+            label: true,
+            labelClass: "text-dark",
             displayName: "Subject",
             value: "",
             type: inputTypes.text,
@@ -22,7 +23,8 @@ export const rfpMessageForm: IForm  = {
         },
         {
             name: "message",
-            label: false,
+            label: true,
+            labelClass: "text-dark",
             displayName: "Message",
             value: "",
             type: inputTypes.textarea,

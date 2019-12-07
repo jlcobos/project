@@ -6,7 +6,7 @@ export const organizationSignupForm: IForm  = {
     inputs: [
         {
             name: "name",
-            label: false,
+            label: true,
             displayName: "Company Name",
             value: "",
             type: inputTypes.text,
@@ -22,7 +22,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "street",
-            label: false,
+            label: true,
             displayName: "Street Number",
             value: "",
             type: inputTypes.text,
@@ -38,7 +38,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "state_province",
-            label: false,
+            label: true,
             displayName: "State or Province",
             value: "",
             type: inputTypes.text,
@@ -54,7 +54,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "city",
-            label: false,
+            label: true,
             displayName: "City",
             value: "",
             type: inputTypes.text,
@@ -70,7 +70,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "postalCode",
-            label: false,
+            label: true,
             displayName: "Postal Code",
             value: "",
             type: inputTypes.text,
@@ -87,7 +87,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "country",
-            label: false,
+            label: true,
             displayName:"Country",
             value: "",
             type: inputTypes.text,
@@ -103,7 +103,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "phoneNumber",
-            label: false,
+            label: true,
             displayName:"Phone Number",
             value: "",
             type: inputTypes.tel,
@@ -121,7 +121,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "classification",
-            label: false,
+            label: true,
             displayName:"Classification",
             value: "",
             type: inputTypes.text,
@@ -137,7 +137,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "yearFounded",
-            label: false,
+            label: true,
             displayName:"Year Founded",
             value: "",
             type: inputTypes.number,
@@ -154,7 +154,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "website",
-            label: false,
+            label: true,
             displayName:"Website",
             value: "",
             type: inputTypes.text,
@@ -170,7 +170,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "qualityCertifications",
-            label: false,
+            label: true,
             displayName:"Quality Certifications",
             value: "",
             type: inputTypes.text,
@@ -186,7 +186,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "numberOfLocations",
-            label: false,
+            label: true,
             displayName:"Number Of Locations",
             value: "",
             type: inputTypes.number,
@@ -203,7 +203,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "numberOfEmployees",
-            label: false,
+            label: true,
             displayName:"Employee Size",
             value: "",
             type: inputTypes.number,
@@ -219,7 +219,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "annualSales",
-            label: false,
+            label: true,
             displayName:"Annual Sales",
             value: "",
             type: inputTypes.number,
@@ -236,7 +236,7 @@ export const organizationSignupForm: IForm  = {
         {
             name: "yearsInOperation",
             displayName: "Years in Operation",
-            label: false,
+            label: true,
             type: inputTypes.dropdown,
             inputClass: "hidden",
             columns: Columns.none,
@@ -289,7 +289,7 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "supplier",
-            displayName: "Supplier",
+            displayName: "Designate Organization as Supplier", // TODO: force user to choose yes or no.
             type: inputTypes.checkbox,
             label: false,
             inline: false,
@@ -387,17 +387,17 @@ export const organizationSignupForm: IForm  = {
             columns: Columns.col12,
             value: false, 
         },
-        {
-            name: "portfolio",
-            displayName: "Portfolio",
-            type: inputTypes.checkbox,
-            label: false,
-            inline: false,
-            inputClass: "",
-            labelClass: "",
-            columns: Columns.col12,
-            value: false,
-        },
+        // {
+        //     name: "portfolio",
+        //     displayName: "Portfolio",
+        //     type: inputTypes.checkbox,
+        //     label: false,
+        //     inline: false,
+        //     inputClass: "",
+        //     labelClass: "",
+        //     columns: Columns.col12,
+        //     value: false,
+        // },
         {
             name: "organizationSignupSubmit",
             displayName: "Submit",

@@ -56,5 +56,14 @@ export function validateForm(form){
         return input;
     });
     if (errors === 0) return { isValid: true, form }
-    else return {isValid: false, errors};
+    else return {isValid: false, form};
+}
+
+export function scrollToInvalidElements(inputs) {
+    const invalidInputs = inputs.map(inp => {
+        if (inp.validation && inp.validation.valid === false) {
+            return document.getElementById(inp.name);
+        }
+    }).filter(el => !!el);
+    if (invalidInputs.length > 0) invalidInputs[0].scrollIntoView({behavior: "smooth", block: "center"});
 }

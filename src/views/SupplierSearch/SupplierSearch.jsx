@@ -49,8 +49,8 @@ function SupplierSearch() {
             <Context.Consumer>
             {({organization, currentUser, forms: {supplierSearchForm}, supplierSearchResults, createDraftRFP,...rest}) => {
                 const isOrg = Boolean(organization);
-
-                const items = supplierSearchResults ? supplierSearchResults.map(supplier => <SearchItem supplier={supplier} addSupplier={addSupplier} isOrg />) : null;
+                console.log(isOrg);
+                const items = supplierSearchResults ? supplierSearchResults.map(supplier => <SearchItem supplier={supplier} addSupplier={addSupplier} isOrg={isOrg} />) : null;
                 return (
                     <Fragment>
                             <Row>

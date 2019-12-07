@@ -6,7 +6,7 @@ export const signupForm: IForm  = {
     inputs: [
         {
             name: "email",
-            label: false,
+            label: true,
             displayName: "Email",
             value: "",
             type: inputTypes.email,
@@ -22,7 +22,7 @@ export const signupForm: IForm  = {
         },
         {
             name: "password",
-            label: false,
+            label: true,
             displayName: "Password",
             value: "",
             type: inputTypes.password,
@@ -39,7 +39,7 @@ export const signupForm: IForm  = {
         },
         {
             name: "confirmPassword",
-            label: false,
+            label: true,
             displayName: "Confirm Password",
             value: "",
             type: inputTypes.password,

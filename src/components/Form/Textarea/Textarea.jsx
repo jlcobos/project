@@ -7,7 +7,8 @@ export default function TextArea({
     displayName, 
     textareaClass,
     wrapperClass, 
-    label, 
+    label,
+    labelClass,
     columns, 
     handleOnBlur, 
     handleOnChange, 
@@ -17,7 +18,7 @@ export default function TextArea({
     {
     return (
         <div className={`form-group ${ columns || ""} ${wrapperClass}`}>
-            {label && <label for={name}>{displayName}</label>}
+            {label && <label className={labelClass} htmlFor={name}>{displayName}</label>}
             <textarea 
                 className={["form-control", textareaClass || "",  valid === false ? "formInputBorderError" : "" ].join(" ")} 
                 name={name} 

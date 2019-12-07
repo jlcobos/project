@@ -1,7 +1,7 @@
 import React, {Component, createContext} from "react";
 import forms from "./Forms";
 import supplierTestData from "./SupplierTestData";
-import { validateForm } from "./Validation";
+import { validateForm, scrollToInvalidElements } from "./Validation";
 import { clearForm, updateForm } from "./Forms/FormMethods";
 import Firebase from "./Firebase/index.ts";
 import data from "./Data";
@@ -70,8 +70,13 @@ export class ContextProvider extends Component {
 
     handleSubmit = async (e, formName, submitType) => {
         e.preventDefault();
+
         const {isValid, form} = validateForm(this.state.forms[formName]);
+
+        if (!isValid) scrollToInvalidElements(form.inputs);
+
         this.setState({[formName]: form});
+
         const formValues = this.state.forms[formName].getValues();
 
         if(isValid) {

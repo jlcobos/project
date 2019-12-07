@@ -6,7 +6,7 @@ export const loginForm: IForm  = {
     inputs: [
         {
             name: "email",
-            label: false,
+            label: true,
             displayName: "Email",
             value: "",
             type: inputTypes.email,
@@ -22,7 +22,7 @@ export const loginForm: IForm  = {
         },
         {
             name: "password",
-            label: false,
+            label: true,
             displayName: "Password",
             value: "",
             type: inputTypes.password,

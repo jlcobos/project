@@ -9,6 +9,7 @@ export default function Input(
         inputClass, 
         wrapperClass,
         label, 
+        labelClass,
         columns, 
         handleOnBlur, 
         handleOnChange, 
@@ -19,7 +20,7 @@ export default function Input(
     {
     return (
         <div className={["form-group", columns, wrapperClass].join(" ")}>
-            {label && <label for={name}>{displayName}</label>}
+            {label && <label className={labelClass} htmlFor={name}>{displayName}</label>}
             <input 
                 type={type} 
                 className={["form-control", inputClass || "",  valid === false ? "formInputBorderError" : "" ].join(" ")} 

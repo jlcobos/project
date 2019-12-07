@@ -7,7 +7,7 @@ export const initializeRFPForm: IForm  = {
     inputs: [
         {
             name: "rfpTitle",
-            label: false,
+            label: true,
             displayName: "RFP Title",
             value: "",
             type: inputTypes.text,
@@ -24,7 +24,7 @@ export const initializeRFPForm: IForm  = {
         },
         {
             name: "requestMessage",
-            label: false,
+            label: true,
             displayName: "RFP Invite Message",
             value: "",
             type: inputTypes.textarea,
@@ -42,8 +42,8 @@ export const initializeRFPForm: IForm  = {
         },
         {
             name: "proposalDueBy",
-            label: false,
-            displayName: "Date Due",
+            label: true,
+            displayName: "Proposal Date Due",
             value: "",
             type: inputTypes.date,
             columns: Columns.col6,
@@ -58,7 +58,7 @@ export const initializeRFPForm: IForm  = {
         },
         {
             name: "cbcRequired",
-            displayName: "CBC Required",
+            displayName: "Clause By Clause Required",
             type: inputTypes.checkbox,
             label: false,
             inline: false,

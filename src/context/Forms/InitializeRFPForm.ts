@@ -104,12 +104,13 @@ function getValuesHelper(form: IForm, name: string): any {
     return input.value;
 }
 
-function getValues(this: IForm, draftRFP: {id: string, data: IRFP}): {id: string, data: IRFP} {
-    draftRFP.data.rfpTitle = getValuesHelper(this,"rfpTitle");
-    draftRFP.data.requestMessage = getValuesHelper(this, "requestMessage");
-    draftRFP.data.proposalDueBy = getValuesHelper(this, "proposalDueBy");
-    draftRFP.data.cbcRequired = getValuesHelper(this, "cbcRequired");
-    draftRFP.data.status = RFPStatus.Active;
-
-    return draftRFP;
+function getValues(this: IForm) {
+    const formData = {
+        rfpTitle: getValuesHelper(this,"rfpTitle"),
+        requestMessage: getValuesHelper(this, "requestMessage"),
+        proposalDueBy: getValuesHelper(this, "proposalDueBy"),
+        cbcRequired: getValuesHelper(this, "cbcRequired"),
+        status: RFPStatus.Active,
+    }
+    return formData;
 }

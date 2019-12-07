@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../context/context";
 import Modal from "../../../components/Modal";
+import moment from "moment";
 
 export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}) { // TODO: if rfp closed: remove all possible actions
     const { prefillFormField, organization } = useContext(Context);
@@ -22,9 +23,6 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
                 <h4>Title: {rfp.rfpTitle || "No Title"}</h4>
                 <p>Status: {rfp.status}</p>
 
-                <button type="button" className="btn btn-link" onClick={() => setShowMessages(!showMessages) }>{showMessages ? "Close Messages" : "Show Messages"}</button>
-                {messageHistory && showMessages && <Messages messages={messageHistory} />}
-
                 <button 
                     type="button" 
                     className="btn btn-link" 
@@ -39,6 +37,8 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
                     New Message
                 </button>
 
+                <button type="button" className="btn btn-link" onClick={() => setShowMessages(!showMessages) }>{showMessages ? "Close Messages" : "Show Messages"}</button>
+                {messageHistory && showMessages && <Messages messages={messageHistory} />}
 
                 <Modal 
                     headerText={`New Message`}
@@ -50,13 +50,16 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
 }
 
 function Messages({messages}){
+    const reversedMessages = messages.reverse(); // TODO: add timezone
+    // TODO: prepend messages so you dont have to reverse ??
     return (
         <ul>
-            {messages.map((message, i) => {
+            {reversedMessages.map((message, i) => {
                 return (
                     <li key={i}>
-                        <h5>{message.subject}</h5>
-                        <p>{message.message}</p>
+                        <p>Date Sent: {moment(message.dateSent.toDate()).format("MMMM Do YYYY, h:mm a")}</p>
+                        <h5>Subject: {message.subject}</h5>
+                        <p>Message Body: {message.message}</p>
                     </li>
                 ) 
             })}

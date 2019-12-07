@@ -63,7 +63,7 @@ export class ContextProvider extends Component {
                     draftRFP: false,
                     rfpActive: false,
                     supplierRFPs: [],
-                })
+                });
             }
         });
     }
@@ -84,13 +84,13 @@ export class ContextProvider extends Component {
                 } else if (submitType === "login") {
 
                     await this.Firebase.login(formValues);
-                    this.setState({[formName]: clearForm(form)});
+                    this.setState({[formName]: clearForm(form)}); // TODO: dont clear if the login fails
 
                 } else if (submitType === "organizationSignup") {
 
                     await this.Firebase.organizationSignup(formValues);
                     const organization = await this.Firebase.getOrganization();
-                    this.setState({organization});
+                    this.setState({organization: organization});
 
                 } else if (submitType === "supplierSearch") {
 
@@ -113,12 +113,12 @@ export class ContextProvider extends Component {
                 } else if (submitType === "rfpMessage") {
 
                     await this.Firebase.sendRFPMessage(formValues); // TODO: ok to user when message when sent
-                    const currentRFPs = await this.Firebase.getAllRFPs(this.state.organization.id);
-                    const supplierRFPs = await this.Firebase.getSupplierRFPs(this.state.organization.id);
-                    
+                    const currentRFPs = await this.Firebase.getAllRFPs(this.state.organization.id); // TODO: only request if message originated form this
+                    const supplierRFPs = await this.Firebase.getSupplierRFPs(this.state.organization.id); // TODO: only request if message originated form this
                     this.setState({
-                        currentRFPs,
-                        supplierRFPs,
+                        currentRFPs, // TODO: only set if message originated form this
+                        supplierRFPs, // TODO: only set if message originated form this
+                        [formName]: clearForm(form), // TODO: only set if message did not fail
                     });
                 }
             }
@@ -199,10 +199,10 @@ export class ContextProvider extends Component {
     logout = async () => {
         try {
             await this.Firebase.logout();
-            // window.location.replace("/login");
+            window.location.replace("/login");
         } 
         catch (error) {
-            console.log(error.massage);
+            console.error(error.massage);
         }
     }
 
@@ -218,6 +218,21 @@ export class ContextProvider extends Component {
     }
 
     toggleFlag = (flag, value) => { this.setState({[flag]: value}) }
+
+    resetState = () => {
+        this.setState({
+            isLoggedIn: false,
+            currentUser: false,
+            organization: false,
+            belongsToOrganization: false,
+            componentsList: false,
+            supplierSearchResults: false,
+            currentRFPs: [],
+            draftRFP: false,
+            rfpActive: false,
+            supplierRFPs: [],
+        });
+    }
 
     render(){
         return(

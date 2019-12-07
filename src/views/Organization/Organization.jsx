@@ -12,53 +12,57 @@ import Form from "../../components/Form/Form";
 export default function Organization() {
     const {organization, currentRFPs, supplierRFPs, forms: { rfpMessageForm }, toggleFlag, rfpActive, currentUser, ...rest} = useContext(Context)
     useEffect( () => { if (rfpActive) toggleFlag("rfpActive", false) });
-    console.log(supplierRFPs);
     return (
         <Col  colSize="col-12" colClass="col-xs-12">
             <Row>
                 <h1>{organization.name}</h1>
             </Row>
-            <Row>
-                <Col colClass={"col-xs-12 col-md-12"}>
-                <h2 className={"mt-5"}>Current RFP's</h2>
-                    <List 
-                        items={
-                            currentRFPs && currentRFPs.map((rfp) => {
-                                return (
-                                    <BuyerRFPView 
-                                        rfp={rfp.rfp}
-                                        rfpId={rfp.id}
-                                        orgId={organization.id}
-                                        currentUserId={currentUser.uid}
-                                        form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
-                                    />
-                                )
-                            })
-                        }
-                    />
-                </Col>
-            </Row>
-            
-            <Row>
-                <Col colClass={"col-xs-12 col-md-12"}>
-                <h2 className={"mt-5"}>Requested Proposals</h2>
-                    <List 
-                        items={
-                            supplierRFPs.map((rfp) => {
-                                return (
-                                    <SupplierRFPView 
-                                        rfp={rfp}
-                                        rfpId={rfp.id}
-                                        orgId={organization.id}
-                                        currentUserId={currentUser.uid}
-                                        form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
-                                    />
-                                )
-                            })
-                        }
-                    />
-                </Col>
-            </Row>
+                {
+                    Array.isArray(currentRFPs) && currentRFPs.length > 0 &&
+                    <Row>
+                        <Col colClass={"col-xs-12 col-md-12"}>
+                        <h2 className={"mt-5"}>Current RFP's</h2>
+                            <List 
+                                items={
+                                    currentRFPs.map((rfp) => {
+                                        return (
+                                            <BuyerRFPView 
+                                                rfp={rfp.rfp}
+                                                rfpId={rfp.id}
+                                                orgId={organization.id}
+                                                currentUserId={currentUser.uid}
+                                                form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
+                                            />
+                                        )
+                                    })
+                                }
+                            />
+                        </Col>
+                    </Row>
+                }
+            {
+                Array.isArray(supplierRFPs) && supplierRFPs.length > 0 &&
+                <Row>
+                    <Col colClass={"col-xs-12 col-md-12"}>
+                    <h2 className={"mt-5"}>Requested Proposals</h2>
+                        <List 
+                            items={
+                                supplierRFPs && supplierRFPs.map((rfp) => {
+                                    return (
+                                        <SupplierRFPView 
+                                            rfp={rfp}
+                                            rfpId={rfp.id}
+                                            orgId={organization.id}
+                                            currentUserId={currentUser.uid}
+                                            form={<Form form={rfpMessageForm} formName={rfpMessageForm.formName} {...rest} />}
+                                        />
+                                    )
+                                })
+                            }
+                        />
+                    </Col>
+                </Row>
+            }
         </Col>
     )
 }

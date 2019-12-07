@@ -28,7 +28,7 @@ class Firebase {
     }
 
     signup = (newUser: ICreateOrLoginUser) => this.auth.createUserWithEmailAndPassword(newUser.email, newUser.password)
-        .then((res: any) => console.log(res)) // TODO: fix for production
+        .then((res: any) => console.log("signup successful")) // TODO: fix for production
         .catch((err: any) => console.error(err)); // TODO: fix for production
 
     login = async (credentials: ICreateOrLoginUser) => {
@@ -36,7 +36,6 @@ class Firebase {
         {
             await this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);                    
             const res = await firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password);
-            console.log(res.user.uid, res.user.email); // TODO: handle this
         } 
         catch (err) {
             console.error(err); // TODO: handle this
@@ -144,7 +143,6 @@ class Firebase {
                 .get();
                 // TODO: make sure the supplier name is updated in rfp if it's updated in org
                 // TODO: make sure the supplier is deleted if organization is deleted or some sort of notification
-                let rfps = [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
 
             if (res.empty && res2.empty) return [];
             else return [...res.docs.map(doc => ({id: doc.id, rfp: doc.data()})), ...res2.docs.map(doc => ({id: doc.id, rfp: doc.data()}))];
@@ -168,7 +166,6 @@ class Firebase {
             message: formData.message,
             dateSent: firebase.firestore.Timestamp.fromDate(new Date()),
         }
-        console.log(formData);
         await this.db.collection(Collections.RFP)
         .doc(formData.rfpId)
         .update({
@@ -202,7 +199,6 @@ class Firebase {
     getOrganizationById = async (id) => {
         try {
             const res = await this.db.collection(Collections.organizations).doc(id).get();
-            console.log(res); // TODO: remove on prod
             return res;
         } catch (err) {
             console.error(err); // TODO: fix this

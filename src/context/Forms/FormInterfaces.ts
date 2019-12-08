@@ -9,6 +9,7 @@ export enum inputTypes {
     email = "email", 
     button = "button", 
     submit = "submit", 
+    select = "select", 
     tel = "tel", 
     url = "url", 
 };
@@ -84,7 +85,7 @@ export interface IInput {
     displayName: string,
     type: inputTypes;
     label: string | boolean;
-    value: string | number | boolean | null;
+    value: string | number | boolean | string[] | null;
     inputClass: string | false;
     labelClass?: string;
     variant?: string;
@@ -100,4 +101,5 @@ export interface IInput {
     choices?: null | {name: string, displayName: string, value: string}[];
     buttonClass?: string;
     secondaryAction?: SecondaryActions;
+    multiSelect?: boolean;
 }

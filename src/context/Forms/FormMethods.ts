@@ -14,7 +14,7 @@ export function updateForm(name: string, value: string, checked: boolean, form: 
     form.inputs = form.inputs.map((input: any) => {
         let validation;
         if(input.validation) validation = input.validation;
-        
+
         if (input.name === name && input.type === inputTypes.checkbox) input.value = !input.value;
         else if(input.name === name ) {
             if (validation.lengthRequired && input.value.length < validation.length.max ) input.value = value

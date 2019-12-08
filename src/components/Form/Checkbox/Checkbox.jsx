@@ -13,7 +13,7 @@ export default function Checkbox({
     secondaryAction
 }){
     return (
-        <div className={`${columns} mb-2 form-check ${inline ? "form-check-inline" : ""}`}>
+        <div className={`${columns} form-checkbox mb-2 form-check ${inline ? "form-check-inline" : ""}`}>
             <input 
                 className={`form-check-input ${checkboxClass ? checkboxClass : ""}`} 
                 id={name} 

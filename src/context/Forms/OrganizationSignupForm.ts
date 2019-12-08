@@ -10,7 +10,7 @@ export const organizationSignupForm: IForm  = {
             displayName: "Company Name",
             value: "",
             type: inputTypes.text,
-            columns: Columns.col6,
+            columns: Columns.col12,
             inputClass: "",
             validation: {
                 validationType: "string",
@@ -37,9 +37,9 @@ export const organizationSignupForm: IForm  = {
             }
         },
         {
-            name: "state_province",
+            name: "city",
             label: true,
-            displayName: "State or Province",
+            displayName: "City",
             value: "",
             type: inputTypes.text,
             columns: Columns.col6,
@@ -53,9 +53,9 @@ export const organizationSignupForm: IForm  = {
             }
         },
         {
-            name: "city",
+            name: "state_province",
             label: true,
-            displayName: "City",
+            displayName: "State or Province",
             value: "",
             type: inputTypes.text,
             columns: Columns.col6,
@@ -87,19 +87,27 @@ export const organizationSignupForm: IForm  = {
         },
         {
             name: "country",
+            displayName: "Country",
             label: true,
-            displayName:"Country",
-            value: "",
-            type: inputTypes.text,
-            columns: Columns.col6,
+            type: inputTypes.select,
             inputClass: "",
+            wrapperClass: "",
+            columns: Columns.col6,
+            value: "",
+            multiSelect: false,
             validation: {
                 validationType: "string",
                 valid: null,
-                required: true,
+                required: false,
                 lengthRequired: false,
                 validationMessage: "",
-            }
+
+            },
+            choices: [
+                {name: "country", displayName: "Select Country",      value: ""},
+                {name: "country", displayName: "Certification 1",      value: "Certification 1"},
+                {name: "country", displayName: "Certification 2",      value: "Certification 2"},
+            ]
         },
         {
             name: "phoneNumber",
@@ -120,18 +128,18 @@ export const organizationSignupForm: IForm  = {
             }
         },
         {
-            name: "classification",
+            name: "website",
             label: true,
-            displayName:"Classification",
+            displayName:"Website",
             value: "",
             type: inputTypes.text,
-            columns: Columns.col6,
+            columns:Columns.col6,
             inputClass: "",
             validation: {
                 validationType: "string",
                 valid: null,
-                required: false,
                 lengthRequired: false,
+                required: false,
                 validationMessage: "",
             }
         },
@@ -149,38 +157,6 @@ export const organizationSignupForm: IForm  = {
                 required: true,
                 lengthRequired: true,
                 length: {min: 4, max: 4},
-                validationMessage: "",
-            }
-        },
-        {
-            name: "website",
-            label: true,
-            displayName:"Website",
-            value: "",
-            type: inputTypes.text,
-            columns:Columns.col6,
-            inputClass: "",
-            validation: {
-                validationType: "string",
-                valid: null,
-                lengthRequired: false,
-                required: false,
-                validationMessage: "",
-            }
-        },
-        {
-            name: "qualityCertifications",
-            label: true,
-            displayName:"Quality Certifications",
-            value: "",
-            type: inputTypes.text,
-            columns: Columns.col6,
-            inputClass: "",
-            validation: {
-                validationType: "string",
-                valid: null,
-                required: false,
-                lengthRequired: false,
                 validationMessage: "",
             }
         },
@@ -256,6 +232,54 @@ export const organizationSignupForm: IForm  = {
                 {name: "yearsInOperation", displayName: "5-10 Years",  value: "5-10"},
                 {name: "yearsInOperation", displayName: "10-15 Years", value: "10-15"},
                 {name: "yearsInOperation", displayName: "20+ Years",   value: "20+"},
+            ]
+        },
+        {
+            name: "classification",
+            displayName: "Classification",
+            label: false,
+            type: inputTypes.dropdown,
+            inputClass: "",
+            wrapperClass: "mt-1 mb-3",
+            columns: Columns.col12,
+            value: "",
+            multiSelect: false,
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: true,
+                lengthRequired: false,
+                validationMessage: "",
+
+            },
+            choices: [
+                {name: "classification", displayName: "None",      value: ""},
+                {name: "classification", displayName: "Classification 1",      value: "Classification 1"},
+                {name: "classification", displayName: "Classification 2",      value: "Classification 2"},
+            ]
+        },
+        {
+            name: "qualityCertifications",
+            displayName: "Quality Certifications",
+            label: false,
+            type: inputTypes.dropdown,
+            inputClass: "",
+            wrapperClass: "mt-1 mb-2",
+            columns: Columns.col12,
+            value: "",
+            multiSelect: false,
+            validation: {
+                validationType: "string",
+                valid: null,
+                required: false,
+                lengthRequired: false,
+                validationMessage: "",
+
+            },
+            choices: [
+                {name: "qualityCertifications", displayName: "None",      value: ""},
+                {name: "qualityCertifications", displayName: "Certification 1",      value: "Certification 1"},
+                {name: "qualityCertifications", displayName: "Certification 2",      value: "Certification 2"},
             ]
         },
         {
@@ -409,7 +433,7 @@ export const organizationSignupForm: IForm  = {
             variant: Variant.primary,
             wrapperClass: "",
             inputClass: "",
-            columns: Columns.col6,
+            columns: Columns.col12,
         },
     ],
     getValues: getValues,
@@ -435,9 +459,7 @@ function getValues(this: IForm): IOrganization {
         greenCertified:     getValuesHelper(this, "greenCertified"),
         establishedProduct: getValuesHelper(this, "establishedProduct"),
         yearsInOperation:   getValuesHelper(this, "yearsInOperation"),
-        classifications: [
-            getValuesHelper(this, "establishedProduct")
-        ],
+        classifications:    getValuesHelper(this, "classification"),
         address: {
             street:         getValuesHelper(this, "street"),
             city:           getValuesHelper(this, "city"),

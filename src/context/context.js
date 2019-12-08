@@ -134,11 +134,16 @@ export class ContextProvider extends Component {
         }
     }
 
-    handleOnChange = (e, formName, secondaryAction = false) => {
+    handleOnChange = (e, formName, variant, alternateValue ,secondaryAction = false) => {
         const { name, value, checked } = e.target;
         const form = {...this.state.forms[formName]};
 
-        let updatedForm = updateForm(name, value, checked, form);
+        let updatedForm;
+        if (variant === "multiSelect") {
+            updatedForm = updateForm(name, alternateValue, checked, form);
+        } else {
+            updatedForm = updateForm(name, value, checked, form);
+        }
 
         this.setState({[formName]: updatedForm});
 

@@ -13,6 +13,7 @@ export const supplierSearchForm: IForm  = {
             wrapperClass: "mb-3",
             columns: Columns.none,
             value: "",
+            multiSelect: false,
             validation: {
                 validationType: "string",
                 valid: null,
@@ -22,7 +23,6 @@ export const supplierSearchForm: IForm  = {
 
             },
             choices: [
-                {name: "component", displayName: "",                           value: " "},
                 {name: "component", displayName: "Doorways",                   value: Components.doorways},
                 {name: "component", displayName: "Floors",                     value: Components.floors},
                 {name: "component", displayName: "Floor Panels",               value: Components.floorPanels},
@@ -140,6 +140,7 @@ export const supplierSearchForm: IForm  = {
             inputClass: "hidden",
             columns: Columns.none,
             value: "any",
+            multiSelect: false,
             validation: {
                 validationType: "string",
                 valid: null,

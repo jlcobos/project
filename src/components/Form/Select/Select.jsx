@@ -17,18 +17,16 @@ export default function Select(
         validation: { valid, validationMessage }, 
     })
     {
-        console.log(choices)
     return (
         <div className={["form-group", columns, wrapperClass].join(" ")}>
 
             {label && <label className={labelClass} htmlFor={name}>{displayName}</label>}
-            <select className="custom-select">
+
+            <select className="custom-select" name={name} onChange={(e) => handleOnChange(e, formName)} value={value} >
                 {choices.map((choice, i) => {
                     return <option
                             key={i}
-                            onClick={(e) => {
-                                handleOnChange(e, formName);
-                            }}
+                            value={choice.displayName}
                             >
                                 {`${choice.displayName}`}
                             </option>

@@ -17,7 +17,7 @@ export default function Dropdown({
 
     // const [selectValues, setValues] = useState([]);
 
-    const buttonClass = (valid === false) ? "btn btn-danger dropdown-toggle  text-capitalize" : "btn btn-primary dropdown-toggle  text-capitalize";
+    const buttonClass = (valid === false) ? "btn btn-danger dropdown-toggle  text-capitalize" : "btn btn-info dropdown-toggle  text-capitalize";
     return (
         <div id={name} className={[wrapperClass, columns].join(" ")}>
 

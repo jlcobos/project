@@ -145,17 +145,15 @@ export class ContextProvider extends Component {
             updatedForm = updateForm(name, value, checked, form);
         }
 
+        if (formName === "organizationSignupForm" && name === "supplier") {
+            this.toggleProductsList();
+        }
+
         this.setState({[formName]: updatedForm});
 
         if (e.target.type !== "checkbox") e.preventDefault();
 
         if(secondaryAction) this.secondaryActions(secondaryAction);
-    }
-
-    secondaryActions = async (secondaryAction) => {
-        if (secondaryAction === "toggleProductsList") {
-            this.toggleProductsList();
-        }
     }
 
     prefillFormField = (inputName, value, formName) => {

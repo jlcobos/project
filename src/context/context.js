@@ -134,23 +134,26 @@ export class ContextProvider extends Component {
         }
     }
 
-    handleOnChange = (e, formName, secondaryAction = false) => {
+    handleOnChange = (e, formName, variant, alternateValue ,secondaryAction = false) => {
         const { name, value, checked } = e.target;
         const form = {...this.state.forms[formName]};
 
-        let updatedForm = updateForm(name, value, checked, form);
+        let updatedForm;
+        if (variant === "multiSelect") {
+            updatedForm = updateForm(name, alternateValue, checked, form);
+        } else {
+            updatedForm = updateForm(name, value, checked, form);
+        }
+
+        if (formName === "organizationSignupForm" && name === "supplier") {
+            this.toggleProductsList();
+        }
 
         this.setState({[formName]: updatedForm});
 
         if (e.target.type !== "checkbox") e.preventDefault();
 
         if(secondaryAction) this.secondaryActions(secondaryAction);
-    }
-
-    secondaryActions = async (secondaryAction) => {
-        if (secondaryAction === "toggleProductsList") {
-            this.toggleProductsList();
-        }
     }
 
     prefillFormField = (inputName, value, formName) => {

@@ -10,10 +10,11 @@ export default function Checkbox({
     columns, 
     formName, 
     displayName,
-    secondaryAction
+    secondaryAction,
+    wrapperClass,
 }){
     return (
-        <div className={`${columns} mb-2 form-check ${inline ? "form-check-inline" : ""}`}>
+        <div className={`${columns} ${wrapperClass} mb-2 form-check ${inline ? "form-check-inline" : ""}`}>
             <input 
                 className={`form-check-input ${checkboxClass ? checkboxClass : ""}`} 
                 id={name} 

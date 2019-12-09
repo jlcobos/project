@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from "react";
+import React, {useState, useContext, Fragment} from "react";
 import { NavLink } from "react-router-dom";
 import { Context } from "../../context/context";
 import Form from "../../components/Form/Form";
@@ -9,6 +9,7 @@ import List from "../../components/List";
 function SupplierSearch() {
 
     const [suppliers, setSuppliers] = useState([]);
+    const {organization, currentUser, forms: {supplierSearchForm}, supplierSearchResults, createDraftRFP,...rest} = useContext(Context);
 
     function addSupplier(name, id){
         if (!suppliers.some(s => s.id === id)) {
@@ -43,36 +44,29 @@ function SupplierSearch() {
         </div>
         )
     )
+    const isOrg = Boolean(organization);
+    const items = supplierSearchResults ? supplierSearchResults.map(supplier => <SearchItem supplier={supplier} addSupplier={addSupplier} isOrg={isOrg} />) : null;
 
     return(
-        <Col colClass="col-xs-12 col-md-12 col-lg-10 offset-lg-1">
-            <Context.Consumer>
-            {({organization, currentUser, forms: {supplierSearchForm}, supplierSearchResults, createDraftRFP,...rest}) => {
-                const isOrg = Boolean(organization);
-                console.log(isOrg);
-                const items = supplierSearchResults ? supplierSearchResults.map(supplier => <SearchItem supplier={supplier} addSupplier={addSupplier} isOrg={isOrg} />) : null;
-                return (
-                    <Fragment>
-                            <Row>
-                                <Form form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
-                            </Row>
-                            <Row>
-                                {renderSuppliers}
-                                {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
-                                {!!supplierSearchResults && supplierSearchResults.length > 0 ? 
-                                    <List 
-                                    items={items} 
-                                    itemClass={"my-2"}
-                                    />
-                                    :
-                                    <p>Search for suppliers</p>
-                                }
-                            </Row>
-                        </Fragment>
-                    ); 
-                }}
-            </Context.Consumer>
-        </Col>
+        <Fragment>
+            {/* <Col colClass="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4"> */}
+                <Row rowClass="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+                    <Form form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
+                </Row>
+                <Row rowClass={"col-12 mx-0"}>
+                        {renderSuppliers}
+                        {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
+                        {!!supplierSearchResults && supplierSearchResults.length > 0 ? 
+                            <List 
+                            items={items} 
+                            itemClass={"my-2"}
+                            />
+                            :
+                            null
+                        }
+                </Row>
+            {/* </Col> */}
+        </Fragment>
     );
 }
 
@@ -99,7 +93,7 @@ function SearchItem({supplier, addSupplier, isOrg}) {
                     <p className="mr-1">{supplier.buyAmerica && "Buy America"}</p>
                     <p className="mr-1">{supplier.isoCertified && "ISO Certified"}</p>
                     <p className="mr-1">{supplier.greenCertified && "Green Certified"}</p>
-                    <p className="mr-1">{supplier.establishedProduct && "Established Products"}</p>
+                    <p className="mr-1">{supplier.establishedProduct && "Established Product(s)"}</p>
                 </div>
             </div>
 

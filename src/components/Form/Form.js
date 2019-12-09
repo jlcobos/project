@@ -4,6 +4,7 @@ import Textarea from "./Textarea";
 import Checkbox from "./Checkbox";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
+import Select from "./Select";
 // import DropDown from "./Dropdown";
 
 // export default function Form({form, handleOnChange, handleOnBlur, handleSubmit, formName}){
@@ -15,7 +16,6 @@ export default function Form({form, ...props}){
         "password", 
         "email", 
         "radio", 
-        "select", 
         "search", 
         "range", 
         "tel", 
@@ -37,6 +37,7 @@ export default function Form({form, ...props}){
                 else if (input.type === "textarea")       return <Textarea key={input.name} {...input} {...props} />
                 else if (input.type === "checkbox")       return <Checkbox key={input.name} {...input} {...props} />
                 else if (input.type === "dropdown")       return <Dropdown key={input.name} {...input} {...props} />
+                else if (input.type === "select")         return <Select key={input.name} {...input} {...props} />
                 else if (input.type === "button")         return <Button   key={input.name} {...input} {...props} />
                 else inputTypeError();
             })}

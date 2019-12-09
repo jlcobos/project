@@ -1,5 +1,8 @@
 form {
     margin-top: 15px;
+    padding: 16px;
+    background-color: rgba(36,61,84,1);
+    border-radius: 4px;
 }
 
 .formInputBorderError {
@@ -12,6 +15,10 @@ form {
 
 .hidden {
     display: none;
+}
+
+.form-checkbox {
+    padding-left: 37px;
 }
 
 // input.placeholderErrorTextColor {

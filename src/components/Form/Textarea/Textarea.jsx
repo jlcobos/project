@@ -24,7 +24,7 @@ export default function TextArea({
                 name={name} 
                 value={value} 
                 rows={rows} id={name} 
-                placeholder={displayName}
+                // placeholder={displayName}
                 onChange={(e) => handleOnChange(e, formName)}
                 onBlur={(e) => handleOnBlur(e, formName)}
             />

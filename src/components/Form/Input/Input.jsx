@@ -26,7 +26,7 @@ export default function Input(
                 className={["form-control", inputClass || "",  valid === false ? "formInputBorderError" : "" ].join(" ")} 
                 id={name} 
                 name={name} 
-                placeholder={displayName}
+                // placeholder={displayName}
                 value={value}
                 pattern={pattern}
                 onChange={(e) => handleOnChange(e,formName)}

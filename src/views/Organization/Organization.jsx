@@ -13,7 +13,7 @@ export default function Organization() {
     const {organization, currentRFPs, supplierRFPs, forms: { rfpMessageForm }, toggleFlag, rfpActive, currentUser, ...rest} = useContext(Context)
     useEffect( () => { if (rfpActive) toggleFlag("rfpActive", false) });
     return (
-        <Col  colSize="col-12" colClass="col-xs-12">
+        <Col  colSize="col-12" colClass="col-xs-12 organization">
             <Row>
                 <h1>{organization.name}</h1>
             </Row>

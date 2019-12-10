@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../context/context";
+import Messages from "../Messages";
 import Modal from "../../../components/Modal";
 import moment from "moment";
 
@@ -47,22 +48,4 @@ export default function SupplierRFPView({rfp, rfpId, form, orgId, currentUserId}
                     {form}
                 </Modal>
             </React.Fragment>
-}
-
-function Messages({messages}){
-    const reversedMessages = messages.reverse(); // TODO: add timezone
-    // TODO: prepend messages so you dont have to reverse ??
-    return (
-        <ul>
-            {reversedMessages.map((message, i) => {
-                return (
-                    <li key={i}>
-                        <p>Date Sent: {moment(message.dateSent.toDate()).format("MMMM Do YYYY, h:mm a")}</p>
-                        <h5>Subject: {message.subject}</h5>
-                        <p>Message Body: {message.message}</p>
-                    </li>
-                ) 
-            })}
-        </ul>
-    )
 }

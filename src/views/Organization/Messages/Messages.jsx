@@ -10,11 +10,11 @@ export default function Messages({messages, messageId}){ // TODO: use guids for 
                 return (
                     <div key={i} className="card bg-light">
                         <div className="card-header py-1" id={`heading-${messageId}${i}`}>
-                            <h2 className="mb-0">
-                            <button className="btn btn-link p-0" type="button" data-toggle="collapse" data-target={`#collapse-${messageId}${i}`} aria-expanded="true" aria-controls={`collapse-${messageId}${i}`}>
-                                {reversedMessages.length -i}: Subject: {message.subject} <small className="text-black-50 pl-3" ><em>{moment(message.dateSent.toDate()).format("MMMM Do YYYY, h:mm a")}</em></small>
+                            <div className="mb-0">
+                            <button className="btn btn-link p-0 text-decoration-none" type="button" data-toggle="collapse" data-target={`#collapse-${messageId}${i}`} aria-expanded="true" aria-controls={`collapse-${messageId}${i}`}>
+                                <p className="text-body mb-0">Subject: {message.subject} <small className="text-black-50"><em>{moment(message.dateSent.toDate()).format("MMMM Do YYYY, h:mm a")}</em></small></p>
                             </button>
-                            </h2>
+                            </div>
                             
                         </div>
                 

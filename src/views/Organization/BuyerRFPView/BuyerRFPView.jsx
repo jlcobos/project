@@ -18,9 +18,11 @@ export default function BuyerRFPView({rfp, rfpId, form, orgId, currentUserId}) {
         data.forEach(item => prefillFormField(item.name, item.value, "rfpMessageForm"));
     }
 
-    return  <React.Fragment>
-                <h4>Title: {rfp.rfpTitle || "No Title"}</h4>
-                <p>Status: {rfp.status}</p>
+    return  <div className="rfpBody">
+                <div className="text-center">
+                    <h4>RFP Title: {rfp.rfpTitle || "No Title"}</h4>
+                    <p>Status: {rfp.status}</p>
+                </div>
                 {rfp.bidders.map((id) => {
                     return <Bidder
                             key={id} 
@@ -36,7 +38,7 @@ export default function BuyerRFPView({rfp, rfpId, form, orgId, currentUserId}) {
                 >
                     {form}
                 </Modal>
-            </React.Fragment>
+            </div>
 }
 
 function Bidder({bidderId, messages, setupMessage, setOrgName}) {
@@ -51,23 +53,32 @@ function Bidder({bidderId, messages, setupMessage, setOrgName}) {
     },[]);
 
     return (
-        <div key={bidderId}>
-            <p>{bidder.name}</p>
-            <button type="button" className="btn btn-link" onClick={() => setShowMessages(!showMessages) }>{showMessages ? "Close Messages" : "Show Messages"}</button>
-            <button 
-                type="button" 
-                className="btn btn-link" 
-                data-toggle="modal" 
-                data-target="#modal"
-                onClick={() => {
-                    setupMessage(bidderId);
-                    setOrgName(bidder.name);
+        <div className="mb-5 row" key={bidderId}>
+            <div className="col-sm-12 col-md-3">
+                <p className="mb-0 d-inline">Supplier: {bidder.name}</p>
+            </div>
+            <div className="text-left col-sm-7 col-md-4 mb-1">
+                <button type="button" className="btn btn-primary w-75 py-0" onClick={() => setShowMessages(!showMessages) }>{showMessages ? "Close Messages" : "Show Messages"}</button>
+            </div>
+
+            <div className="text-left col-sm-7 col-md-4 mb-1">
+                <button 
+                    type="button" 
+                    className="btn btn-info w-75  py-0" 
+                    data-toggle="modal" 
+                    data-target="#modal"
+                    onClick={() => {
+                        setupMessage(bidderId);
+                        setOrgName(bidder.name);
+                    }
                 }
-            }
-            >
-                    New Message
-            </button>
-            {showMessages && <Messages messages={messages} messageId={bidderId} />}
+                >
+                        New Message
+                </button>
+            </div>
+            <div className="my-3 w-100">
+                {showMessages && <Messages messages={messages} messageId={bidderId} />}
+            </div>
         </div>
     )
 }

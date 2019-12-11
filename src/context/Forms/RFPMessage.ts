@@ -139,6 +139,7 @@ function getValues(this: IForm) {
         subject: getValuesHelper(this, "subject"),
         message: getValuesHelper(this, "message"),
         dateSent: null,
+        read: false,
     }
     return { rfpId: getValuesHelper(this, "rfpId"), ...message};
 }

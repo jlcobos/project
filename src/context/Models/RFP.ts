@@ -24,4 +24,5 @@ export interface IMessage {
     subject: string;
     message: string;
     dateSent: any;
+    read: boolean;
 }

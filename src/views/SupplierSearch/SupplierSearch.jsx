@@ -4,7 +4,9 @@ import { Context } from "../../context/context";
 import Form from "../../components/Form/Form";
 import Col from "../../components/Layout/Col";
 import Row from "../../components/Layout/Row";
+import Card from "../../components/Card"
 import List from "../../components/List";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //TODO: add vetted supplier as search criteria. 
 function SupplierSearch() {
 
@@ -49,23 +51,21 @@ function SupplierSearch() {
 
     return(
         <Fragment>
-            {/* <Col colClass="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4"> */}
-                <Row rowClass="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4">
-                    <Form form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
-                </Row>
-                <Row rowClass={"col-12 mx-0"}>
-                        {renderSuppliers}
-                        {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
-                        {!!supplierSearchResults && supplierSearchResults.length > 0 ? 
-                            <List 
+            <Row rowClass="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+                <Form title="Search Suppliers by Component" form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
+            </Row>
+            <Row rowClass={"col-12 mx-0"}>
+                    {renderSuppliers}
+                    {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
+                    {!!supplierSearchResults && supplierSearchResults.length > 0 ? 
+                        <List 
                             items={items} 
                             itemClass={"my-2"}
-                            />
-                            :
-                            null
-                        }
-                </Row>
-            {/* </Col> */}
+                        />
+                        :
+                        null
+                    }
+            </Row>
         </Fragment>
     );
 }
@@ -73,6 +73,7 @@ function SupplierSearch() {
 export default SupplierSearch
 
 function SearchItem({supplier, addSupplier, isOrg}) {
+
     return (
         <div>
             <div className="row">
@@ -86,14 +87,14 @@ function SearchItem({supplier, addSupplier, isOrg}) {
             <div className="d-flex col-3">
                 <div>
                     <h5 className="mr-3">Diversity and Certifications</h5>
-                    <p className="mr-1">{supplier.womanOwned && "Woman Owned"}</p>
-                    <p className="mr-1">{supplier.minorityOwned && "Minority Owned"}</p>
-                    <p className="mr-1">{supplier.veteranOwned && "Veteran Owned"}</p>
-                    <p className="mr-1">{supplier.byAmerica && "By America"}</p>
-                    <p className="mr-1">{supplier.buyAmerica && "Buy America"}</p>
-                    <p className="mr-1">{supplier.isoCertified && "ISO Certified"}</p>
-                    <p className="mr-1">{supplier.greenCertified && "Green Certified"}</p>
-                    <p className="mr-1">{supplier.establishedProduct && "Established Product(s)"}</p>
+                    {supplier.womanOwned && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"Woman Owned"}</small>}
+                    {supplier.minorityOwned  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"Minority Owned"}</small>}
+                    {supplier.veteranOwned  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"Veteran Owned"}</small>}
+                    {supplier.byAmerica  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"By America"}</small>}
+                    {supplier.buyAmerica  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"Buy America"}</small>}
+                    {supplier.isoCertified  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"ISO Certified"}</small>}
+                    {supplier.greenCertified  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"Green Certified"}</small>}
+                    {supplier.establishedProduct  && <small className="d-block font-italic pl-2"><FontAwesomeIcon className="mr-1" icon="check" />{"Established Product(s)"}</small>}
                 </div>
             </div>
 

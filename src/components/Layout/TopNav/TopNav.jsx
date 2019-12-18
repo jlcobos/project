@@ -1,12 +1,13 @@
 import React, {Component} from "react";
+import {withRouter} from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { Context } from "../../../context/context";
 import Row from "../Row";
 import Col from "../Col";
 
-export default class TopNav extends Component {
+export default withRouter(function TopNav(props) {
 
-    navLinks = [
+    const navLinks = [
         {
             to: "/home",
             text: "Home",
@@ -48,8 +49,7 @@ export default class TopNav extends Component {
         //     protected: true,
         // },
     ]
-
-    logoutLink(){
+    function logoutLink(){
         return (
             <Context.Consumer>
                 {({currentUser, logout}) => {
@@ -59,13 +59,17 @@ export default class TopNav extends Component {
         )
     }
 
-    renderNavLinks(){
-        let currentNavLinks;
+    function renderNavLinks(){
+        let currentNavLinks = [];
         return (
             <Context.Consumer>
                 {({logout, organization, isLoggedIn}) => {
-                    if(organization) currentNavLinks = this.navLinks.filter(n => n.to !== "/organization/signup");
-                    if(!Boolean(organization)) currentNavLinks = this.navLinks.filter(n => n.to !== "/organization/home");
+
+                    currentNavLinks = navLinks.filter((link) => link.to !== props.location.pathname);
+
+                    if(isLoggedIn && Boolean(organization)) currentNavLinks = currentNavLinks.filter(n => n.to !== "/organization/signup")
+                    else if(isLoggedIn && !Boolean(organization)) currentNavLinks = currentNavLinks.filter(n => n.to !== "/organization/home");
+
                     return (
                         <ul className="nav justify-content-end">
                             {currentNavLinks.map(navItem => {
@@ -101,13 +105,11 @@ export default class TopNav extends Component {
         )
     }
 
-    render(){
-        return(
-            <Row>
-                <Col colClass={"col-xs-12"}>
-                    {this.renderNavLinks()}
-                </Col>
-            </Row>
-        );
-    }
-}
+    return(
+        <Row>
+            <Col colClass={"col-xs-12"}>
+                {renderNavLinks()}
+            </Col>
+        </Row>
+    );
+})

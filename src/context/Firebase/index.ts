@@ -165,6 +165,7 @@ class Firebase {
             subject: formData.subject,
             message: formData.message,
             dateSent: firebase.firestore.Timestamp.fromDate(new Date()),
+            read: false,
         }
         await this.db.collection(Collections.RFP)
         .doc(formData.rfpId)

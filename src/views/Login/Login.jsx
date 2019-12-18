@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
 import Col from "../../components/Layout/Col";
 import Form from "../../components/Form/Form";
@@ -12,7 +13,15 @@ function Login() {
             <Context.Consumer>
                 {({currentUser, forms: {loginForm},...rest}) => {
                     if(currentUser) return  <Redirect to="/home" />
-                    return <Form form={loginForm} formName={"loginForm"} {...rest} />
+                    return <Form 
+                                title="login" 
+                                form={loginForm} 
+                                formName={"loginForm"} 
+                                {...rest} 
+                                withFooter
+                            footerWrapperClass="text-center"
+                            footerNode={<p className="ml-3" >Don't have an account? Signup <NavLink className="text-primary" to="/signup">Here</NavLink></p>} 
+                            />
                 }}
             </Context.Consumer>
         </Col>

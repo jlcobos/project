@@ -48,7 +48,7 @@ export const loginForm: IForm  = {
             submitType: "login",
             variant: Variant.primary,
             columns: Columns.col12,
-            wrapperClass: "",
+            wrapperClass: "my-3",
             inputClass: "",
         },
     ],

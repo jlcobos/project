@@ -8,23 +8,23 @@ import Select from "./Select";
 // import DropDown from "./Dropdown";
 
 // export default function Form({form, handleOnChange, handleOnBlur, handleSubmit, formName}){
-export default function Form({form, ...props}){
+export default function Form({form, title, titleWrapperClass, withFooter, footerWrapperClass, footerNode, titleClass,...props}){
     const inputTypes = [
-        "text", 
-        "number", 
-        "date", 
-        "password", 
-        "email", 
-        "radio", 
-        "search", 
-        "range", 
-        "tel", 
-        "url", 
-        "week", 
-        "time", 
-        "color", 
-        "date-time-local", 
-        "month", 
+        "text",
+        "number",
+        "date",
+        "password",
+        "email",
+        "radio",
+        "search",
+        "range",
+        "tel",
+        "url",
+        "week",
+        "time",
+        "color",
+        "date-time-local",
+        "month",
         "hidden"
     ];
     function inputTypeError(){
@@ -32,6 +32,10 @@ export default function Form({form, ...props}){
     }
     return (
         <form className="d-flex flex-wrap">
+            {title && <div className={["formTitle w-100 d-block", titleWrapperClass]}>
+                <h3 className={titleClass+"w-100 text-center"}>{title}</h3>
+                <hr/>
+            </div>}
             {form.inputs.map(function(input) {
                 if      (inputTypes.includes(input.type)) return <Input    key={input.name} {...input} {...props} />
                 else if (input.type === "textarea")       return <Textarea key={input.name} {...input} {...props} />
@@ -41,6 +45,15 @@ export default function Form({form, ...props}){
                 else if (input.type === "button")         return <Button   key={input.name} {...input} {...props} />
                 else inputTypeError();
             })}
+            {withFooter ?
+                (
+                    <footer className={[footerWrapperClass, ""].join(" ")}>
+                        {footerNode}
+                    </footer>
+                )
+                :
+                null
+            }
         </form>
     )
 }

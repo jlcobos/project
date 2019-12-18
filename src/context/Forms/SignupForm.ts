@@ -65,7 +65,7 @@ export const signupForm: IForm  = {
             type: inputTypes.button,
             submitType: "signup",
             variant: Variant.primary,
-            wrapperClass: "",
+            wrapperClass: "my-3",
             inputClass: "",
             columns: Columns.col12,
         },

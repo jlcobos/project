@@ -24,8 +24,8 @@ import './CSS/App.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faHome, faSearch, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faHome, faSearch, faChevronLeft, faChevronRight);
+import { faHome, faSearch, faChevronLeft, faChevronRight, faCheck } from '@fortawesome/free-solid-svg-icons';
+library.add(fab, faHome, faSearch, faChevronLeft, faChevronRight, faCheck);
 
 
 function App() {

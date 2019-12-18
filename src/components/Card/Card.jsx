@@ -11,6 +11,7 @@ export default function Card({
     withFooter, footerClass, footerText,
     withNavFooter, navFooterClass, navFooterText, navPath,
     textCenter,
+    children,
 })
 {
     return (
@@ -18,6 +19,7 @@ export default function Card({
             {withHeader && element({type: headerType || "div", props: {className: `card-header ${headerClass || ""}`}, children: header})}
             <div className={["card-body", bodyClass].join(" ")}>
                 {withTitle && element({type: titleElement || "h5", props: {className: `card-title ${titleClass || ""}`}, children: title})}
+                {children}
                 {withBodyText && element({type: bodyTextElement || "p", classes: `card-text ${bodyTextClass || ""}`, children: bodyText})}
                 {withNavLink && <NavLink className={navLinkClass || ""} to={navLinkRoute}>{navLinkText}</NavLink>}
             </div>

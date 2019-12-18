@@ -14,7 +14,7 @@ const OrganizationSignup = () => {
                     if (organization) {
                         return <Redirect to={"/organization/home"} />
                     } else {
-                        return <Form form={organizationSignupForm} formName={organizationSignupForm.formName} {...rest} />
+                        return <Form title="Organization Signup" form={organizationSignupForm} formName={organizationSignupForm.formName} {...rest} />
                     }
                 }}
             </Context.Consumer>

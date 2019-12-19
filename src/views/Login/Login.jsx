@@ -20,7 +20,7 @@ function Login() {
                                 {...rest} 
                                 withFooter
                             footerWrapperClass="text-center"
-                            footerNode={<p className="ml-3" >Don't have an account? Signup <NavLink className="text-primary" to="/signup">Here</NavLink></p>} 
+                            footerNode={<p className="ml-3" >Don't have an account? Signup <NavLink className="text-primary" to="/signup">here</NavLink></p>} 
                             />
                 }}
             </Context.Consumer>

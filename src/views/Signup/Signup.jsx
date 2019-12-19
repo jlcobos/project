@@ -20,7 +20,7 @@ export default function Signup() {
                             {...rest}
                             withFooter
                             footerWrapperClass="text-center"
-                            footerNode={<p className="ml-3" >Already have an account? Login <NavLink className="text-primary" to="/login">Here</NavLink></p>} 
+                            footerNode={<p className="ml-3" >Already have an account? Login <NavLink className="text-primary" to="/login">here</NavLink></p>} 
                         />
                 }}
             </Context.Consumer>

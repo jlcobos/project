@@ -30,33 +30,46 @@ function SupplierSearch() {
         if (suppliers.length > 0) {
             return (
                 <button 
-                    className="btn btn-info" 
+                    className="btn btn-info w-100 mb-3" 
                     onClick={() => createDraftRFP({suppliers: suppliers.map(s => s), organizationId: organization.id, userId: currentUser.uid})}
                 >
-                    <NavLink to={"/initialize-rfp"}>Next Step To Initialize RFP</NavLink>
+                    <NavLink to={"/initialize-rfp"}>Create Draft RFP</NavLink>
                 </button>
             )
         }
     }
 
-    const renderSuppliers = suppliers.map(s => (
-        <div key={s.id}>
-            <p style={{display: "inline"}}>{s.name}</p>
-            <button className="btn btn-danger" onClick={() => removeSupplier(s.id)}>X</button>
-        </div>
+    function renderDraftRFPSuppliers(){
+        return (
+            <div className="card w-100 ml-2 formBg flex-grow" style={{marginTop: 15}}>
+                <div className="card-header text-center"><h3>Draft RFP Suppliers</h3></div>
+                <ul className="list-group list-group-flush h-100">
+                    {suppliers.map(s => {
+                        return (
+                            <li key={s.id} className="list-group-item d-flex justify-content-between formBg shadow my-1">
+                                <div>{s.name}</div>
+                                <button className="btn btn-link p-0" onClick={() => removeSupplier(s.id)}><span class="badge badge-danger">x</span></button>
+                            </li>
+                            )
+                        })
+                    }
+                </ul>
+                <div className="card-footer">
+                    {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
+                </div>
+            </div>
         )
-    )
+    }
     const isOrg = Boolean(organization);
     const items = supplierSearchResults ? supplierSearchResults.map(supplier => <SearchItem supplier={supplier} addSupplier={addSupplier} isOrg={isOrg} />) : null;
 
     return(
         <Fragment>
-            <Row rowClass="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4">
-                <Form title="Search Suppliers by Component" form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
+            <Row rowClass="col-xs-12 col-lg-8 offset-lg-2 mb-2 d-flex flex-nowrap align-items-stretch mx-auto">
+                <Form title="Search Suppliers" formWrapperClass="w-100" form={supplierSearchForm} formName={supplierSearchForm.formName} {...rest} />
+                {suppliers.length > 0 && renderDraftRFPSuppliers()}
             </Row>
             <Row rowClass={"col-12 mx-0"}>
-                    {renderSuppliers}
-                    {isOrg && newRfpButton(createDraftRFP, organization, currentUser)}
                     {!!supplierSearchResults && supplierSearchResults.length > 0 ? 
                         <List 
                             items={items} 

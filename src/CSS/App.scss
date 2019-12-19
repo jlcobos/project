@@ -9,6 +9,8 @@ $TertiaryBG: rgba(89, 108, 125, 1);
 @import "./List.scss";
 @import "./Text.scss";
 @import "./ToggleClasses.scss";
+@import "./Backgrounds.scss";
+
 
 html, body {
   height: 100vh;
@@ -28,7 +30,7 @@ body {
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, li, span, label {
+div, h1, h2, h3, h4, h5, h6, p, a, li, span, label {
   color: #FFF !important;
 }
 

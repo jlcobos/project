@@ -8,7 +8,7 @@ import Select from "./Select";
 // import DropDown from "./Dropdown";
 
 // export default function Form({form, handleOnChange, handleOnBlur, handleSubmit, formName}){
-export default function Form({form, title, titleWrapperClass, withFooter, footerWrapperClass, footerNode, titleClass,...props}){
+export default function Form({form, formWrapperClass, title, titleWrapperClass, withFooter, footerWrapperClass, footerNode, titleClass,...props}){
     const inputTypes = [
         "text",
         "number",
@@ -31,7 +31,7 @@ export default function Form({form, title, titleWrapperClass, withFooter, footer
         console.error("Input type not recognized");
     }
     return (
-        <form className="d-flex flex-wrap">
+        <form className={["d-flex flex-wrap", formWrapperClass].join(" ")}>
             {title && <div className={["formTitle w-100 d-block", titleWrapperClass]}>
                 <h3 className={titleClass+"w-100 text-center"}>{title}</h3>
                 <hr/>
